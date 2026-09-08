@@ -31,11 +31,18 @@ No depende de Tailwind.
 
 - Node.js ≥ 20
 - React `^18.0.0 || ^19.0.0` y `react-dom` (peer dependencies)
-- Vite (recomendado) u otro bundler que procese SCSS
-- Dentro de este monorepo Nx (consumo por fuente)
+- Vite (recomendado) u otro bundler que procese SCSS **o** que importe el CSS compilado (`styles.css`)
+- Dentro de este monorepo Nx (consumo por fuente) **o** como dependencia local vía tarball
 
-El paquete es `private: true` y se consume por **fuente** (`src/index.ts`). No está publicado en
-ningún registry; el consumo real ocurre en las aplicaciones del monorepo.
+Hay **dos formas** de consumir el paquete (versión actual: `1.0.0`):
+
+| Vía | Cuándo |
+|---|---|
+| **Por fuente (monorepo)** | Desarrollo diario de las apps de este repo (`tsconfig.base.json`). |
+| **Como dependencia local `.tgz`** | Apps que viven fuera del monorepo (proyectos de tus desarrolladores). Artefacto en `artifacts/medical-design-system-1.0.0.tgz`. |
+
+`private: true` = **no** se publica a npm público. Se comparte como tarball local o, más adelante,
+vía registry privado (p. ej. GitHub Packages).
 
 ---
 
@@ -60,6 +67,36 @@ import { Button, Tag } from '@medical/design-system';
 **Los estilos se cargan solos.** `src/index.ts` importa `./styles/index.scss`, así que con Vite los
 estilos (tokens globales + componentes) se incluyen en el bundle automáticamente. No necesitas
 importar CSS manualmente.
+
+### Como dependencia local (.tgz) — para apps fuera del monorepo
+
+El artefacto del release se genera en la carpeta `artifacts/` de la raíz del repo y **no** se sube
+a git (se reconstruye con `npm pack`):
+
+```bash
+# 1. Desde la raíz del monorepo, para (re)generar el tarball:
+npm run build:design-system
+npm pack --pack-destination artifacts ./packages/design-system
+```
+
+```bash
+# 2. En la app de tu desarrollador, instalarlo como cualquier dependencia:
+npm install ../medical-platform/artifacts/medical-design-system-1.0.0.tgz
+```
+
+El tarball contiene: JS ESM compilado (`dist/`), CSS compilado (`dist/design-system.css`),
+temas de marca (`themes/`), el fuente (`src/`) para tipos y este README.
+
+A diferencia del consumo por fuente, aquí **sí importas el CSS compilado** y el tema:
+
+```tsx
+import { Button, Badge } from '@medical/design-system';
+import '@medical/design-system/styles.css';          // CSS compilado (Vite lo resolve por exports)
+import '@medical/design-system/themes/onco.css';     // opcional: tema de marca
+```
+
+Verificado en `apps` externas con un consumidor de prueba (React 19 + Vite 6): componentes,
+tokens y temas aplican correctamente en modo claro y oscuro.
 
 ### Fuentes
 

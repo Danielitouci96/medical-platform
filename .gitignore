@@ -14,6 +14,7 @@ coverage/
 storybook-static/
 .tmp/
 tmp/
+artifacts/
 
 # Nx
 .nx/cache/

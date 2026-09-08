@@ -6,7 +6,7 @@ import { peerDependencies, dependencies } from './package.json';
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: resolve(__dirname, '../../dist/packages/design-system'),
+    outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),

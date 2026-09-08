@@ -1,6 +1,6 @@
 {
   "name": "medical-platform",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "description": "Monorepo de la plataforma médica. Contiene el Design System y las aplicaciones que lo consumen.",
   "license": "UNLICENSED",
