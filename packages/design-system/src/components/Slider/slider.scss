@@ -1,0 +1,53 @@
+.med-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--size-5);
+  touch-action: none;
+  user-select: none;
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &__track {
+    position: relative;
+    flex: 1;
+    height: 4px;
+    background: var(--color-border-strong);
+    border-radius: var(--radius-full);
+  }
+
+  &__range {
+    position: absolute;
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+  }
+
+  &__thumb {
+    display: block;
+    width: var(--size-5);
+    height: var(--size-5);
+    background: var(--color-surface-elevated);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--color-primary-soft);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+
+    &[data-disabled] {
+      cursor: not-allowed;
+    }
+  }
+}

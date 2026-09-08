@@ -1,0 +1,32 @@
+@use '../../foundations/breakpoints/index' as bp;
+
+.med-container {
+  &.med-container--centered {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.med-container--xs {
+  max-width: 480px;
+}
+
+.med-container--sm {
+  max-width: 640px;
+}
+
+.med-container--md {
+  max-width: 768px;
+}
+
+.med-container--lg {
+  max-width: 1024px;
+}
+
+.med-container--xl {
+  max-width: 1280px;
+}
+
+.med-container--full {
+  max-width: 100%;
+}

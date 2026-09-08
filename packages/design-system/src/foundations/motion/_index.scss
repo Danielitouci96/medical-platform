@@ -1,0 +1,105 @@
+// ============================================================================
+// MOTION FOUNDATION
+// ============================================================================
+// Motion utility classes.
+// ============================================================================
+
+@use '../tokens/motion/primitive' as *;
+@use '../tokens/motion/semantic' as *;
+
+.med-motion-fade {
+  transition: var(--motion-fade);
+}
+
+.med-motion-slide-down {
+  transition: var(--motion-slide-down);
+}
+
+.med-motion-scale {
+  transition: var(--motion-scale);
+}
+
+.med-motion-collapse {
+  transition: var(--motion-collapse);
+}
+
+@keyframes med-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes med-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes med-slide-in-up {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes med-slide-in-down {
+  from {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes med-slide-in-left {
+  from {
+    transform: translateX(-8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes med-slide-in-right {
+  from {
+    transform: translateX(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes med-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes med-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

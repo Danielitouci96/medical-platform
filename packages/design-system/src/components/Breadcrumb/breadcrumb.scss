@@ -1,0 +1,42 @@
+.med-breadcrumb {
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+
+    &--current {
+      color: var(--color-text-primary);
+      font-weight: var(--font-weight-medium);
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font: var(--font-body-sm);
+  }
+
+  &__current {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font: var(--font-body-sm);
+  }
+
+  &__separator {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-text-tertiary);
+  }
+}

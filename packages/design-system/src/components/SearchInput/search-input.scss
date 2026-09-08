@@ -1,0 +1,47 @@
+.med-search-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .med-search-input__icon {
+    position: absolute;
+    left: var(--control-padding-x-sm);
+    color: var(--color-text-tertiary);
+    pointer-events: none;
+  }
+
+  .med-search-input__input {
+    padding-left: calc(var(--control-padding-x-sm) + var(--size-4) + var(--space-component-xs));
+
+    &[type='search']::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+    }
+  }
+
+  .med-search-input__clear {
+    position: absolute;
+    right: var(--space-component-xs);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--control-height-sm);
+    height: var(--control-height-sm);
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-control-sm);
+    color: var(--color-text-tertiary);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--easing-standard);
+
+    &:hover {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 1px;
+    }
+  }
+}

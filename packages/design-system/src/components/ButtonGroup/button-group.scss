@@ -1,0 +1,58 @@
+.med-button-group {
+  display: inline-flex;
+  gap: var(--space-inline-sm);
+
+  &--vertical {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  // Children inherit variant/size when applied via data attributes.
+  &[data-variant] .med-button,
+  &[data-variant] .med-icon-button {
+    // Variant inheritance is performed by the component; this class is a
+    // no-op hook for potential future styling.
+  }
+
+  &--attached {
+    gap: 0;
+
+    &.med-button-group--horizontal > .med-button,
+    &.med-button-group--horizontal > .med-icon-button {
+      border-radius: 0;
+
+      &:first-child {
+        border-top-left-radius: var(--radius-button);
+        border-bottom-left-radius: var(--radius-button);
+      }
+
+      &:last-child {
+        border-top-right-radius: var(--radius-button);
+        border-bottom-right-radius: var(--radius-button);
+      }
+
+      &:not(:first-child) {
+        margin-left: -1px;
+      }
+    }
+
+    &.med-button-group--vertical > .med-button,
+    &.med-button-group--vertical > .med-icon-button {
+      border-radius: 0;
+
+      &:first-child {
+        border-top-left-radius: var(--radius-button);
+        border-top-right-radius: var(--radius-button);
+      }
+
+      &:last-child {
+        border-bottom-left-radius: var(--radius-button);
+        border-bottom-right-radius: var(--radius-button);
+      }
+
+      &:not(:first-child) {
+        margin-top: -1px;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.med-label {
+  display: inline-flex;
+  align-items: center;
+  font: var(--form-label-font);
+  color: var(--form-label-text);
+
+  &--size-sm {
+    font: var(--font-label-sm);
+  }
+
+  &--size-md {
+    font: var(--font-label-md);
+  }
+
+  &--size-lg {
+    font: var(--font-label-lg);
+  }
+
+  &__required {
+    color: var(--form-required-indicator);
+    margin-left: 2px;
+  }
+}

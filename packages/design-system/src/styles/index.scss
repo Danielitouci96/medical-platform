@@ -1,0 +1,73 @@
+// ============================================================================
+// DESIGN SYSTEM STYLES
+// ============================================================================
+// This is the single entry point for the Design System CSS.
+// Consuming applications import this once:
+//
+//   import '@medical/design-system/styles.css';
+//
+// Or in SCSS:
+//
+//   @use '@medical/design-system/src/styles/index' as *;
+// ============================================================================
+
+@use '../foundations/index' as *;
+@use './reset';
+
+// ============================================================================
+// COMPONENT STYLES
+// ============================================================================
+// Imported here so that consuming applications get all styles with a single
+// import. Each component could also be imported individually for tree-shaking.
+// ============================================================================
+
+@use '../components/Button/button';
+@use '../components/IconButton/icon-button';
+@use '../components/ButtonGroup/button-group';
+@use '../components/Input/input';
+@use '../components/Textarea/textarea';
+@use '../components/PasswordInput/password-input';
+@use '../components/SearchInput/search-input';
+@use '../components/NumberInput/number-input';
+@use '../components/Select/select';
+@use '../components/Checkbox/checkbox';
+@use '../components/Radio/radio';
+@use '../components/Switch/switch';
+@use '../components/Slider/slider';
+@use '../components/FormField/form-field';
+@use '../components/Alert/alert';
+@use '../components/Toast/toast';
+@use '../components/Spinner/spinner';
+@use '../components/Skeleton/skeleton';
+@use '../components/Progress/progress';
+@use '../components/Modal/modal';
+@use '../components/Drawer/drawer';
+@use '../components/Popover/popover';
+@use '../components/Tooltip/tooltip';
+@use '../components/DropdownMenu/dropdown-menu';
+@use '../components/Card/card';
+@use '../components/Badge/badge';
+@use '../components/Tag/tag';
+@use '../components/Chip/chip';
+@use '../components/Avatar/avatar';
+@use '../components/StatusIndicator/status-indicator';
+@use '../components/DataTable/table';
+@use '../components/Pagination/pagination';
+@use '../components/FilterBar/filter-bar';
+@use '../components/Navbar/navbar';
+@use '../components/Sidebar/sidebar';
+@use '../components/Tabs/tabs';
+@use '../components/Stepper/stepper';
+@use '../components/Breadcrumb/breadcrumb';
+@use '../components/DatePicker/date-picker';
+@use '../components/Calendar/calendar';
+@use '../primitives/Box/box';
+@use '../primitives/Stack/stack';
+@use '../primitives/Inline/inline';
+@use '../primitives/Grid/grid';
+@use '../primitives/Container/container';
+@use '../primitives/Text/text';
+@use '../primitives/Heading/heading';
+@use '../primitives/Divider/divider';
+@use '../patterns/index' as *;
+@use '../layouts/index' as *;

@@ -1,0 +1,42 @@
+.med-skeleton {
+  display: inline-block;
+  background: var(--skeleton-background);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--skeleton-highlight),
+      transparent
+    );
+    animation: med-skeleton-shimmer 1.6s infinite;
+  }
+
+  &--circle {
+    border-radius: var(--radius-full);
+  }
+
+  &--text {
+    height: var(--font-size-sm);
+    border-radius: var(--radius-xs);
+  }
+}
+
+@keyframes med-skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .med-skeleton::after {
+    animation: none;
+  }
+}

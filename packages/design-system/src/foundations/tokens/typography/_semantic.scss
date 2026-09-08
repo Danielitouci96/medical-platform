@@ -1,0 +1,45 @@
+// ============================================================================
+// SEMANTIC TYPOGRAPHY TOKENS — GROVE AI
+// ============================================================================
+// Body/interface uses Geist; the display tier is Libre Caslon Text serif.
+// Labels are small-caps style (use --tracking-label + uppercase in component).
+// ============================================================================
+
+:root {
+  // Body — Geist, tight vertical rhythm.
+  --font-body-2xs: 400 var(--font-size-2xs) / var(--line-height-normal) var(--font-sans);
+  --font-body-xs: 400 var(--font-size-xs) / var(--line-height-normal) var(--font-sans);
+  --font-body-sm: 400 var(--font-size-sm) / var(--line-height-normal) var(--font-sans);
+  --font-body-base: 400 var(--font-size-base) / var(--line-height-normal) var(--font-sans);
+  --font-body-lg: 400 var(--font-size-lg) / var(--line-height-normal) var(--font-sans);
+
+  // Body (medium weight variants)
+  --font-body-sm-medium: 500 var(--font-size-sm) / var(--line-height-normal) var(--font-sans);
+  --font-body-base-medium: 500 var(--font-size-base) / var(--line-height-normal) var(--font-sans);
+
+  // Body (semibold variants)
+  --font-body-sm-semibold: 600 var(--font-size-sm) / var(--line-height-normal) var(--font-sans);
+  --font-body-base-semibold: 600 var(--font-size-base) / var(--line-height-normal) var(--font-sans);
+
+  // Headings — Geist semibold, tight leading.
+  --font-heading-sm: 600 var(--font-size-lg) / var(--line-height-tight) var(--font-sans);
+  --font-heading-md: 600 var(--font-size-xl) / var(--line-height-tight) var(--font-sans);
+  --font-heading-lg: 600 var(--font-size-2xl) / var(--line-height-display) var(--font-sans);
+  --font-heading-xl: 600 var(--font-size-3xl) / var(--line-height-display) var(--font-sans);
+  --font-heading-2xl: 600 var(--font-size-4xl) / var(--line-height-display) var(--font-sans);
+  --font-heading-3xl: 500 var(--font-size-5xl) / var(--line-height-display) var(--font-sans);
+
+  // Display — editorial serif. Reserved for hero-level statements.
+  --font-display: 400 var(--font-size-7xl) / var(--line-height-display) var(--font-serif);
+  --font-display-serif-md: 400 var(--font-size-5xl) / var(--line-height-display) var(--font-serif);
+
+  // Label — small-caps reading; combine with uppercase + text-transform.
+  --font-label-sm: 500 var(--font-size-xs) / var(--line-height-normal) var(--font-sans);
+  --font-label-md: 500 var(--font-size-sm) / var(--line-height-normal) var(--font-sans);
+  --font-label-lg: 500 var(--font-size-base) / var(--line-height-normal) var(--font-sans);
+  --font-label-xl: 500 var(--font-size-lg) / var(--line-height-normal) var(--font-sans);
+  --letter-spacing-label: var(--letter-spacing-widest);
+
+  // Code
+  --font-code: 400 var(--font-size-sm) / var(--line-height-normal) var(--font-mono);
+}

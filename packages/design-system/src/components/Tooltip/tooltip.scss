@@ -1,0 +1,20 @@
+.med-tooltip {
+  z-index: var(--z-tooltip);
+  background: var(--tooltip-background);
+  color: var(--tooltip-text);
+  font: var(--font-body-sm);
+  border-radius: var(--tooltip-radius);
+  box-shadow: var(--tooltip-shadow);
+  padding: var(--space-1) var(--space-2);
+  max-width: 260px;
+
+  &__arrow {
+    fill: var(--tooltip-background);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .med-tooltip[data-state='delayed-open'] {
+    animation: med-fade-in var(--duration-fast) var(--easing-standard);
+  }
+}

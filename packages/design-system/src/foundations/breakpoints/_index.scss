@@ -1,0 +1,51 @@
+// ============================================================================
+// BREAKPOINTS FOUNDATION
+// ============================================================================
+// Breakpoint mixins for SCSS. These use the breakpoint primitive tokens' values.
+// ============================================================================
+
+@use '../tokens/breakpoints/primitive' as *;
+
+// Shared map so mixins can be used both in components and in media queries.
+$breakpoints: (
+  'xs': 0px,
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  '2xl': 1536px,
+);
+
+@mixin respond-below($key) {
+  $bp: map-get($breakpoints, $key);
+  @if $bp != null {
+    @media (max-width: calc(#{$bp} - 0.02px)) {
+      @content;
+    }
+  } @else {
+    @error 'Unknown breakpoint: #{$key}';
+  }
+}
+
+@mixin respond-above($key) {
+  $bp: map-get($breakpoints, $key);
+  @if $bp != null {
+    @media (min-width: $bp) {
+      @content;
+    }
+  } @else {
+    @error 'Unknown breakpoint: #{$key}';
+  }
+}
+
+@mixin respond-between($min, $max) {
+  $bp-min: map-get($breakpoints, $min);
+  $bp-max: map-get($breakpoints, $max);
+  @if $bp-min != null and $bp-max != null {
+    @media (min-width: $bp-min) and (max-width: calc(#{$bp-max} - 0.02px)) {
+      @content;
+    }
+  } @else {
+    @error 'Unknown breakpoint range: #{$min} - #{$max}';
+  }
+}

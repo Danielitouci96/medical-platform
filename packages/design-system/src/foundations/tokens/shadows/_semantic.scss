@@ -1,0 +1,21 @@
+// ============================================================================
+// SEMANTIC SHADOW TOKENS — GROVE AI
+// ============================================================================
+
+:root {
+  --shadow-card: var(--shadow-lg);
+  --shadow-card-hover: var(--shadow-lg);
+  --shadow-modal: var(--shadow-lg);
+  --shadow-menu: var(--shadow-sm);
+  --shadow-popover: var(--shadow-lg);
+  --shadow-tooltip: var(--shadow-sm);
+  --shadow-toast: var(--shadow-lg);
+  --shadow-sticky: var(--shadow-sm);
+}
+
+// Dark theme keeps the same hairline language — just cooler tones.
+:root[data-theme='dark'] {
+  --shadow-card: 0 0 1px 0 rgba(0, 0, 0, 0.6), inset 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 0 1px 0 rgba(0, 0, 0, 0.6), inset 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-modal: 0 0 1px 0 rgba(0, 0, 0, 0.6), inset 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+}

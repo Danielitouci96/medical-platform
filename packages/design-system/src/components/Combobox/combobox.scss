@@ -1,0 +1,58 @@
+.med-combobox {
+  position: relative;
+  width: 100%;
+
+  &__list {
+    position: absolute;
+    top: calc(100% + var(--space-1));
+    left: 0;
+    right: 0;
+    z-index: var(--z-popover);
+    margin: 0;
+    padding: var(--space-1);
+    list-style: none;
+    background: var(--popover-background);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-control);
+    box-shadow: var(--popover-shadow);
+    max-height: 280px;
+    overflow-y: auto;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-component-sm) var(--space-component-md);
+    border-radius: var(--radius-sm);
+    font: var(--font-body-base);
+    color: var(--color-text-primary);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--color-surface-hover);
+    }
+
+    &--highlighted {
+      background: var(--color-primary-soft);
+      color: var(--color-text-primary);
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  &__check {
+    color: var(--color-primary);
+  }
+
+  &__empty {
+    padding: var(--space-component-md);
+    text-align: center;
+    color: var(--color-text-tertiary);
+    font: var(--font-body-sm);
+  }
+}

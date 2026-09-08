@@ -1,0 +1,12 @@
+.med-number-input {
+  // Number input uses the same styles as Input. Custom spinner hiding for
+  // a cleaner look.
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  -moz-appearance: textfield;
+  appearance: textfield;
+}

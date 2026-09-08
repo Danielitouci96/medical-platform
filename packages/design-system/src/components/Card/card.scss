@@ -1,0 +1,133 @@
+@use '../../foundations/tokens/component/data-display' as *;
+
+.med-card {
+  background: var(--card-background);
+  border-radius: var(--card-radius);
+  color: var(--color-text-primary);
+  position: relative;
+
+  &--variant-default {
+    border: var(--border-card);
+    box-shadow: var(--card-shadow);
+  }
+
+  &--variant-outlined {
+    border: var(--border-card);
+  }
+
+  &--variant-elevated {
+    box-shadow: var(--card-shadow);
+  }
+
+  &--variant-flat {
+    background: transparent;
+    border: none;
+  }
+
+  &--variant-interactive {
+    border: var(--border-card);
+    box-shadow: var(--card-shadow);
+    cursor: pointer;
+    transition:
+      box-shadow var(--duration-normal) var(--easing-standard),
+      transform var(--duration-normal) var(--easing-standard),
+      border-color var(--duration-normal) var(--easing-standard);
+
+    &:hover {
+      box-shadow: var(--card-shadow-hover);
+      border-color: var(--card-border-hover);
+      transform: translateY(-1px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+  }
+
+  &--interactive {
+    cursor: pointer;
+    transition:
+      box-shadow var(--duration-normal) var(--easing-standard),
+      transform var(--duration-normal) var(--easing-standard);
+
+    &:hover {
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-1px);
+    }
+  }
+
+  &--pad-none {
+    padding: 0;
+  }
+
+  &--pad-sm {
+    padding: var(--space-component-sm);
+  }
+
+  &--pad-md {
+    padding: var(--space-component-lg);
+  }
+
+  &--pad-lg {
+    padding: var(--space-component-xl);
+  }
+
+  &--pad-xl {
+    padding: var(--space-8);
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-component-md);
+    margin-bottom: var(--space-component-md);
+
+    &--divider {
+      padding-bottom: var(--space-component-md);
+      border-bottom: var(--border-divider);
+    }
+  }
+
+  &__header-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-component-xs);
+  }
+
+  &__header-actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-component-sm);
+  }
+
+  &__title {
+    margin: 0;
+    font: var(--font-heading-sm);
+    color: var(--card-title-text);
+  }
+
+  &__description {
+    margin: 0;
+    font: var(--font-body-sm);
+    color: var(--card-description-text);
+  }
+
+  &__content {
+    font: var(--font-body-base);
+    color: var(--color-text-primary);
+  }
+
+  &__footer {
+    margin-top: var(--space-component-lg);
+    padding-top: var(--space-component-md);
+    border-top: var(--border-divider);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-component-sm);
+  }
+}

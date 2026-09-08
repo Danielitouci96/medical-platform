@@ -1,0 +1,131 @@
+.med-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-component-sm);
+  background: var(--toast-background);
+  color: var(--toast-text);
+  border: 1px solid var(--toast-border);
+  border-radius: var(--toast-radius);
+  box-shadow: var(--toast-shadow);
+  padding: var(--space-component-md);
+  min-width: 300px;
+  max-width: 420px;
+
+  &__icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+
+    .med-toast--tone-info & {
+      color: var(--color-info);
+    }
+
+    .med-toast--tone-success & {
+      color: var(--color-success);
+    }
+
+    .med-toast--tone-warning & {
+      color: var(--color-warning);
+    }
+
+    .med-toast--tone-error & {
+      color: var(--color-danger);
+    }
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  &__title {
+    font: var(--font-label-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+  }
+
+  &__description {
+    font: var(--font-body-sm);
+    color: var(--color-text-secondary);
+  }
+
+  &__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-1);
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-full);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 1px;
+    }
+  }
+
+  &__viewport {
+    position: fixed;
+    z-index: var(--z-toast);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    max-width: 100vw;
+    margin: 0;
+    list-style: none;
+
+    &--top-right {
+      top: 0;
+      right: 0;
+    }
+
+    &--top-left {
+      top: 0;
+      left: 0;
+    }
+
+    &--bottom-right {
+      bottom: 0;
+      right: 0;
+    }
+
+    &--bottom-left {
+      bottom: 0;
+      left: 0;
+    }
+
+    &--top-center {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &--bottom-center {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .med-toast {
+    &[data-state='open'] {
+      animation: med-slide-in-right var(--duration-normal) var(--easing-emphasized);
+    }
+
+    &[data-state='closed'] {
+      animation: med-fade-out var(--duration-fast) var(--easing-standard);
+    }
+  }
+}

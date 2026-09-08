@@ -1,0 +1,15 @@
+@use '../../foundations/breakpoints/index' as bp;
+
+.med-stack {
+  // Ensure flex gap is not collapsed by margin resets.
+  & > * + * {
+    margin: 0;
+  }
+}
+
+.med-stack--responsive {
+  @include bp.respond-below('sm') {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

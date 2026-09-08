@@ -1,0 +1,37 @@
+.med-heading {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  margin: 0;
+
+  &--tone-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  &--sm {
+    font: var(--font-heading-sm);
+  }
+
+  &--md {
+    font: var(--font-heading-md);
+  }
+
+  &--lg {
+    font: var(--font-heading-lg);
+  }
+
+  &--xl {
+    font: var(--font-heading-xl);
+  }
+
+  &--2xl {
+    font: var(--font-heading-2xl);
+  }
+
+  &--3xl {
+    font: var(--font-heading-3xl);
+  }
+
+  &--display {
+    font: var(--font-display);
+  }
+}

@@ -1,0 +1,68 @@
+// ============================================================================
+// TYPOGRAPHY FOUNDATION
+// ============================================================================
+// Base typography styles. Consumes typography semantic tokens.
+// ============================================================================
+
+@use '../tokens/typography/primitive' as *;
+@use '../tokens/typography/semantic' as *;
+
+.med-text-2xs {
+  font: var(--font-body-2xs);
+}
+
+.med-text-xs {
+  font: var(--font-body-xs);
+}
+
+.med-text-sm {
+  font: var(--font-body-sm);
+}
+
+.med-text-base {
+  font: var(--font-body-base);
+}
+
+.med-text-lg {
+  font: var(--font-body-lg);
+}
+
+.med-heading-sm {
+  font: var(--font-heading-sm);
+}
+
+.med-heading-md {
+  font: var(--font-heading-md);
+}
+
+.med-heading-lg {
+  font: var(--font-heading-lg);
+}
+
+.med-heading-xl {
+  font: var(--font-heading-xl);
+}
+
+.med-heading-2xl {
+  font: var(--font-heading-2xl);
+}
+
+.med-heading-3xl {
+  font: var(--font-heading-3xl);
+}
+
+.med-label-sm {
+  font: var(--font-label-sm);
+}
+
+.med-label-md {
+  font: var(--font-label-md);
+}
+
+.med-label-lg {
+  font: var(--font-label-lg);
+}
+
+.med-label-xl {
+  font: var(--font-label-xl);
+}

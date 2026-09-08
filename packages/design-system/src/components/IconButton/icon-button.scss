@@ -1,0 +1,47 @@
+.med-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-button);
+  padding: 0;
+  border: 1px solid transparent;
+  transition:
+    background-color var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard),
+    color var(--duration-fast) var(--easing-standard);
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &--size-xs {
+    width: var(--control-height-xs);
+    height: var(--control-height-xs);
+  }
+
+  &--size-sm {
+    width: var(--control-height-sm);
+    height: var(--control-height-sm);
+  }
+
+  &--size-md {
+    width: var(--control-height-md);
+    height: var(--control-height-md);
+  }
+
+  &--size-lg {
+    width: var(--control-height-lg);
+    height: var(--control-height-lg);
+  }
+
+  &--size-xl {
+    width: var(--control-height-xl);
+    height: var(--control-height-xl);
+  }
+}

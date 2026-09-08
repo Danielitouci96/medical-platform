@@ -1,0 +1,37 @@
+// ============================================================================
+// SEMANTIC SPACING TOKENS
+// ============================================================================
+// These tokens express the spacing role and are the ones consumed by components.
+// ============================================================================
+
+:root {
+  // Layout spacing (page/section level)
+  --space-page: var(--space-8);
+  --space-section: var(--space-8);
+  --space-card: var(--space-6);
+
+  // Component spacing (inside components)
+  --space-component-xs: var(--space-1);
+  --space-component-sm: var(--space-2);
+  --space-component-md: var(--space-3);
+  --space-component-lg: var(--space-4);
+  --space-component-xl: var(--space-6);
+
+  // Stack spacing (vertical rhythm between sibling elements)
+  --space-stack-xs: var(--space-1);
+  --space-stack-sm: var(--space-2);
+  --space-stack-md: var(--space-4);
+  --space-stack-lg: var(--space-6);
+  --space-stack-xl: var(--space-8);
+
+  // Inline spacing (horizontal rhythm between sibling elements)
+  --space-inline-xs: var(--space-1);
+  --space-inline-sm: var(--space-2);
+  --space-inline-md: var(--space-3);
+  --space-inline-lg: var(--space-4);
+  --space-inline-xl: var(--space-6);
+
+  // Form spacing
+  --space-form-field-gap: var(--space-2);
+  --space-form-group-gap: var(--space-5);
+}

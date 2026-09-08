@@ -1,0 +1,40 @@
+{
+  "name": "medical-platform",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Monorepo de la plataforma médica. Contiene el Design System y las aplicaciones que lo consumen.",
+  "license": "UNLICENSED",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "e2e"
+  ],
+  "scripts": {
+    "build": "nx run-many --target=build --all",
+    "build:design-system": "nx run @medical/design-system:build",
+    "build:demo": "nx run design-system-demo:build",
+    "build-storybook": "nx run @medical/design-system:build-storybook",
+    "e2e": "nx run-many --target=e2e --all",
+    "format": "nx format:write --all",
+    "format:check": "nx format:check --all",
+    "lint": "nx run-many --target=lint --all",
+    "storybook": "nx run @medical/design-system:storybook",
+    "test": "nx run-many --target=test --all",
+    "typecheck": "nx run-many --target=typecheck --all"
+  },
+  "devDependencies": {
+    "@nx/devkit": "^23.0.0",
+    "@nx/eslint": "^23.0.0",
+    "@nx/js": "^23.0.0",
+    "@nx/playwright": "^23.0.0",
+    "@nx/react": "^23.0.0",
+    "@nx/rollup": "^23.0.0",
+    "@nx/storybook": "^23.0.0",
+    "@nx/vite": "^23.0.0",
+    "@nx/workspace": "^23.0.0",
+    "@types/node": "^26.5.0",
+    "nx": "^23.0.0",
+    "prettier": "^3.3.0",
+    "typescript": "^5.5.0"
+  }
+}

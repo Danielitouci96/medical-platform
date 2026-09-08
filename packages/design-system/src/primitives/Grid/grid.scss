@@ -1,0 +1,12 @@
+.med-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--med-grid-cols, 1), minmax(0, 1fr));
+}
+
+@each $bp, $query in ('sm': 640px, 'md': 768px, 'lg': 1024px, 'xl': 1280px, '2xl': 1536px) {
+  @media (min-width: $query) {
+    .med-grid {
+      grid-template-columns: repeat(var(--med-grid-cols-#{$bp}, var(--med-grid-cols, 1)), minmax(0, 1fr));
+    }
+  }
+}

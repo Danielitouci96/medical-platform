@@ -1,0 +1,91 @@
+.med-dropdown {
+  z-index: var(--z-dropdown);
+  min-width: 180px;
+  background: var(--menu-background);
+  color: var(--menu-text);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--menu-radius);
+  box-shadow: var(--menu-shadow);
+  padding: var(--space-1);
+
+  &:focus {
+    outline: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-component-sm) var(--space-component-md);
+    border-radius: var(--radius-sm);
+    font: var(--font-body-base);
+    color: var(--menu-text);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+
+    &[data-highlighted] {
+      background: var(--menu-item-hover);
+    }
+
+    &[data-disabled] {
+      color: var(--menu-item-disabled);
+      pointer-events: none;
+    }
+
+    &--danger {
+      color: var(--menu-item-danger);
+
+      &[data-highlighted] {
+        background: var(--color-danger-soft);
+      }
+    }
+  }
+
+  &__item-icon {
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+
+    .med-dropdown__item--danger & {
+      color: var(--menu-item-danger);
+    }
+  }
+
+  &__item-label {
+    flex: 1;
+  }
+
+  &__shortcut {
+    margin-left: auto;
+    padding-left: var(--space-component-lg);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--menu-sublabel-text);
+  }
+
+  &__label {
+    padding: var(--space-component-sm) var(--space-component-md) var(--space-1);
+    font: var(--font-label-sm);
+    color: var(--menu-sublabel-text);
+  }
+
+  &__separator {
+    height: 1px;
+    margin: var(--space-1) var(--space-component-xs);
+    background: var(--color-divider);
+  }
+
+  &__item-indicator {
+    width: var(--size-4);
+    height: var(--size-4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .med-dropdown[data-state='open'] {
+    animation: med-fade-in var(--duration-fast) var(--easing-standard);
+  }
+}

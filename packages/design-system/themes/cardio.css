@@ -1,0 +1,41 @@
+/* ============================================================================
+   TEMA CARDIO (violeta) — tema de marca listo para @medical/design-system
+   ============================================================================
+   · Impórtalo DESPUÉS de importar el DS:
+        import '@medical/design-system';
+        import '@medical/design-system/themes/cardio.css';
+   · Aplica a toda la app sobre `:root`.
+   · Si quieres multi-marca, cambia el selector a:
+        :root[data-brand='cardio'] { ... }
+        :root[data-brand='cardio'][data-theme='dark'] { ... }
+   ============================================================================ */
+
+:root {
+  --color-secondary: #6d4edb;
+  --color-secondary-hover: #5a3cc0;
+  --color-secondary-active: #4a2f9e;
+  --color-secondary-soft: #f0ecfd;
+  --color-secondary-soft-hover: #e0d8fb;
+  --color-secondary-contrast: #ffffff;
+  --color-on-secondary: #ffffff;
+  --color-link: #6d4edb;
+  --color-link-hover: #5a3cc0;
+  --color-link-visited: #4a2f9e;
+  --color-border-focus: #6d4edb;
+  --color-selection-bg: #6d4edb;
+}
+
+:root[data-theme='dark'] {
+  --color-secondary: #9d87ef;
+  --color-secondary-hover: #b6a4f4;
+  --color-secondary-active: #c6b8f7;
+  --color-secondary-soft: #221a45;
+  --color-secondary-soft-hover: #2a2057;
+  --color-secondary-contrast: #120d26;
+  --color-on-secondary: #120d26;
+  --color-link: #9d87ef;
+  --color-link-hover: #c6b8f7;
+  --color-link-visited: #8370e4;
+  --color-border-focus: #9d87ef;
+  --color-selection-bg: #9d87ef;
+}

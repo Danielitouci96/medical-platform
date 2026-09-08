@@ -1,0 +1,161 @@
+/* ============================================================================
+   TEMA PERSONALIZADO — plantilla para @medical/design-system
+   ============================================================================
+   CÓMO USARLA
+   ----------
+   1. Copia este archivo dentro de tu app (p. ej. `src/styles/tema.css`).
+   2. Descomenta y cambia SOLO las variables que quieras. Todas tienen
+      comentado el valor por defecto (lenguaje Grove).
+   3. Impórtalo DESPUÉS de importar el DS para ganar por cascada:
+
+        import '@medical/design-system';                    // primero el DS
+        import './styles/tema.css';                         // luego tu tema
+
+   REGLAS
+   ------
+   · Sobrescribe tokens SEMÁNTICOS (--color-*), nunca primitivos
+     (--gray-* / --grove-* / --red-* / --yellow-*). Así el resto del
+     sistema (focus, contrastes del modo oscuro, badges…) sigue coherente.
+   · Para modo oscuro define el bloque `:root[data-theme='dark']`.
+   · Para MULTI-MARCA (varias clínicas en una misma app) cambia el selector
+     a `:root[data-brand='miCliente']` y activa la marca desde tu app:
+
+        document.documentElement.dataset.brand = 'miCliente';
+   ============================================================================ */
+
+/* ----------------------------------------------------------------------------
+   OPCIONES RÁPIDAS — con esto cambia el "color de marca" de tu app.
+   Es la parte que casi todos quieren tocar:
+---------------------------------------------------------------------------- */
+:root {
+  /* --color-secondary: #0b835c;                   verde Grove por defecto */
+  /* --color-secondary-hover: #0a6f4e; */
+  /* --color-secondary-active: #095a40; */
+  /* --color-secondary-soft: #e9f4ef;              fondo suave del acento */
+  /* --color-secondary-soft-hover: #cce8dc; */
+  /* --color-secondary-contrast: #ffffff; */
+  /* --color-on-secondary: #ffffff;                texto encima del acento */
+  /* --color-link: #0b835c; */                     /* enlaces y énfasis */
+  /* --color-link-hover: #0a6f4e; */
+  /* --color-link-visited: #095a40; */
+  /* --color-border-focus: #0b835c; */             /* anillo de foco */
+  /* --color-selection-bg: #0b835c; */             /* selección de texto */
+}
+
+/* ----------------------------------------------------------------------------
+   REFERENCIA COMPLETA — todos los tokens semánticos con su valor Grove por
+   defecto. Descomenta los que tu app necesite.
+---------------------------------------------------------------------------- */
+:root {
+  /* ---- Acciones principales (botones primarios recargados = tinta) ---- */
+  /* --color-primary: #1c1c1e; */
+  /* --color-primary-hover: #303033; */
+  /* --color-primary-active: #121214; */
+  /* --color-primary-soft: #f4f5f8; */
+  /* --color-primary-soft-hover: #e9ebf0; */
+  /* --color-primary-contrast: #ffffff; */
+  /* --color-on-primary: #ffffff; */
+
+  /* ---- Secundaria / marca (este es tu color de acento) ---- */
+  /* --color-secondary: #0b835c; */
+  /* --color-secondary-hover: #0a6f4e; */
+  /* --color-secondary-active: #095a40; */
+  /* --color-secondary-soft: #e9f4ef; */
+  /* --color-secondary-soft-hover: #cce8dc; */
+  /* --color-secondary-contrast: #ffffff; */
+  /* --color-on-secondary: #ffffff; */
+
+  /* ---- Info (momentos neutrales) ---- */
+  /* --color-info: #303033; */
+  /* --color-info-hover: #1c1c1e; */
+  /* --color-info-soft: #f4f5f8; */
+  /* --color-info-soft-hover: #e9ebf0; */
+  /* --color-info-contrast: #ffffff; */
+
+  /* ---- Success (verde "OK" clínico; se mantiene por defecto) ---- */
+  /* --color-success: #0b835c; */
+  /* --color-success-hover: #0a6f4e; */
+  /* --color-success-soft: #e9f4ef; */
+  /* --color-success-soft-hover: #cce8dc; */
+  /* --color-success-contrast: #ffffff; */
+
+  /* ---- Warning (ámbar atenuado) ---- */
+  /* --color-warning: #a8720e; */
+  /* --color-warning-hover: #8a5d0a; */
+  /* --color-warning-soft: #fdf8eb; */
+  /* --color-warning-soft-hover: #f9ecca; */
+  /* --color-warning-contrast: #1c1c1e; */
+
+  /* ---- Danger (carmesí funcional) ---- */
+  /* --color-danger: #b42318; */
+  /* --color-danger-hover: #8f1d13; */
+  /* --color-danger-soft: #fdf2f2; */
+  /* --color-danger-soft-hover: #fbe3e3; */
+  /* --color-danger-contrast: #ffffff; */
+
+  /* ---- Superficies (lienzo transparente + tarjetas mist) ---- */
+  /* --color-background: #ffffff; */
+  /* --color-background-elevated: #ffffff; */
+  /* --color-surface: #f4f5f8; */
+  /* --color-surface-hover: #e9ebf0; */
+  /* --color-surface-active: #d5d8df; */
+  /* --color-surface-elevated: #ffffff; */
+  /* --color-surface-overlay: #ffffff; */
+  /* --color-surface-sunken: #f4f5f8; */
+
+  /* ---- Texto ---- */
+  /* --color-text-primary: #1c1c1e; */
+  /* --color-text-secondary: #303033; */
+  /* --color-text-tertiary: #676768; */
+  /* --color-text-disabled: #9a9ba0; */
+  /* --color-text-inverse: #ffffff; */
+  /* --color-text-on-soft: #1c1c1e; */
+
+  /* ---- Enlaces ---- */
+  /* --color-link: #0b835c; */
+  /* --color-link-hover: #0a6f4e; */
+  /* --color-link-visited: #095a40; */
+
+  /* ---- Bordes (hairline) ---- */
+  /* --color-border: #e9ebf0; */
+  /* --color-border-strong: #1c1c1e; */
+  /* --color-border-subtle: #f4f5f8; */
+  /* --color-border-hover: #9a9ba0; */
+  /* --color-border-focus: #0b835c; */
+  /* --color-border-focus-error: #c93f3f; */
+  /* --color-border-disabled: #e9ebf0; */
+
+  /* ---- Divisor ---- */
+  /* --color-divider: #e9ebf0; */
+
+  /* ---- Selección y foco ---- */
+  /* --color-selection-bg: #0b835c; */
+  /* --color-selection-text: #ffffff; */
+  /* --color-focus-ring: #0b835c; */
+  /* --color-focus-ring-error: #c93f3f; */
+}
+
+/* ----------------------------------------------------------------------------
+   MODO OSCURO — duplica tus overrides bajo `:root[data-theme='dark']`.
+   (Valores de referencia Grove en comentario.)
+---------------------------------------------------------------------------- */
+:root[data-theme='dark'] {
+  /* --color-secondary: #2f9c75;             verde Grove oscuro */
+  /* --color-secondary-hover: #6cb59a; */
+  /* --color-secondary-active: #9ed0bd; */
+  /* --color-secondary-soft: #03241a; */
+  /* --color-secondary-soft-hover: #053626; */
+  /* --color-secondary-contrast: #121214; */
+  /* --color-on-secondary: #cce8dc; */
+  /* --color-link: #2f9c75; */
+  /* --color-link-hover: #6cb59a; */
+  /* --color-border-focus: #2f9c75; */
+
+  /* Tono pine-shadow por defecto del DS (solo si quieres ajustarlo): */
+  /* --color-background: #131316; */
+  /* --color-surface: #1c1c1e; */
+  /* --color-surface-elevated: #232327; */
+  /* --color-surface-sunken: #101012; */
+  /* --color-text-primary: #f4f5f8; */
+  /* --color-text-secondary: #9a9ba0; */
+}

@@ -1,0 +1,35 @@
+.med-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--form-field-gap);
+
+  &--horizontal {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-component-md);
+
+    > .med-label {
+      padding-top: var(--space-component-xs);
+      flex-shrink: 0;
+      min-width: 160px;
+    }
+  }
+
+  &__description {
+    font: var(--form-help-font);
+    color: var(--form-help-text);
+  }
+
+  &__helper {
+    font: var(--form-help-font);
+    color: var(--form-help-text);
+  }
+
+  &__error {
+    font: var(--form-error-font);
+    color: var(--form-error-text);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+}

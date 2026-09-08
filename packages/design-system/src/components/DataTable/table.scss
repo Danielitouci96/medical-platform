@@ -1,0 +1,182 @@
+.med-table {
+  width: 100%;
+  border-collapse: collapse;
+  font: var(--font-body-base);
+  color: var(--table-row-text);
+  border-radius: var(--table-radius);
+
+  &__scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--table-radius);
+  }
+
+  &__head-cell {
+    padding: var(--table-row-vertical-padding) var(--table-row-horizontal-padding);
+    background: var(--table-header-background);
+    color: var(--table-header-text);
+    font: var(--table-header-font);
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--color-border-strong);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  &__cell {
+    padding: var(--table-row-vertical-padding) var(--table-row-horizontal-padding);
+    border-bottom: 1px solid var(--table-row-border);
+    vertical-align: middle;
+  }
+
+  &__row {
+    background: var(--table-row-background);
+    transition: background-color var(--duration-fast) var(--easing-standard);
+  }
+
+  &--hoverable &__tbody &__row:hover,
+  &--hoverable &__row:hover {
+    background: var(--table-row-background-hover);
+  }
+
+  &--striped &__body &__row:nth-child(even) {
+    background: var(--table-striped-background);
+  }
+
+  &--dense &__head-cell,
+  &--dense &__cell {
+    padding-top: var(--space-component-xs);
+    padding-bottom: var(--space-component-xs);
+  }
+
+  &--clickable &__row {
+    cursor: pointer;
+  }
+
+  &--clickable &__row:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: -2px;
+  }
+}
+
+.med-datatable {
+  width: 100%;
+
+  &__bulk {
+    display: flex;
+    align-items: center;
+    gap: var(--space-component-sm);
+    padding: var(--space-component-sm) var(--space-component-md);
+    background: var(--table-row-background-selected);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-control);
+    margin-bottom: var(--space-component-sm);
+  }
+
+  &__table {
+    .med-table__row--selected {
+      background: var(--table-row-background-selected);
+    }
+  }
+
+  &__select-cell {
+    width: 40px;
+    text-align: center;
+  }
+
+  &__actions-cell {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  &__actions-head {
+    width: 1%;
+  }
+
+  &__sort-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    border: none;
+    background: transparent;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+      border-radius: var(--radius-xs);
+    }
+  }
+
+  &__sort-icon {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-text-tertiary);
+    flex-shrink: 0;
+  }
+
+  &__align-center {
+    text-align: center;
+  }
+
+  &__align-right {
+    text-align: right;
+  }
+
+  &__state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-component-xl);
+    color: var(--color-text-secondary);
+    text-align: center;
+  }
+
+  &__checkbox {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size-4);
+    height: var(--size-4);
+    border: 1px solid var(--checkbox-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    cursor: pointer;
+    color: transparent;
+    transition:
+      background-color var(--duration-fast) var(--easing-standard),
+      border-color var(--duration-fast) var(--easing-standard);
+
+    &:hover {
+      border-color: var(--checkbox-border-hover);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+
+    &--checked,
+    &--indeterminate {
+      background: var(--checkbox-background-checked);
+      border-color: var(--checkbox-background-checked);
+      color: var(--checkbox-check-color);
+    }
+  }
+
+  &__checkbox-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

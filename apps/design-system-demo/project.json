@@ -1,0 +1,22 @@
+{
+  "name": "design-system-demo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/design-system-demo/src",
+  "projectType": "application",
+  "tags": ["demo", "scope:demo"],
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit",
+        "cwd": "apps/design-system-demo"
+      }
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "options": {
+        "outputDir": "dist/storybook/design-system-demo"
+      }
+    }
+  }
+}

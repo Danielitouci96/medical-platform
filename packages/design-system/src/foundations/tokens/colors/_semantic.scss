@@ -1,0 +1,189 @@
+// ============================================================================
+// SEMANTIC COLOR TOKENS — GROVE AI
+// ============================================================================
+// Light theme is defined in :root; dark theme overrides in [data-theme='dark'].
+// Grove is fundamentally a light system: white canvas, one mist-gray card
+// tier, ink-dark primary actions, forest green reserved for accent work.
+// ============================================================================
+
+:root {
+  // Brand — primary action is the INK DARK filled control (Grove rule: green
+  // is an accent, never a solid button fill).
+  --color-primary: var(--gray-900);
+  --color-primary-hover: var(--gray-700);
+  --color-primary-active: var(--gray-950);
+  --color-primary-soft: var(--gray-100);
+  --color-primary-soft-hover: var(--gray-200);
+  --color-primary-contrast: var(--gray-0);
+  --color-on-primary: var(--gray-0);
+
+  // Secondary identity — forest green carries the brand accent channel.
+  --color-secondary: var(--grove-500);
+  --color-secondary-hover: var(--grove-600);
+  --color-secondary-active: var(--grove-700);
+  --color-secondary-soft: var(--grove-50);
+  --color-secondary-soft-hover: var(--grove-100);
+  --color-secondary-contrast: var(--gray-0);
+  --color-on-secondary: var(--gray-0);
+
+  // Accent / Info — neutral graphite for informational moments.
+  --color-info: var(--gray-700);
+  --color-info-hover: var(--gray-900);
+  --color-info-soft: var(--gray-100);
+  --color-info-soft-hover: var(--gray-200);
+  --color-info-contrast: var(--gray-0);
+
+  // Success — forest green.
+  --color-success: var(--grove-500);
+  --color-success-hover: var(--grove-600);
+  --color-success-soft: var(--grove-50);
+  --color-success-soft-hover: var(--grove-100);
+  --color-success-contrast: var(--gray-0);
+
+  // Warning — muted amber.
+  --color-warning: #a8720e;
+  --color-warning-hover: #8a5d0a;
+  --color-warning-soft: var(--yellow-50);
+  --color-warning-soft-hover: var(--yellow-100);
+  --color-warning-contrast: var(--gray-900);
+
+  // Danger — muted crimson.
+  --color-danger: var(--red-600);
+  --color-danger-hover: var(--red-700);
+  --color-danger-soft: var(--red-50);
+  --color-danger-soft-hover: var(--red-100);
+  --color-danger-contrast: var(--gray-0);
+
+  // Neutral surfaces — white canvas; mist gray is the single card tier.
+  --color-background: var(--gray-0);
+  --color-background-elevated: var(--gray-0);
+  --color-surface: var(--gray-100); // #f4f5f8 → mist family
+  --color-surface-hover: var(--gray-200);
+  --color-surface-active: var(--gray-300);
+  --color-surface-elevated: var(--gray-0);
+  --color-surface-overlay: var(--gray-0);
+  --color-surface-sunken: var(--gray-100);
+
+  // Text
+  --color-text-primary: var(--gray-900);
+  --color-text-secondary: var(--gray-700);
+  --color-text-tertiary: var(--gray-500);
+  --color-text-disabled: var(--gray-400);
+  --color-text-inverse: var(--gray-0);
+  --color-text-on-soft: var(--gray-900);
+  --color-link: var(--grove-500);
+  --color-link-hover: var(--grove-600);
+  --color-link-visited: var(--grove-700);
+
+  // Borders — hairline, ink at low opacity.
+  --color-border: var(--gray-200);
+  --color-border-strong: var(--gray-900);
+  --color-border-subtle: var(--gray-100);
+  --color-border-hover: var(--gray-400);
+  --color-border-focus: var(--grove-500);
+  --color-border-focus-error: var(--red-500);
+  --color-border-disabled: var(--gray-200);
+
+  // Divider
+  --color-divider: var(--gray-200);
+
+  // Selection
+  --color-selection-bg: var(--grove-500);
+  --color-selection-text: var(--gray-0);
+
+  // Focus
+  --color-focus-ring: var(--grove-500);
+  --color-focus-ring-error: var(--red-500);
+}
+
+// ============================================================================
+// DARK THEME — pine-shadow tinted near-black, same restrained logic.
+// ============================================================================
+:root[data-theme='dark'] {
+  // Brand
+  --color-primary: var(--gray-100);
+  --color-primary-hover: var(--gray-0);
+  --color-primary-active: var(--gray-200);
+  --color-primary-soft: var(--gray-800);
+  --color-primary-soft-hover: var(--gray-700);
+  --color-primary-contrast: var(--gray-950);
+  --color-on-primary: var(--gray-950);
+
+  // Secondary identity
+  --color-secondary: var(--grove-400);
+  --color-secondary-hover: var(--grove-300);
+  --color-secondary-active: var(--grove-200);
+  --color-secondary-soft: var(--grove-950);
+  --color-secondary-soft-hover: var(--grove-900);
+  --color-secondary-contrast: var(--gray-950);
+  --color-on-secondary: var(--grove-100);
+
+  // Info
+  --color-info: var(--gray-400);
+  --color-info-hover: var(--gray-300);
+  --color-info-soft: var(--gray-800);
+  --color-info-soft-hover: var(--gray-700);
+  --color-info-contrast: var(--gray-950);
+
+  // Success
+  --color-success: var(--grove-400);
+  --color-success-hover: var(--grove-300);
+  --color-success-soft: var(--grove-950);
+  --color-success-soft-hover: var(--grove-900);
+  --color-success-contrast: var(--gray-950);
+
+  // Warning
+  --color-warning: #e2bd5e;
+  --color-warning-hover: #f0d896;
+  --color-warning-soft: var(--yellow-950);
+  --color-warning-soft-hover: var(--yellow-900);
+  --color-warning-contrast: var(--gray-950);
+
+  // Danger
+  --color-danger: var(--red-400);
+  --color-danger-hover: var(--red-300);
+  --color-danger-soft: var(--red-950);
+  --color-danger-soft-hover: var(--red-900);
+  --color-danger-contrast: var(--gray-950);
+
+  // Neutral surfaces
+  --color-background: #131316;
+  --color-background-elevated: #1a1a1d;
+  --color-surface: #1c1c1e;
+  --color-surface-hover: #242428;
+  --color-surface-active: #2b2b30;
+  --color-surface-elevated: #232327;
+  --color-surface-overlay: #1f1f23;
+  --color-surface-sunken: #101012;
+
+  // Text
+  --color-text-primary: var(--gray-100);
+  --color-text-secondary: var(--gray-400);
+  --color-text-tertiary: var(--gray-500);
+  --color-text-disabled: var(--gray-600);
+  --color-text-inverse: var(--gray-950);
+  --color-text-on-soft: var(--gray-200);
+  --color-link: var(--grove-400);
+  --color-link-hover: var(--grove-300);
+  --color-link-visited: var(--grove-400);
+
+  // Borders
+  --color-border: var(--gray-800);
+  --color-border-strong: var(--gray-300);
+  --color-border-subtle: var(--gray-800);
+  --color-border-hover: var(--gray-600);
+  --color-border-focus: var(--grove-400);
+  --color-border-focus-error: var(--red-400);
+  --color-border-disabled: var(--gray-800);
+
+  // Divider
+  --color-divider: var(--gray-800);
+
+  // Selection
+  --color-selection-bg: var(--grove-600);
+  --color-selection-text: var(--gray-100);
+
+  // Focus
+  --color-focus-ring: var(--grove-400);
+  --color-focus-ring-error: var(--red-400);
+}

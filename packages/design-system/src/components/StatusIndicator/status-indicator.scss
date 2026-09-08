@@ -1,0 +1,39 @@
+.med-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font: var(--font-body-sm);
+  font-weight: var(--font-weight-medium);
+
+  &--tone-neutral {
+    color: var(--color-text-secondary);
+  }
+
+  &--tone-info {
+    color: var(--color-info);
+  }
+
+  &--tone-success {
+    color: var(--color-success);
+  }
+
+  &--tone-warning {
+    color: var(--color-warning);
+  }
+
+  &--tone-danger {
+    color: var(--color-danger);
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: currentColor;
+    flex-shrink: 0;
+
+    &--pulse {
+      animation: med-pulse 1.5s ease-in-out infinite;
+    }
+  }
+}

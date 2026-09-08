@@ -1,0 +1,70 @@
+// ============================================================================
+// SPACING FOUNDATION
+// ============================================================================
+// Utility classes for spacing. Consumes semantic spacing tokens.
+// ============================================================================
+
+@use '../tokens/spacing/primitive' as *;
+@use '../tokens/spacing/semantic' as *;
+
+@for $i from 0 through 32 {
+  .med-p-#{$i} {
+    padding: var(--space-#{$i}) !important;
+  }
+
+  .med-px-#{$i} {
+    padding-left: var(--space-#{$i}) !important;
+    padding-right: var(--space-#{$i}) !important;
+  }
+
+  .med-py-#{$i} {
+    padding-top: var(--space-#{$i}) !important;
+    padding-bottom: var(--space-#{$i}) !important;
+  }
+
+  .med-pl-#{$i} {
+    padding-left: var(--space-#{$i}) !important;
+  }
+
+  .med-pr-#{$i} {
+    padding-right: var(--space-#{$i}) !important;
+  }
+
+  .med-pt-#{$i} {
+    padding-top: var(--space-#{$i}) !important;
+  }
+
+  .med-pb-#{$i} {
+    padding-bottom: var(--space-#{$i}) !important;
+  }
+
+  .med-m-#{$i} {
+    margin: var(--space-#{$i}) !important;
+  }
+
+  .med-mx-#{$i} {
+    margin-left: var(--space-#{$i}) !important;
+    margin-right: var(--space-#{$i}) !important;
+  }
+
+  .med-my-#{$i} {
+    margin-top: var(--space-#{$i}) !important;
+    margin-bottom: var(--space-#{$i}) !important;
+  }
+
+  .med-ml-#{$i} {
+    margin-left: var(--space-#{$i}) !important;
+  }
+
+  .med-mr-#{$i} {
+    margin-right: var(--space-#{$i}) !important;
+  }
+
+  .med-mt-#{$i} {
+    margin-top: var(--space-#{$i}) !important;
+  }
+
+  .med-mb-#{$i} {
+    margin-bottom: var(--space-#{$i}) !important;
+  }
+}

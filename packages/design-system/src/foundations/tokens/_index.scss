@@ -1,0 +1,33 @@
+// ============================================================================
+// DESIGN TOKENS INDEX
+// ============================================================================
+// Load order matters:
+//   1. Villes primitives (raw values)
+//   2. Semantic tokens (meaning)
+//   3. Component tokens (component-specific)
+// ============================================================================
+
+// 1. Primitives
+@use './colors/primitive' as colors-primitive;
+@use './spacing/primitive' as spacing-primitive;
+@use './typography/primitive' as typography-primitive;
+@use './radius/primitive' as radius-primitive;
+@use './borders/primitive' as borders-primitive;
+@use './shadows/primitive' as shadows-primitive;
+@use './motion/primitive' as motion-primitive;
+@use './breakpoints/primitive' as breakpoints-primitive;
+@use './z-index/primitive' as z-index-primitive;
+@use './density/primitive' as density-primitive;
+
+// 2. Semantic
+@use './colors/semantic' as colors-semantic;
+@use './spacing/semantic' as spacing-semantic;
+@use './typography/semantic' as typography-semantic;
+@use './radius/semantic' as radius-semantic;
+@use './borders/semantic' as borders-semantic;
+@use './shadows/semantic' as shadows-semantic;
+@use './motion/semantic' as motion-semantic;
+
+// 3. Component
+@use './component/control' as component-control;
+@use './component/data-display' as component-data-display;

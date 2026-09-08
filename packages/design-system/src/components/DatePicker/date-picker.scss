@@ -1,0 +1,19 @@
+.med-date-picker {
+  position: relative;
+  width: 100%;
+
+  &__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .med-date-picker__toggle {
+      position: absolute;
+      right: var(--space-component-xs);
+    }
+
+    .med-input {
+      padding-right: var(--control-height-md);
+    }
+  }
+}

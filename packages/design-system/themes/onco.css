@@ -1,0 +1,41 @@
+/* ============================================================================
+   TEMA ONCO (azul) — tema de marca listo para @medical/design-system
+   ============================================================================
+   · Impórtalo DESPUÉS de importar el DS:
+        import '@medical/design-system';
+        import '@medical/design-system/themes/onco.css';
+   · Aplica a toda la app sobre `:root`.
+   · Si quieres multi-marca, cambia el selector a:
+        :root[data-brand='onco'] { ... }
+        :root[data-brand='onco'][data-theme='dark'] { ... }
+   ============================================================================ */
+
+:root {
+  --color-secondary: #075d9e;
+  --color-secondary-hover: #064a7e;
+  --color-secondary-active: #053a63;
+  --color-secondary-soft: #e6f1fa;
+  --color-secondary-soft-hover: #cfe4f5;
+  --color-secondary-contrast: #ffffff;
+  --color-on-secondary: #ffffff;
+  --color-link: #075d9e;
+  --color-link-hover: #064a7e;
+  --color-link-visited: #053a63;
+  --color-border-focus: #075d9e;
+  --color-selection-bg: #075d9e;
+}
+
+:root[data-theme='dark'] {
+  --color-secondary: #4d9fd0;
+  --color-secondary-hover: #74b4dd;
+  --color-secondary-active: #93c6e7;
+  --color-secondary-soft: #0d2436;
+  --color-secondary-soft-hover: #122f46;
+  --color-secondary-contrast: #0b1622;
+  --color-on-secondary: #0b1622;
+  --color-link: #6faed8;
+  --color-link-hover: #93c6e7;
+  --color-link-visited: #4d9fd0;
+  --color-border-focus: #6faed8;
+  --color-selection-bg: #6faed8;
+}

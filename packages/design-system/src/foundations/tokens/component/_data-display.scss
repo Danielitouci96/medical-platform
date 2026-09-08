@@ -1,0 +1,159 @@
+// ============================================================================
+// COMPONENT TOKENS — Data display & overlay
+// ============================================================================
+
+:root {
+  // ==========================================================================
+  // CARD
+  // ==========================================================================
+  --card-background: var(--color-surface);
+  --card-background-hover: var(--color-surface-hover);
+  --card-border: var(--color-border);
+  --card-border-hover: var(--color-border-strong);
+  --card-radius: var(--radius-card);
+  --card-shadow: var(--shadow-card);
+  --card-shadow-hover: var(--shadow-card-hover);
+  --card-title-text: var(--color-text-primary);
+  --card-description-text: var(--color-text-secondary);
+
+  // ==========================================================================
+  // BADGE
+  // ==========================================================================
+  --badge-background-neutral: var(--color-surface-sunken);
+  --badge-text-neutral: var(--color-text-secondary);
+  --badge-background-neutral-solid: var(--gray-600);
+  --badge-text-neutral-solid: var(--color-text-inverse);
+  --badge-background-info: var(--color-info-soft);
+  --badge-text-info: var(--color-info);
+  --badge-background-success: var(--color-success-soft);
+  --badge-text-success: var(--color-success);
+  --badge-background-warning: var(--color-warning-soft);
+  --badge-text-warning: var(--color-warning);
+  --badge-background-danger: var(--color-danger-soft);
+  --badge-text-danger: var(--color-danger);
+
+  // ==========================================================================
+  // TAG / CHIP
+  // ==========================================================================
+  --tag-background: var(--color-surface-sunken);
+  --tag-background-hover: var(--color-surface-active);
+  --tag-text: var(--color-text-secondary);
+  --tag-border: var(--color-border-subtle);
+  --chip-background: var(--color-surface);
+  --chip-background-active: var(--color-primary);
+  --chip-background-hover: var(--color-primary-soft);
+  --chip-text: var(--color-text-secondary);
+  --chip-text-active: var(--color-primary-contrast);
+
+  // ==========================================================================
+  // TABLE
+  // ==========================================================================
+  --table-header-background: var(--color-surface-sunken);
+  --table-header-text: var(--color-text-secondary);
+  --table-header-font: var(--font-label-md);
+  --table-row-background: var(--color-surface-elevated);
+  --table-row-background-hover: var(--color-surface-hover);
+  --table-row-background-selected: var(--color-secondary-soft);
+  --table-row-text: var(--color-text-primary);
+  --table-row-border: var(--color-border-subtle);
+  --table-row-vertical-padding: var(--space-component-sm);
+  --table-row-horizontal-padding: var(--space-component-md);
+  --table-striped-background: var(--color-surface-sunken);
+  --table-radius: var(--radius-table);
+
+  // ==========================================================================
+  // MODAL / DIALOG
+  // ==========================================================================
+  --modal-background: var(--color-surface-overlay);
+  --modal-text: var(--color-text-primary);
+  --modal-border: var(--color-border-subtle);
+  --modal-radius: var(--radius-modal);
+  --modal-shadow: var(--shadow-modal);
+  --modal-overlay-background: rgba(3, 7, 18, 0.6);
+  --modal-header-border: var(--color-divider);
+  --modal-footer-border: var(--color-divider);
+  --modal-title-text: var(--color-text-primary);
+  --modal-description-text: var(--color-text-secondary);
+
+  // ==========================================================================
+  // DRAWER
+  // ==========================================================================
+  --drawer-background: var(--color-surface-overlay);
+  --drawer-text: var(--color-text-primary);
+  --drawer-border: var(--color-divider);
+  --drawer-width-sm: 320px;
+  --drawer-width-md: 400px;
+  --drawer-width-lg: 480px;
+  --drawer-width-xl: 640px;
+  --drawer-overlay-background: rgba(3, 7, 18, 0.6);
+
+  // ==========================================================================
+  // TOOLTIP
+  // ==========================================================================
+  --tooltip-background: var(--gray-900);
+  --tooltip-text: var(--gray-100);
+  --tooltip-shadow: var(--shadow-tooltip);
+  --tooltip-radius: var(--radius-sm);
+
+  // ==========================================================================
+  // POPOVER / MENU
+  // ==========================================================================
+  --popover-background: var(--color-surface-overlay);
+  --popover-text: var(--color-text-primary);
+  --popover-border: var(--color-border-subtle);
+  --popover-radius: var(--radius-md);
+  --popover-shadow: var(--shadow-popover);
+  --menu-background: var(--color-surface-overlay);
+  --menu-text: var(--color-text-primary);
+  --menu-item-hover: var(--color-surface-hover);
+  --menu-item-disabled: var(--color-text-disabled);
+  --menu-item-danger: var(--color-danger);
+  --menu-radius: var(--radius-md);
+  --menu-shadow: var(--shadow-menu);
+  --menu-sublabel-text: var(--color-text-secondary);
+
+  // ==========================================================================
+  // TOAST
+  // ==========================================================================
+  --toast-background: var(--color-surface-overlay);
+  --toast-text: var(--color-text-primary);
+  --toast-border: var(--color-border-subtle);
+  --toast-radius: var(--radius-toast);
+  --toast-shadow: var(--shadow-toast);
+
+  // ==========================================================================
+  // ALERT
+  // ==========================================================================
+  --alert-background-info: var(--color-info-soft);
+  --alert-border-info: var(--color-info);
+  --alert-text-info: var(--color-text-on-soft);
+  --alert-background-success: var(--color-success-soft);
+  --alert-border-success: var(--color-success);
+  --alert-text-success: var(--color-text-on-soft);
+  --alert-background-warning: var(--color-warning-soft);
+  --alert-border-warning: var(--color-warning);
+  --alert-text-warning: var(--color-text-on-soft);
+  --alert-background-danger: var(--color-danger-soft);
+  --alert-border-danger: var(--color-danger);
+  --alert-text-danger: var(--color-text-on-soft);
+  --alert-icon-size: var(--size-5);
+
+  // ==========================================================================
+  // SKELETON
+  // ==========================================================================
+  --skeleton-background: var(--color-surface-sunken);
+  --skeleton-highlight: var(--color-surface-hover);
+
+  // ==========================================================================
+  // AVATAR
+  // ==========================================================================
+  --avatar-background: var(--color-primary-soft);
+  --avatar-text: var(--color-primary);
+  --avatar-border: var(--color-surface);
+  --avatar-radius: var(--radius-full);
+  --avatar-size-xs: 24px;
+  --avatar-size-sm: 32px;
+  --avatar-size-md: 40px;
+  --avatar-size-lg: 48px;
+  --avatar-size-xl: 64px;
+}

@@ -1,0 +1,11 @@
+// ============================================================================
+// SEMANTIC BORDER TOKENS
+// ============================================================================
+
+:root {
+  --border-input: var(--border-width-sm) solid var(--color-border);
+  --border-input-focus: var(--border-width-md) solid var(--color-border-focus);
+  --border-input-error: var(--border-width-sm) solid var(--color-danger);
+  --border-divider: var(--border-width-xs) solid var(--color-divider);
+  --border-card: var(--border-width-xs) solid var(--color-border);
+}

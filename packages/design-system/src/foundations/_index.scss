@@ -1,0 +1,12 @@
+// ============================================================================
+// FOUNDATIONS INDEX
+// ============================================================================
+// Imports the token system and fundamental styles.
+// ============================================================================
+
+@use './tokens/index' as *;
+@use './typography/index' as *;
+@use './spacing/index' as *;
+@use './elevation/index' as *;
+@use './motion/index' as *;
+@use './breakpoints/index' as *;

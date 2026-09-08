@@ -1,0 +1,81 @@
+.med-text {
+  margin: 0;
+
+  &--tone-default {
+    color: var(--color-text-primary);
+  }
+
+  &--tone-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  &--tone-tertiary {
+    color: var(--color-text-tertiary);
+  }
+
+  &--tone-disabled {
+    color: var(--color-text-disabled);
+  }
+
+  &--tone-inverse {
+    color: var(--color-text-inverse);
+  }
+
+  &--tone-success {
+    color: var(--color-success);
+  }
+
+  &--tone-warning {
+    color: var(--color-warning);
+  }
+
+  &--tone-danger {
+    color: var(--color-danger);
+  }
+
+  &--tone-info {
+    color: var(--color-info);
+  }
+
+  &--size-2xs {
+    font: var(--font-body-2xs);
+  }
+
+  &--size-xs {
+    font: var(--font-body-xs);
+  }
+
+  &--size-sm {
+    font: var(--font-body-sm);
+  }
+
+  &--size-base {
+    font: var(--font-body-base);
+  }
+
+  &--size-lg {
+    font: var(--font-body-lg);
+  }
+
+  &--weight-regular {
+    font-weight: var(--font-weight-regular);
+  }
+
+  &--weight-medium {
+    font-weight: var(--font-weight-medium);
+  }
+
+  &--weight-semibold {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &--weight-bold {
+    font-weight: var(--font-weight-bold);
+  }
+
+  &--truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

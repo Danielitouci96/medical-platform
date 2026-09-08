@@ -1,0 +1,97 @@
+@use '../../foundations/tokens/component/control' as *;
+
+.med-input {
+  width: 100%;
+  min-height: var(--control-height-md);
+  padding: 0 var(--control-padding-x-md);
+  font: var(--font-body-base);
+  color: var(--input-text);
+  background: var(--input-background);
+  border: var(--border-input);
+  border-radius: var(--radius-input);
+  transition:
+    border-color var(--duration-fast) var(--easing-standard),
+    box-shadow var(--duration-fast) var(--easing-standard),
+    background-color var(--duration-fast) var(--easing-standard);
+
+  &::placeholder {
+    color: var(--input-text-placeholder);
+  }
+
+  &:hover:not(:disabled):not([aria-invalid='true']) {
+    border-color: var(--input-border-hover);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    border-color: var(--input-border-focus);
+    box-shadow: var(--input-shadow-focus);
+  }
+
+  &:disabled {
+    background: var(--input-background-disabled);
+    color: var(--input-text-disabled);
+    cursor: not-allowed;
+  }
+
+  &[readonly] {
+    background: var(--input-background-readonly);
+  }
+
+  // ==========================================================================
+  // Sizes
+  // ==========================================================================
+  &--size-sm {
+    min-height: var(--control-height-sm);
+    padding: 0 var(--control-padding-x-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  &--size-md {
+    min-height: var(--control-height-md);
+    padding: 0 var(--control-padding-x-md);
+  }
+
+  &--size-lg {
+    min-height: var(--control-height-lg);
+    padding: 0 var(--control-padding-x-lg);
+    font-size: var(--font-size-base);
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  // ==========================================================================
+  // Validation states — always paired with aria-invalid by FormField
+  // ==========================================================================
+  &--state-error,
+  &[aria-invalid='true'] {
+    border-color: var(--input-border-error);
+
+    &:focus,
+    &:focus-visible {
+      border-color: var(--input-border-error);
+      box-shadow: var(--input-shadow-error);
+    }
+  }
+
+  &--state-success {
+    border-color: var(--input-border-success);
+
+    &:focus,
+    &:focus-visible {
+      border-color: var(--input-border-success);
+    }
+  }
+
+  &--state-warning {
+    border-color: var(--input-border-warning);
+
+    &:focus,
+    &:focus-visible {
+      border-color: var(--input-border-warning);
+    }
+  }
+}

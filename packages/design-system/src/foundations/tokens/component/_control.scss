@@ -1,0 +1,188 @@
+// ============================================================================
+// COMPONENT TOKENS — Controls (Button, Input, Select, etc.)
+// ============================================================================
+// These tokens are consumed directly by component styles. They always reference
+// primitive or semantic tokens, never hardcoded values.
+// ============================================================================
+
+:root {
+  // ==========================================================================
+  // BUTTON — Primary
+  // ==========================================================================
+  --button-primary-background: var(--color-primary);
+  --button-primary-background-hover: var(--color-primary-hover);
+  --button-primary-background-active: var(--color-primary-active);
+  --button-primary-background-focus: var(--color-primary-hover);
+  --button-primary-background-disabled: var(--color-primary-soft);
+  --button-primary-text: var(--color-primary-contrast);
+  --button-primary-text-hover: var(--color-primary-contrast);
+  --button-primary-text-disabled: var(--color-text-tertiary);
+  --button-primary-border: transparent;
+  --button-primary-border-hover: transparent;
+
+  // ==========================================================================
+  // BUTTON — Secondary
+  // ==========================================================================
+  --button-secondary-background: var(--color-secondary);
+  --button-secondary-background-hover: var(--color-secondary-hover);
+  --button-secondary-background-active: var(--color-secondary-active);
+  --button-secondary-background-disabled: var(--color-secondary-soft);
+  --button-secondary-text: var(--color-secondary-contrast);
+  --button-secondary-text-hover: var(--color-secondary-contrast);
+  --button-secondary-text-disabled: var(--color-text-tertiary);
+  --button-secondary-border: transparent;
+  --button-secondary-border-hover: transparent;
+
+  // ==========================================================================
+  // BUTTON — Outline
+  // ==========================================================================
+  --button-outline-background: transparent;
+  --button-outline-background-hover: var(--color-primary-soft);
+  --button-outline-background-active: var(--color-primary-soft-hover);
+  --button-outline-background-disabled: transparent;
+  --button-outline-text: var(--color-primary);
+  --button-outline-text-hover: var(--color-primary-hover);
+  --button-outline-text-disabled: var(--color-text-disabled);
+  --button-outline-border: var(--color-border-strong);
+  --button-outline-border-hover: var(--color-primary);
+
+  // ==========================================================================
+  // BUTTON — Ghost
+  // ==========================================================================
+  --button-ghost-background: transparent;
+  --button-ghost-background-hover: var(--color-surface-hover);
+  --button-ghost-background-active: var(--color-surface-active);
+  --button-ghost-background-disabled: transparent;
+  --button-ghost-text: var(--color-text-primary);
+  --button-ghost-text-hover: var(--color-text-primary);
+  --button-ghost-text-disabled: var(--color-text-disabled);
+  --button-ghost-border: transparent;
+  --button-ghost-border-hover: transparent;
+
+  // ==========================================================================
+  // BUTTON — Danger
+  // ==========================================================================
+  --button-danger-background: var(--color-danger);
+  --button-danger-background-hover: var(--color-danger-hover);
+  --button-danger-background-active: var(--color-danger-hover);
+  --button-danger-background-disabled: var(--color-danger-soft);
+  --button-danger-text: var(--color-danger-contrast);
+  --button-danger-text-hover: var(--color-danger-contrast);
+  --button-danger-text-disabled: var(--color-text-tertiary);
+  --button-danger-border: transparent;
+  --button-danger-border-hover: transparent;
+
+  // ==========================================================================
+  // BUTTON — Success
+  // ==========================================================================
+  --button-success-background: var(--color-success);
+  --button-success-background-hover: var(--color-success-hover);
+  --button-success-background-active: var(--color-success-hover);
+  --button-success-background-disabled: var(--color-success-soft);
+  --button-success-text: var(--color-success-contrast);
+  --button-success-text-hover: var(--color-success-contrast);
+  --button-success-text-disabled: var(--color-text-tertiary);
+  --button-success-border: transparent;
+  --button-success-border-hover: transparent;
+
+  // ==========================================================================
+  // BUTTON — Link
+  // ==========================================================================
+  --button-link-background: transparent;
+  --button-link-background-hover: transparent;
+  --button-link-text: var(--color-link);
+  --button-link-text-hover: var(--color-link-hover);
+  --button-link-text-disabled: var(--color-text-disabled);
+  --button-link-border: transparent;
+  --button-link-border-hover: transparent;
+  --button-link-underline: none;
+  --button-link-underline-hover: underline;
+
+  // ==========================================================================
+  // BUTTON — Tertiary
+  // ==========================================================================
+  --button-tertiary-background: var(--color-surface-hover);
+  --button-tertiary-background-hover: var(--color-surface-active);
+  --button-tertiary-background-active: var(--color-border-subtle);
+  --button-tertiary-background-disabled: var(--color-surface-sunken);
+  --button-tertiary-text: var(--color-text-secondary);
+  --button-tertiary-text-hover: var(--color-text-primary);
+  --button-tertiary-text-disabled: var(--color-text-disabled);
+  --button-tertiary-border: transparent;
+  --button-tertiary-border-hover: transparent;
+
+  // ==========================================================================
+  // INPUT
+  // ==========================================================================
+  --input-background: var(--color-surface-elevated);
+  --input-background-disabled: var(--color-surface-sunken);
+  --input-background-readonly: var(--color-surface-sunken);
+  --input-text: var(--color-text-primary);
+  --input-text-placeholder: var(--color-text-tertiary);
+  --input-text-disabled: var(--color-text-disabled);
+  --input-border: var(--color-border);
+  --input-border-hover: var(--color-border-hover);
+  --input-border-focus: var(--color-border-focus);
+  --input-border-error: var(--color-danger);
+  --input-border-success: var(--color-success);
+  --input-border-warning: var(--color-warning);
+  --input-shadow-focus: var(--shadow-focus);
+  --input-shadow-error: var(--shadow-focus-error);
+
+  // ==========================================================================
+  // SELECT
+  // ==========================================================================
+  --select-background: var(--color-surface-elevated);
+  --select-background-disabled: var(--color-surface-sunken);
+  --select-text: var(--color-text-primary);
+  --select-text-placeholder: var(--color-text-tertiary);
+  --select-border: var(--color-border);
+  --select-border-hover: var(--color-border-hover);
+  --select-border-focus: var(--color-border-focus);
+  --select-menu-background: var(--color-surface-overlay);
+  --select-menu-text: var(--color-text-primary);
+  --select-menu-item-hover: var(--color-surface-hover);
+  --select-menu-item-selected: var(--color-secondary-soft);
+  --select-menu-item-selected-text: var(--color-secondary);
+  --select-menu-item-disabled: var(--color-text-disabled);
+
+  // ==========================================================================
+  // CHECKBOX / RADIO / SWITCH
+  // ==========================================================================
+  --checkbox-border: var(--color-border);
+  --checkbox-border-hover: var(--color-border-hover);
+  --checkbox-border-focus: var(--color-border-focus);
+  --checkbox-background-checked: var(--color-primary);
+  --checkbox-background-checked-hover: var(--color-primary-hover);
+  --checkbox-background-disabled: var(--color-surface-sunken);
+  --checkbox-check-color: var(--color-primary-contrast);
+  --checkbox-border-error: var(--color-danger);
+
+  --radio-border: var(--color-border);
+  --radio-border-hover: var(--color-border-hover);
+  --radio-border-focus: var(--color-border-focus);
+  --radio-background-checked: var(--color-primary);
+  --radio-background-checked-hover: var(--color-primary-hover);
+  --radio-background-disabled: var(--color-surface-sunken);
+  --radio-dot-color: var(--color-primary-contrast);
+  --radio-border-error: var(--color-danger);
+
+  --switch-background: var(--color-border);
+  --switch-background-checked: var(--color-primary);
+  --switch-background-checked-hover: var(--color-primary-hover);
+  --switch-background-disabled: var(--color-surface-sunken);
+  --switch-thumb: var(--color-surface-elevated);
+  --switch-thumb-disabled: var(--color-text-disabled);
+
+  // ==========================================================================
+  // FORM FIELD
+  // ==========================================================================
+  --form-field-gap: var(--space-component-xs);
+  --form-label-text: var(--color-text-primary);
+  --form-label-font: var(--font-label-md);
+  --form-help-text: var(--color-text-secondary);
+  --form-help-font: var(--font-body-sm);
+  --form-error-text: var(--color-danger);
+  --form-error-font: var(--font-body-sm);
+  --form-required-indicator: var(--color-danger);
+}

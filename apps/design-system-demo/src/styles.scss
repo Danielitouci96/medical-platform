@@ -1,0 +1,1262 @@
+/* ============================================================
+   GROVE CLINICAL INTELLIGENCE — component-library demo
+   · Canvas mist-gray, cards white (radius 24/20)
+   · Ink-dark = primary action, forest green = accent
+   · Libre Caslon display (serif) + Geist interface (sans)
+   · Hairline borders + soft shadows
+   ============================================================ */
+
+.grove {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-feature-settings: 'ss01' on, 'tnum' on;
+  -webkit-font-smoothing: antialiased;
+}
+
+.grove-wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ------------------------------------------------------------
+   Header
+   ------------------------------------------------------------ */
+.grove-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--color-background-elevated) 90%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.grove-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 68px;
+  flex-wrap: wrap;
+}
+
+.grove-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+.grove-logo__mark {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
+}
+
+.grove-logo__name {
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.grove-logo__divider {
+  width: 1px;
+  height: 18px;
+  background: var(--color-divider);
+  margin-inline: 2px;
+}
+
+.grove-logo__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+}
+
+.grove-logo__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: var(--color-secondary);
+}
+
+.grove-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.grove-nav-link {
+  padding: 7px 13px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.grove-nav-link:hover {
+  color: var(--color-text-primary);
+  background: var(--color-surface-hover);
+}
+
+.grove-nav-link--active {
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+}
+
+.grove-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.grove-search-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-divider);
+  background: var(--color-surface-sunken);
+  color: var(--color-text-tertiary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.grove-search-pill:hover {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-elevated);
+}
+
+.grove-kbd {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--color-divider);
+  background: var(--color-surface-elevated);
+  color: var(--color-text-tertiary);
+}
+
+.grove-brand-select {
+  width: 170px;
+}
+
+.grove-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 4px;
+}
+
+.grove-user__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.grove-user__name {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.grove-user__role {
+  font-size: 11.5px;
+  color: var(--color-text-tertiary);
+}
+
+/* ------------------------------------------------------------
+   Meta line (small caps)
+   ------------------------------------------------------------ */
+.grove-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.grove-meta__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--color-secondary);
+  animation: grove-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes grove-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.grove-meta__sep {
+  opacity: 0.5;
+}
+
+/* ------------------------------------------------------------
+   Hero
+   ------------------------------------------------------------ */
+.grove-hero {
+  position: relative;
+  padding: 56px 0 44px;
+  background: radial-gradient(
+    1100px 320px at 18% -10%,
+    color-mix(in srgb, var(--color-secondary) 9%, transparent),
+    transparent 70%
+  );
+}
+
+.grove-title {
+  margin: 20px 0 16px;
+  max-width: 19ch;
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 5.2vw, 54px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+.grove-title em {
+  font-style: italic;
+  color: var(--color-link);
+}
+
+.grove-lede {
+  margin: 0 0 28px;
+  max-width: 64ch;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+.grove-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.grove-quick__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-divider);
+  background: var(--color-surface-elevated);
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.05);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.grove-quick__pill:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+/* ------------------------------------------------------------
+   Sections
+   ------------------------------------------------------------ */
+.grove-section {
+  padding: 26px 0 10px;
+}
+
+.grove-section--last {
+  padding-bottom: 48px;
+}
+
+.grove-section-head {
+  margin-bottom: 8px;
+}
+
+.grove-section-head__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.grove-h2 {
+  margin: 10px 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
+}
+
+.grove-sync {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  padding-bottom: 4px;
+}
+
+.grove-sync__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--color-success);
+  animation: grove-pulse 2.4s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------
+   Metrics
+   ------------------------------------------------------------ */
+.grove-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.grove-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-divider);
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.06);
+}
+
+.grove-metric--mist {
+  background: var(--color-surface-sunken);
+  border-color: var(--color-divider);
+}
+
+.grove-metric__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.grove-metric__label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.grove-metric__icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9999px;
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.grove-metric__icon--ghost {
+  background: transparent;
+  border: 1px solid var(--color-divider);
+  color: var(--color-text-tertiary);
+}
+
+.grove-metric__value {
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.grove-metric__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+}
+
+.grove-metric__hint {
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+}
+
+.grove-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  color: var(--color-secondary);
+}
+
+.grove-delta--muted {
+  color: var(--color-text-tertiary);
+}
+
+.grove-bar {
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-surface-active);
+  overflow: hidden;
+}
+
+.grove-bar__fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-success));
+}
+
+.grove-spark {
+  width: 100%;
+  height: 44px;
+  margin-top: 2px;
+}
+
+.grove-spark__line {
+  stroke: var(--color-secondary);
+  stroke-width: 2.2;
+}
+
+/* ------------------------------------------------------------
+   Buttons / actions
+   ------------------------------------------------------------ */
+.grove-block {
+  margin-top: 28px;
+}
+
+.grove-sub {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.grove-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Pill geometry for the action buttons */
+.grove-btn-pill.med-button {
+  border-radius: 9999px;
+  padding-inline: 18px;
+  padding-block: 9px;
+  font-weight: 500;
+}
+
+/* Forest-green filled button */
+.grove-btn-accent.med-button {
+  background: var(--color-secondary);
+  border-color: transparent;
+  color: var(--color-on-secondary);
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.12);
+}
+
+.grove-btn-accent.med-button:hover {
+  background: var(--color-secondary-hover);
+}
+
+/* Soft mist surface button */
+.grove-btn-soft.med-button {
+  background: var(--color-surface-sunken);
+  border-color: var(--color-divider);
+  color: var(--color-text-primary);
+}
+
+.grove-btn-soft.med-button:hover {
+  background: var(--color-surface-active);
+}
+
+/* Soft terracotta (tertiary / warning) button */
+.grove-btn-tertiary.med-button {
+  background: color-mix(in srgb, var(--color-danger) 13%, var(--color-surface-elevated));
+  border-color: color-mix(in srgb, var(--color-danger) 30%, transparent);
+  color: var(--color-danger);
+}
+
+.grove-btn-tertiary.med-button:hover {
+  background: color-mix(in srgb, var(--color-danger) 22%, var(--color-surface-elevated));
+}
+
+/* Focus-state showcase */
+.grove-btn-focus.med-button {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-border-focus) 22%, transparent);
+}
+
+/* Circular icon buttons */
+.grove-icn-round.med-icon-button {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-divider);
+  border-radius: 9999px;
+  color: var(--color-text-primary);
+}
+
+.grove-icn-round--accent.med-icon-button {
+  background: var(--color-secondary);
+  border-color: transparent;
+  color: var(--color-on-secondary);
+}
+
+/* Segmented controls */
+.grove-block--seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.grove-seg {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.grove-seg__label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.grove-seg__pills {
+  display: inline-flex;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 9999px;
+  background: var(--color-surface-sunken);
+}
+
+.grove-seg__pill {
+  border: none;
+  background: transparent;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.grove-seg__pill:hover {
+  color: var(--color-text-primary);
+}
+
+.grove-seg__pill--active {
+  background: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+  box-shadow: 0 1px 3px rgb(16 24 40 / 0.12);
+}
+
+/* ------------------------------------------------------------
+   Data table
+   ------------------------------------------------------------ */
+.grove-table-card {
+  --table-radius: 16px;
+  margin-top: 22px;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-divider);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.06);
+}
+
+.grove-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.grove-toolbar__search {
+  width: 300px;
+}
+
+.grove-toolbar__search .med-input {
+  padding-left: 36px;
+  border-radius: 8px;
+}
+
+.grove-toolbar__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.grove-toolbar__actions {
+  display: flex;
+  gap: 8px;
+  margin-inline-start: auto;
+}
+
+.grove-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--color-divider);
+  background: var(--color-surface-elevated);
+  border-radius: 9999px;
+  padding: 7px 12px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.grove-filter-pill:hover {
+  border-color: var(--color-border-strong);
+}
+
+.grove-filter-pill--active {
+  background: var(--color-text-primary);
+  color: var(--color-text-inverse);
+  border-color: transparent;
+}
+
+.grove-filter-pill__count {
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+/* Table internals */
+.grove-table-card .med-datatable {
+  margin-top: 6px;
+}
+
+.grove-table-card .med-table__head-cell {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-sunken);
+}
+
+.grove-table-card .med-table__cell {
+  font-size: 13.5px;
+}
+
+.grove-mono {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.grove-id-cell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.grove-copy.med-icon-button {
+  opacity: 0.45;
+  transition: opacity 0.15s ease;
+}
+
+.grove-id-cell:hover .grove-copy.med-icon-button {
+  opacity: 1;
+}
+
+.grove-cell-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.grove-cell-main {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.grove-cell-sub {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+
+.grove-bio-tag.med-tag {
+  border-radius: 9999px;
+  font-size: 12px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.grove-adherence {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.grove-adherence .grove-bar {
+  width: 96px;
+  height: 5px;
+}
+
+.grove-adherence__pct {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-primary);
+}
+
+.grove-adherence__flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--color-warning);
+}
+
+/* ------------------------------------------------------------
+   Forms
+   ------------------------------------------------------------ */
+.grove-forms {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 20px;
+  margin-top: 22px;
+  align-items: start;
+}
+
+.grove-form-card {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-divider);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.06);
+}
+
+.grove-field {
+  margin-bottom: 22px;
+}
+
+.grove-field:last-child {
+  margin-bottom: 0;
+}
+
+.grove-field__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.grove-field__help {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+
+.grove-input-wrap {
+  position: relative;
+}
+
+.grove-input-wrap .med-input {
+  border-radius: 8px;
+  background: var(--color-surface-elevated);
+  border-color: var(--color-divider);
+}
+
+.grove-input-wrap--has-icon .med-input {
+  padding-left: 14px;
+  padding-right: 38px;
+}
+
+.grove-input-wrap__icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+}
+
+.grove-input-wrap__icon--right {
+  left: auto;
+  right: 12px;
+}
+
+/* Tag cluster */
+.grove-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.med-tag.grove-tag--ink,
+.med-tag.grove-tag--green {
+  border: none;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.med-tag.grove-tag--ink {
+  background: var(--color-text-primary);
+  color: var(--color-text-inverse);
+}
+
+.med-tag.grove-tag--green {
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
+}
+
+.grove-tag-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  border-radius: 9999px;
+  border: 1px dashed var(--color-border-strong);
+  background: transparent;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.grove-tag-add:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+/* Checkbox / radio groups */
+.grove-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.grove-check {
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.grove-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.grove-radio {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 14px;
+}
+
+.grove-radio__sub {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+
+/* Automation flags (right column) */
+.grove-flags {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-divider);
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.grove-flags__head {
+  margin-bottom: 2px;
+}
+
+.grove-flags__title {
+  margin: 8px 0 0;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.grove-flag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-divider);
+}
+
+.grove-flag__text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.grove-flag__name {
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.grove-flag__desc {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+
+.grove-flags__save.med-button {
+  margin-top: 4px;
+}
+
+/* ------------------------------------------------------------
+   Feedback / notes
+   ------------------------------------------------------------ */
+.grove-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+  padding: 18px 22px;
+  border-radius: 20px;
+  background: linear-gradient(125deg, color-mix(in srgb, var(--color-secondary) 82%, #000), var(--color-secondary));
+  color: #fff;
+}
+
+.grove-banner__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.16);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.grove-banner__text {
+  margin: 0;
+  flex: 1;
+  min-width: 260px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.grove-banner__cta.med-button {
+  background: #fff;
+  color: var(--color-secondary);
+  border: none;
+  border-radius: 9999px;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.18);
+}
+
+.grove-banner__cta.med-button:hover {
+  background: var(--gray-100);
+}
+
+.grove-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.grove-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-divider);
+}
+
+.grove-status-pill__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+}
+
+.grove-status-pill--success {
+  background: var(--color-success-soft);
+  border-color: transparent;
+}
+.grove-status-pill--success .grove-status-pill__dot {
+  background: var(--color-success);
+}
+
+.grove-status-pill--info {
+  background: var(--color-info-soft);
+  border-color: transparent;
+}
+.grove-status-pill--info .grove-status-pill__dot {
+  background: var(--color-info);
+}
+
+.grove-status-pill--warning {
+  background: var(--color-warning-soft);
+  border-color: transparent;
+}
+.grove-status-pill--warning .grove-status-pill__dot {
+  background: var(--color-warning);
+}
+
+.grove-status-pill--neutral .grove-status-pill__dot {
+  background: var(--gray-500);
+}
+
+.grove-notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.grove-note {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-divider);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.06);
+}
+
+.grove-note--mist {
+  background: var(--color-surface-sunken);
+  border-color: var(--color-divider);
+}
+
+.grove-note__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.grove-note__who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.grove-note__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.grove-note__role {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+
+.grove-note__engine {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-divider);
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.grove-note__body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.grove-note__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+}
+
+.grove-note__foot > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.grove-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+.grove-link:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------ */
+.grove-footer {
+  margin-top: auto;
+  padding: 20px 0;
+  border-top: 1px solid var(--color-divider);
+  background: var(--color-background-elevated);
+}
+
+.grove-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: var(--color-text-tertiary);
+}
+
+.grove-footer__links {
+  display: flex;
+  gap: 16px;
+}
+
+/* ------------------------------------------------------------
+   TEMAS DE MARCA (demo)
+   Este es el patrón que cada APP copia en su propio CSS para
+   tener sus colores: se sobrescriben SOLO tokens semánticos
+   (--color-*), nunca los primitivos. Los componentes del DS
+   leen --color-* por lo que reaccionan automáticamente.
+   ------------------------------------------------------------ */
+:root[data-brand='onco'] {
+  --color-secondary: #075d9e;
+  --color-secondary-hover: #064a7e;
+  --color-secondary-active: #053a63;
+  --color-secondary-soft: #e6f1fa;
+  --color-secondary-soft-hover: #cfe4f5;
+  --color-secondary-contrast: #ffffff;
+  --color-on-secondary: #ffffff;
+  --color-link: #075d9e;
+  --color-link-hover: #064a7e;
+  --color-link-visited: #053a63;
+  --color-border-focus: #075d9e;
+  --color-selection-bg: #075d9e;
+}
+
+:root[data-brand='onco'][data-theme='dark'] {
+  --color-secondary: #4d9fd0;
+  --color-secondary-hover: #74b4dd;
+  --color-secondary-active: #93c6e7;
+  --color-secondary-soft: #0d2436;
+  --color-secondary-soft-hover: #122f46;
+  --color-secondary-contrast: #0b1622;
+  --color-on-secondary: #0b1622;
+  --color-link: #6faed8;
+  --color-link-hover: #93c6e7;
+  --color-link-visited: #4d9fd0;
+  --color-border-focus: #6faed8;
+  --color-selection-bg: #6faed8;
+}
+
+:root[data-brand='cardio'] {
+  --color-secondary: #6d4edb;
+  --color-secondary-hover: #5a3cc0;
+  --color-secondary-active: #4a2f9e;
+  --color-secondary-soft: #f0ecfd;
+  --color-secondary-soft-hover: #e0d8fb;
+  --color-secondary-contrast: #ffffff;
+  --color-on-secondary: #ffffff;
+  --color-link: #6d4edb;
+  --color-link-hover: #5a3cc0;
+  --color-link-visited: #4a2f9e;
+  --color-border-focus: #6d4edb;
+  --color-selection-bg: #6d4edb;
+}
+
+:root[data-brand='cardio'][data-theme='dark'] {
+  --color-secondary: #9d87ef;
+  --color-secondary-hover: #b6a4f4;
+  --color-secondary-active: #c6b8f7;
+  --color-secondary-soft: #221a45;
+  --color-secondary-soft-hover: #2a2057;
+  --color-secondary-contrast: #120d26;
+  --color-on-secondary: #120d26;
+  --color-link: #9d87ef;
+  --color-link-hover: #c6b8f7;
+  --color-link-visited: #8370e4;
+  --color-border-focus: #9d87ef;
+  --color-selection-bg: #9d87ef;
+}
+
+/* ------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .grove-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .grove-search-pill {
+    display: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .grove-forms {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .grove-user__text {
+    display: none;
+  }
+
+  .grove-toolbar__actions {
+    margin-inline-start: 0;
+    width: 100%;
+  }
+}

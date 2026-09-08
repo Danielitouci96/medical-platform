@@ -1,0 +1,54 @@
+// ============================================================================
+// PRIMITIVE DENSITY TOKENS
+// ============================================================================
+// Density controls the size of interactive elements. The Design System supports
+// switching between "compact" and "comfortable" density through a data attribute
+// on the root:  data-density="compact" | data-density="comfortable"
+// ============================================================================
+
+:root,
+:root[data-density='comfortable'] {
+  --control-height-xs: 24px;
+  --control-height-sm: 32px;
+  --control-height-md: 40px;
+  --control-height-lg: 48px;
+  --control-height-xl: 56px;
+
+  --control-padding-x-xs: 8px;
+  --control-padding-x-sm: 12px;
+  --control-padding-x-md: 16px;
+  --control-padding-x-lg: 20px;
+  --control-padding-x-xl: 28px;
+
+  --control-gap-xs: 4px;
+  --control-gap-sm: 8px;
+  --control-gap-md: 12px;
+
+  --layout-padding-sm: 12px;
+  --layout-padding-md: 20px;
+  --layout-padding-lg: 24px;
+  --layout-padding-xl: 32px;
+}
+
+:root[data-density='compact'] {
+  --control-height-xs: 20px;
+  --control-height-sm: 28px;
+  --control-height-md: 34px;
+  --control-height-lg: 40px;
+  --control-height-xl: 48px;
+
+  --control-padding-x-xs: 6px;
+  --control-padding-x-sm: 8px;
+  --control-padding-x-md: 12px;
+  --control-padding-x-lg: 16px;
+  --control-padding-x-xl: 20px;
+
+  --control-gap-xs: 2px;
+  --control-gap-sm: 4px;
+  --control-gap-md: 8px;
+
+  --layout-padding-sm: 8px;
+  --layout-padding-md: 16px;
+  --layout-padding-lg: 20px;
+  --layout-padding-xl: 24px;
+}

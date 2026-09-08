@@ -1,0 +1,134 @@
+// ============================================================================
+// PRIMITIVE COLOR TOKENS — GROVE AI
+// ============================================================================
+// Raw building blocks based on the Grove AI language:
+// monochrome neutrals + one clinical forest green. Chromatic families outside
+// functional red/yellow are collapsed onto the neutral ramp so no blue/indigo/
+// cyan/violet leaks into the interface.
+//
+// Conventions:
+//   --<color-name>-<shade>
+//   Where shade is a number from 0 (lightest) to 950 (darkest).
+// ============================================================================
+
+:root {
+  // Forest Grove — the single brand accent.
+  --color-forest-grove: #0b835c;
+  --grove-50: #e9f4ef;
+  --grove-100: #cce8dc;
+  --grove-200: #9ed0bd;
+  --grove-300: #6cb59a;
+  --grove-400: #2f9c75;
+  --grove-500: #0b835c;
+  --grove-600: #0a6f4e;
+  --grove-700: #095a40;
+  --grove-800: #074832;
+  --grove-900: #053626;
+  --grove-950: #03241a;
+
+  // Neutral ramp — Grove's ink/graphite/slate/mist system.
+  --gray-0: #ffffff; // pure white
+  --gray-50: #fafbfc;
+  --gray-100: #f4f5f8;
+  --gray-200: #e9ebf0;
+  --gray-300: #d5d8df;
+  --gray-400: #9a9ba0;
+  --gray-500: #676768; // slate mid
+  --gray-600: #48484c;
+  --gray-700: #303033; // graphite
+  --gray-800: #26262a;
+  --gray-900: #1c1c1e; // ink black
+  --gray-950: #121214;
+
+  // Green family (mapped to Grove so legacy references stay on-brand).
+  --green-50: #e9f4ef;
+  --green-100: #cce8dc;
+  --green-200: #9ed0bd;
+  --green-300: #6cb59a;
+  --green-400: #2f9c75;
+  --green-500: #0b835c;
+  --green-600: #0a6f4e;
+  --green-700: #095a40;
+  --green-800: #074832;
+  --green-900: #053626;
+  --green-950: #03241a;
+
+  // Red (functional danger — muted, not toxic).
+  --red-50: #fdf2f2;
+  --red-100: #fbe3e3;
+  --red-200: #f6c5c5;
+  --red-300: #eda0a0;
+  --red-400: #df6d6d;
+  --red-500: #c93f3f;
+  --red-600: #b42318;
+  --red-700: #8f1d13;
+  --red-800: #6f150d;
+  --red-900: #520f0a;
+  --red-950: #380a07;
+
+  // Yellow (functional warning — muted amber).
+  --yellow-50: #fdf8eb;
+  --yellow-100: #f9ecca;
+  --yellow-200: #f0d896;
+  --yellow-300: #e2bd5e;
+  --yellow-400: #c9972f;
+  --yellow-500: #a8720e;
+  --yellow-600: #8a5d0a;
+  --yellow-700: #6f4a0a;
+  --yellow-800: #57390a;
+  --yellow-900: #402a09;
+  --yellow-950: #2c1d07;
+
+  // Legacy chromatic families — collapsed onto the neutral ramp so nothing
+  // can accidentally pull a blue/indigo/cyan/violet onto the canvas.
+  --blue-50: #f4f5f8;
+  --blue-100: #e9ebf0;
+  --blue-200: #d5d8df;
+  --blue-300: #9a9ba0;
+  --blue-400: #676768;
+  --blue-500: #303033;
+  --blue-600: #1c1c1e;
+  --blue-700: #26262a;
+  --blue-800: #121214;
+  --blue-900: #0d0d0f;
+  --blue-950: #09090a;
+
+  --indigo-50: #f4f5f8;
+  --indigo-100: #e9ebf0;
+  --indigo-200: #d5d8df;
+  --indigo-300: #9a9ba0;
+  --indigo-400: #676768;
+  --indigo-500: #303033;
+  --indigo-600: #1c1c1e;
+  --indigo-700: #26262a;
+  --indigo-800: #121214;
+  --indigo-900: #0d0d0f;
+  --indigo-950: #09090a;
+
+  --cyan-50: #e9f4ef;
+  --cyan-100: #cce8dc;
+  --cyan-200: #9ed0bd;
+  --cyan-300: #6cb59a;
+  --cyan-400: #2f9c75;
+  --cyan-500: #0b835c;
+  --cyan-600: #0a6f4e;
+  --cyan-700: #095a40;
+  --cyan-800: #074832;
+  --cyan-900: #053626;
+  --cyan-950: #03241a;
+
+  --violet-50: #f4f5f8;
+  --violet-100: #e9ebf0;
+  --violet-200: #d5d8df;
+  --violet-300: #9a9ba0;
+  --violet-400: #676768;
+  --violet-500: #303033;
+  --violet-600: #1c1c1e;
+  --violet-700: #26262a;
+  --violet-800: #121214;
+  --violet-900: #0d0d0f;
+  --violet-950: #09090a;
+
+  // Shadow smoke — elevation base color behind cards/mockups.
+  --color-shadow-smoke: #bfbfbf;
+}

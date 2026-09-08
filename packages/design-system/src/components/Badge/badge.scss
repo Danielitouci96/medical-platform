@@ -1,0 +1,126 @@
+@use '../../foundations/tokens/component/data-display' as *;
+
+.med-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  white-space: nowrap;
+  border-radius: var(--radius-badge);
+
+  &--size-xs {
+    font-size: var(--font-size-2xs);
+    padding: 1px var(--space-1);
+  }
+
+  &--size-sm {
+    font-size: var(--font-size-xs);
+    padding: 2px var(--space-2);
+  }
+
+  &--size-md {
+    font-size: var(--font-size-xs);
+    padding: var(--space-1) var(--space-2);
+  }
+
+  // ==========================================================================
+  // Tones (soft)
+  // ==========================================================================
+  &--tone-neutral.med-badge--variant-soft {
+    background: var(--badge-background-neutral);
+    color: var(--badge-text-neutral);
+  }
+
+  &--tone-info.med-badge--variant-soft {
+    background: var(--badge-background-info);
+    color: var(--badge-text-info);
+  }
+
+  &--tone-success.med-badge--variant-soft {
+    background: var(--badge-background-success);
+    color: var(--badge-text-success);
+  }
+
+  &--tone-warning.med-badge--variant-soft {
+    background: var(--badge-background-warning);
+    color: var(--badge-text-warning);
+  }
+
+  &--tone-danger.med-badge--variant-soft {
+    background: var(--badge-background-danger);
+    color: var(--badge-text-danger);
+  }
+
+  // ==========================================================================
+  // Solid
+  // ==========================================================================
+  &--variant-solid {
+    color: var(--color-text-inverse);
+
+    &.med-badge--tone-neutral {
+      background: var(--badge-background-neutral-solid);
+      color: var(--badge-text-neutral-solid);
+    }
+
+    &.med-badge--tone-info {
+      background: var(--color-info);
+      color: var(--color-info-contrast);
+    }
+
+    &.med-badge--tone-success {
+      background: var(--color-success);
+      color: var(--color-success-contrast);
+    }
+
+    &.med-badge--tone-warning {
+      background: var(--color-warning);
+      color: var(--color-warning-contrast);
+    }
+
+    &.med-badge--tone-danger {
+      background: var(--color-danger);
+      color: var(--color-danger-contrast);
+    }
+  }
+
+  // ==========================================================================
+  // Outline
+  // ==========================================================================
+  &--variant-outline {
+    background: transparent;
+    border: 1px solid currentColor;
+
+    &.med-badge--tone-neutral {
+      color: var(--badge-text-neutral);
+      border-color: var(--color-border-strong);
+    }
+
+    &.med-badge--tone-info {
+      color: var(--badge-text-info);
+      border-color: var(--color-info);
+    }
+
+    &.med-badge--tone-success {
+      color: var(--badge-text-success);
+      border-color: var(--color-success);
+    }
+
+    &.med-badge--tone-warning {
+      color: var(--badge-text-warning);
+      border-color: var(--color-warning);
+    }
+
+    &.med-badge--tone-danger {
+      color: var(--badge-text-danger);
+      border-color: var(--color-danger);
+    }
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: currentColor;
+  }
+}

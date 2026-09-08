@@ -1,0 +1,60 @@
+// ============================================================================
+// ELEVATION FOUNDATION
+// ============================================================================
+// Elevation utility classes.
+// ============================================================================
+
+@use '../tokens/shadows/primitive' as *;
+@use '../tokens/shadows/semantic' as *;
+
+.med-shadow-none {
+  box-shadow: var(--shadow-none);
+}
+
+.med-shadow-xs {
+  box-shadow: var(--shadow-xs);
+}
+
+.med-shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.med-shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+.med-shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.med-shadow-xl {
+  box-shadow: var(--shadow-xl);
+}
+
+.med-shadow-2xl {
+  box-shadow: var(--shadow-2xl);
+}
+
+.med-shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.med-elevation-0 {
+  box-shadow: none;
+}
+
+.med-elevation-1 {
+  box-shadow: var(--shadow-sm);
+}
+
+.med-elevation-2 {
+  box-shadow: var(--shadow-md);
+}
+
+.med-elevation-3 {
+  box-shadow: var(--shadow-lg);
+}
+
+.med-elevation-4 {
+  box-shadow: var(--shadow-xl);
+}

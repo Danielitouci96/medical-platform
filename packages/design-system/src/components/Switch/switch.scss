@@ -1,0 +1,101 @@
+.med-switch {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--size-9);
+  height: var(--size-5);
+  background: var(--switch-background);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--easing-standard);
+  position: relative;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  &[data-state='checked'] {
+    background: var(--switch-background-checked);
+
+    &:hover:not(:disabled) {
+      background: var(--switch-background-checked-hover);
+    }
+  }
+
+  &--disabled,
+  &:disabled {
+    background: var(--switch-background-disabled);
+    cursor: not-allowed;
+  }
+
+  &--size-sm {
+    width: var(--size-7);
+    height: var(--size-4);
+  }
+
+  &--size-lg {
+    width: var(--size-11);
+    height: var(--size-6);
+  }
+
+  &--state-error {
+    box-shadow: 0 0 0 1px var(--checkbox-border-error);
+  }
+
+  &__thumb {
+    display: block;
+    width: calc(var(--size-5) - 4px);
+    height: calc(var(--size-5) - 4px);
+    border-radius: var(--radius-full);
+    background: var(--switch-thumb);
+    box-shadow: var(--shadow-xs);
+    transform: translateX(2px);
+    transition: transform var(--duration-fast) var(--easing-standard);
+
+    .med-switch--size-sm & {
+      width: calc(var(--size-4) - 4px);
+      height: calc(var(--size-4) - 4px);
+    }
+
+    .med-switch--size-lg & {
+      width: calc(var(--size-6) - 4px);
+      height: calc(var(--size-6) - 4px);
+    }
+
+    [data-state='checked'] & {
+      transform: translateX(calc(var(--size-9) - var(--size-5) + 2px));
+
+      .med-switch--size-sm & {
+        transform: translateX(calc(var(--size-7) - var(--size-4) + 2px));
+      }
+
+      .med-switch--size-lg & {
+        transform: translateX(calc(var(--size-11) - var(--size-6) + 2px));
+      }
+    }
+  }
+
+  &__wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+
+    &--disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__label {
+    font: var(--font-body-base);
+    color: var(--color-text-primary);
+    cursor: pointer;
+
+    .med-switch__wrapper--disabled & {
+      color: var(--color-text-disabled);
+      cursor: not-allowed;
+    }
+  }
+}

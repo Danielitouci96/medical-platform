@@ -1,0 +1,17 @@
+// ============================================================================
+// SEMANTIC BORDER RADIUS TOKENS — GROVE AI
+// ============================================================================
+
+:root {
+  --radius-control: var(--radius-md); // 12 — icons, table corners, controls
+  --radius-control-sm: var(--radius-xs); // 8 — compact controls, inputs
+  --radius-card: var(--radius-xl); // 20 — standard cards
+  --radius-card-sm: var(--radius-md); // 12
+  --radius-modal: var(--radius-2xl); // 24 — large cards, modal
+  --radius-toast: var(--radius-xl); // 20
+  --radius-badge: var(--radius-full); // pill
+  --radius-tag: var(--radius-full); // pill — thin outlined tags
+  --radius-input: var(--radius-xs); // 8
+  --radius-button: var(--radius-full); // pill — buttons/pills
+  --radius-table: var(--radius-md); // 12
+}
