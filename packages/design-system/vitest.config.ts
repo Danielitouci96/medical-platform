@@ -16,8 +16,6 @@ export default mergeConfig(
         reporter: ['text', 'html'],
         include: ['src/**/*.{ts,tsx}'],
         exclude: [
-          'src/**/*.stories.ts',
-          'src/**/*.stories.tsx',
           'src/index.ts',
           'src/foundations/**',
           'src/icons/**',

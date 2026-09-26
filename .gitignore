@@ -27,6 +27,12 @@ nx-cloud.env
 *.spec.tsx
 *.test.ts
 *.test.tsx
+# El Design System sí versiona sus tests: el contrato de API pública y el render
+# smoke son parte del entregable de la librería, no archivos temporales.
+!packages/design-system/src/**/*.spec.ts
+!packages/design-system/src/**/*.spec.tsx
+!packages/design-system/src/**/*.test.ts
+!packages/design-system/src/**/*.test.tsx
 playwright-report/
 test-results/
 

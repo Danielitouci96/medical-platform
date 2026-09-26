@@ -23,30 +23,120 @@ No depende de Tailwind.
 7. [Accesibilidad](#accesibilidad)
 8. [Estructura del paquete](#estructura-del-paquete)
 9. [Documentación de referencia](#documentación-de-referencia)
-10. [Buenas prácticas](#buenas-prácticas)
+10. [Versionado](#versionado)
+11. [Publicar una versión](#publicar-una-versión)
+12. [Troubleshooting](#troubleshooting)
+13. [Buenas prácticas](#buenas-prácticas)
 
 ---
 
 ## Requisitos
 
 - Node.js ≥ 20
-- React `^18.0.0 || ^19.0.0` y `react-dom` (peer dependencies)
-- Vite (recomendado) u otro bundler que procese SCSS **o** que importe el CSS compilado (`styles.css`)
-- Dentro de este monorepo Nx (consumo por fuente) **o** como dependencia local vía tarball
+- React `^18.0.0 || ^19.0.0` y `react-dom` (peer dependencies: los aporta la app, no el paquete)
+- TypeScript ≥ 5.0 (para los tipos que ya se distribuyen compilados)
+- Cualquier bundler: Vite, webpack, Rollup… **no hace falta que processe SCSS**, el paquete
+  entrega el CSS ya compilado
 
-Hay **dos formas** de consumir el paquete (versión actual: `1.0.0`):
+No necesitas configurar `vite/client` ni `allowArbitraryExtensions` en el tsconfig de tu app:
+los tipos se distribuyen compilados en `dist/index.d.ts` y no contienen referencias a `.scss`.
 
-| Vía | Cuándo |
-|---|---|
-| **Por fuente (monorepo)** | Desarrollo diario de las apps de este repo (`tsconfig.base.json`). |
-| **Como dependencia local `.tgz`** | Apps que viven fuera del monorepo (proyectos de tus desarrolladores). Artefacto en `artifacts/medical-design-system-1.0.0.tgz`. |
+### Formas de consumir el paquete
 
-`private: true` = **no** se publica a npm público. Se comparte como tarball local o, más adelante,
-vía registry privado (p. ej. GitHub Packages).
+Versión actual: **`1.1.0`**.
+
+| Vía | Cuándo | Cómo |
+|---|---|---|
+| **Registro con SemVer** *(recomendada)* | Apps de tu equipo, incluso fuera del monorepo | `"@medical/design-system": "^1.1.0"` |
+| **Tarball local `.tgz`** | Sin registry, red aislada o para probar un release puntual | `npm install ../medical-platform/artifacts/medical-design-system-1.1.0.tgz` |
+| **Por fuente (monorepo Nx)** | Desarrollo diario dentro de `medical-platform` | Alias ya resuelto en `tsconfig.base.json` |
+
+La vía con SemVer es la recomendada porque el consumidor escribe una versión y la va actualizando
+con `npm update`, en vez de tener que editar una ruta en cada release. Ver
+[Publicar una versión](#publicar-una-versión) para configurar el registro.
 
 ---
 
 ## Instalación y consumo
+
+### 1. Instalar
+
+```bash
+# Desde el registro (tras configurar el .npmrc, ver más abajo)
+npm install @medical/design-system
+
+# O desde un tarball local
+npm install ../medical-platform/artifacts/medical-design-system-1.1.0.tgz
+```
+
+### 2. Importar el CSS (obligatorio, una sola vez)
+
+En el punto de entrada de la app, **antes** de tus propios estilos:
+
+```tsx
+// src/main.tsx
+import '@medical/design-system/styles.css'
+import './styles/app.css'   // tus overrides: gana por orden de cascada
+```
+
+> **Por qué es obligatorio.** Desde `1.1.0` la hoja de estilos **no** se inyecta sola al importar un
+> componente. Antes lo hacía, y eso filtraba una referencia a `.scss` en los tipos publicados que
+> obligaba a cada consumidor a configurar `vite/client` solo para poder compilar. Importar el CSS
+> explícitamente elimina ese problema y además hace **explícito el orden de cascada**, que es lo que
+> determina si tus overrides ganan.
+
+El orden importa: el CSS del DS debe entrar **antes** que el tuyo para que tus overrides
+apliquen sobre los tokens del DS.
+
+### 3. Usar los componentes
+
+```tsx
+import { Button, Card, CardContent, DataTable } from '@medical/design-system'
+
+export function Ejemplo() {
+  return (
+    <Card>
+      <CardContent>
+        <Button variant="primary">Guardar</Button>
+      </CardContent>
+    </Card>
+  )
+}
+```
+
+Importa siempre desde el paquete. Nunca desde rutas internas.
+
+### 4. Tema de marca (opcional)
+
+```tsx
+import '@medical/design-system/themes/onco.css'   // azul
+import '@medical/design-system/themes/cardio.css'  // violeta
+```
+
+Como plantilla para un tema propio:
+
+```bash
+cp node_modules/@medical/design-system/themes/tema-personalizado.css src/styles/mi-tema.css
+```
+
+### Configurar el registro (si publicas en GitHub Packages)
+
+`.npmrc` en la raíz del proyecto consumidor:
+
+```ini
+@medical:registry=https://npm.pkg.github.com
+```
+
+Y autenticación **por variable de entorno**, nunca con el token en el repo:
+
+```powershell
+$env:NODE_AUTH_TOKEN = "<tu token personal de GitHub>"
+npm install @medical/design-system
+```
+
+El token es personal e intransferible. Cada persona del equipo pide el suyo en GitHub
+(*Settings → Developer settings → Personal access tokens*, con permiso `read:packages` para
+consumir y `write:packages` para publicar).
 
 ### Dentro del monorepo
 
@@ -58,50 +148,29 @@ El path ya está resuelto en `tsconfig.base.json`:
 }
 ```
 
-Importa desde el paquete, nunca desde rutas internas:
+En este caso se sigue importando el CSS compilado igual:
 
 ```tsx
-import { Button, Tag } from '@medical/design-system';
+import { Button } from '@medical/design-system'
+import '@medical/design-system/styles.css'
 ```
 
-**Los estilos se cargan solos.** `src/index.ts` importa `./styles/index.scss`, así que con Vite los
-estilos (tokens globales + componentes) se incluyen en el bundle automáticamente. No necesitas
-importar CSS manualmente.
+### Qué contiene el paquete
 
-### Como dependencia local (.tgz) — para apps fuera del monorepo
+| Contenido | Ruta |
+|---|---|
+| JS compilado (ESM) | `dist/index.es.js` |
+| Tipos compilados | `dist/index.d.ts` (+ 121 declaraciones por componente) |
+| CSS compilado | `dist/design-system.css` |
+| Temas de marca | `themes/*.css` |
+| Documentación y licencia | `README.md`, `CHANGELOG.md`, `LICENSE` |
 
-El artefacto del release se genera en la carpeta `artifacts/` de la raíz del repo y **no** se sube
-a git (se reconstruye con `npm pack`):
-
-```bash
-# 1. Desde la raíz del monorepo, para (re)generar el tarball:
-npm run build:design-system
-npm pack --pack-destination artifacts ./packages/design-system
-```
-
-```bash
-# 2. En la app de tu desarrollador, instalarlo como cualquier dependencia:
-npm install ../medical-platform/artifacts/medical-design-system-1.0.0.tgz
-```
-
-El tarball contiene: JS ESM compilado (`dist/`), CSS compilado (`dist/design-system.css`),
-temas de marca (`themes/`), el fuente (`src/`) para tipos y este README.
-
-A diferencia del consumo por fuente, aquí **sí importas el CSS compilado** y el tema:
-
-```tsx
-import { Button, Badge } from '@medical/design-system';
-import '@medical/design-system/styles.css';          // CSS compilado (Vite lo resolve por exports)
-import '@medical/design-system/themes/onco.css';     // opcional: tema de marca
-```
-
-Verificado en `apps` externas con un consumidor de prueba (React 19 + Vite 6): componentes,
-tokens y temas aplican correctamente en modo claro y oscuro.
+**No** se distribuye el código fuente: el paquete son los artefactos ya compilados.
 
 ### Fuentes
 
 El DS define `--font-sans` (Geist) y `--font-serif` (Libre Caslon), pero **no** empaqueta las
-fontfaces. Cada app debe instalarlas (como hace la demo):
+fontfaces. Cada app debe instalarlas:
 
 ```bash
 npm install @fontsource-variable/geist @fontsource/libre-caslon-text
@@ -109,10 +178,10 @@ npm install @fontsource-variable/geist @fontsource/libre-caslon-text
 
 ```tsx
 // src/main.tsx de la app
-import '@fontsource-variable/geist';
-import '@fontsource/libre-caslon-text';
-import '@fontsource/libre-caslon-text/400.css';
-import '@fontsource/libre-caslon-text/400-italic.css';
+import '@fontsource-variable/geist'
+import '@fontsource/libre-caslon-text'
+import '@fontsource/libre-caslon-text/400.css'
+import '@fontsource/libre-caslon-text/400-italic.css'
 ```
 
 ---
@@ -432,9 +501,99 @@ packages/design-system/
   Muestra el sistema Grove en acción: header, métricas, botones, tabla de datos, formularios,
   feedback, dark mode y tokens.
 - **API pública:** `src/index.ts`, cada export está comentado.
-- **Props y tipos:** JSDoc en el `.tsx` de cada componente.
-- **Storybook:** configurado en este paquete (`npm run storybook`, puerto 4400) pero desactivado
-  por defecto; se activa bajo demanda.
+- **Props y tipos:** JSDoc en el `.tsx` de cada componente, y los `.d.ts` ya vienen compilados
+  en el paquete, así que el autocompletado funciona sin configurar nada.
+- **Muestrario (referencia viva):** `apps/design-system-demo` → `npx nx run design-system-demo:dev`
+  (http://localhost:4401). Es la referencia oficial: cada componente con sus variantes, la tabla de
+  props y el snippet copiable.
+
+> Storybook se eliminó en `1.1.0`: no lo consumía nadie y duplicaba el trabajo de documentación que
+> ya cubre el Muestrario. El Muestrario es el único sitio de referencia.
+
+---
+
+## Versionado
+
+El paquete sigue **SemVer**, con una regla propia para los cambios visuales, que en un design system
+son tan contractuales como los de API.
+
+| Versión | Cuándo |
+|---|---|
+| **patch** (`1.0.2` → `1.0.3`) | Correcciones que **no** cambian lo que se ve: fallos de render, de accesibilidad o de tipos. |
+| **minor** (`1.0.3` → `1.1.0`) | Componentes, props o tokens nuevos. **Y también los cambios visuales deliberados**: mover un espaciado, un radio, un color, un tamaño de fuente. |
+| **major** (`1.1.0` → `2.0.0`) | Se quita o renombra algo de la API, se cambia un valor por defecto del que una app dependía, o el cambio visual obliga a tocar código. |
+
+La regla que lo resume:
+
+> **Si al actualizar, una app se ve distinta sin haber tocado código, es como mínimo `minor`, y el
+> CHANGELOG tiene que decir qué se movió.**
+
+Esto importa especialmente aquí, porque las apps de tu equipo apilan sus propios overrides sobre los
+tokens del DS. Cuando el DS cambia un valor, el resultado depende del orden de cascada. Por eso el
+CHANGELOG se escribe siempre mirando la diff visual, no solo el código.
+
+---
+
+## Publicar una versión
+
+### Para quien mantiene el paquete
+
+```bash
+# 1. Verificar que todo está verde
+npx nx run @medical/design-system:test
+npm run build:design-system
+
+# 2. Subir la versión (actualiza package.json)
+npm version patch     # o minor / major
+
+# 3. Escribir el CHANGELOG y hacer commit de ambos
+git add packages/design-system/package.json packages/design-system/CHANGELOG.md
+git commit -m "release(ds): 1.0.3"
+
+# 4. Crear el tarball (prepack compila automáticamente)
+npm pack --pack-destination artifacts ./packages/design-system
+```
+
+Para publicar en el registro (GitHub Packages):
+
+```bash
+npm publish --registry https://npm.pkg.github.com
+# NODE_AUTH_TOKEN debe estar definido en el entorno, nunca en un archivo versionado
+```
+
+Publicar **no** es obligatorio: el tarball del paso 4 ya es consumible por cualquier app del equipo.
+
+### Automatizarlo
+
+El versionado manual es el punto de fricción. El siguiente paso natural es
+**Changesets** (o `nx release`), que genera el CHANGELOG, decide la versión según el tipo de cambio
+declarado en el PR y publica al hacer merge a `main`. Con eso, publicar una versión pasa de ser una
+tarea manual a ser un efecto secundario del PR.
+
+---
+
+## Troubleshooting
+
+**No tengo estilos / los componentes salen sin CSS**
+Falta el import del CSS en el punto de entrada. Es obligatorio desde `1.1.0`:
+`import '@medical/design-system/styles.css'`, y **antes** de tus propios estilos.
+
+**`Cannot find module '@medical/design-system'` o tipos que no resuelven**
+Si tu `package.json` apunta a una ruta `.tgz`, remember que hay que volver a instalar tras cada
+release nuevo (el contenido cambia aunque la versión no). Con SemVer (`^1.1.0`) esto no pasa.
+
+**`Invalid hook call`**
+Hay dos copias de React. Comprueba que tu app **no** tenga `react` en sus `dependencies` de la
+librería: el paquete lo declara solo como `peerDependency`, y por eso tu app debe aportar una única
+versión de React.
+
+**Los estilos de mi app pisan los del DS (o al revés)**
+Es orden de cascada. El CSS del DS va primero; tus overrides después. Si necesitas que un token del
+DS cambie de valor, sobrescribe el token en vez de escribir CSS contra las clases internas.
+
+**`Error: Tooltip must be used within TooltipProvider`**
+Corregido en `1.0.2`: `Tooltip` ya monta su propio provider. Si te aparece, estás en una versión
+anterior; actualiza.
 
 ---
 

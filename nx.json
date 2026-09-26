@@ -40,14 +40,6 @@
       }
     },
     {
-      "plugin": "@nx/storybook/plugin",
-      "options": {
-        "storybookBuildTargetName": "build-storybook",
-        "storybookTargetName": "storybook",
-        "testStorybookTargetName": "test-storybook"
-      }
-    },
-    {
       "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "lint"

@@ -1,0 +1,28 @@
+UNLICENSED — Propietario
+========================
+
+Copyright (c) 2026 Todos los derechos reservados.
+
+Este paquete y su código fuente son propiedad privada y confidencial.
+
+No se concede ninguna licencia pública sobre este software. No se permite su
+copia, modificación, distribución, publicación ni uso por terceros sin
+autorización previa y por escrito del titular de los derechos.
+
+Uso interno autorizado
+----------------------
+
+Su uso, modificación y distribución están autorizados únicamente dentro de los
+equipos y repositorios internos del titular, y únicamente en el marco de los
+proyectos para los que se han aprobado.
+
+El acceso al registro de paquetes de esta librería se controla por credenciales.
+Cada miembro del equipo debe solicitar su propio token y mantenerlo siempre
+fuera del control de versiones.
+
+Aviso
+-----
+
+Este archivo es un marcador de posición técnico. Antes de distribuir el paquete
+fuera del perímetro interno (por ejemplo, en un npm público), el área legal debe
+sustituirlo por el texto de licencia definitivo de la organización.

@@ -46,7 +46,7 @@ const Stepper = React.forwardRef<HTMLOListElement, StepperProps>(function Steppe
 
         return (
           <li
-            key={step.id}
+            key={step.id ?? i}
             className={classNames(
               'med-stepper__step',
               isComplete && 'med-stepper__step--complete',

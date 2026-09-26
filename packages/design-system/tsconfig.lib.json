@@ -10,8 +10,7 @@
     "src/**/*.spec.tsx",
     "src/**/*.test.ts",
     "src/**/*.test.tsx",
-    "src/**/*.stories.ts",
-    "src/**/*.stories.tsx",
+    "src/test-setup.ts",
     "vite.config.ts",
     "vitest.config.ts"
   ]

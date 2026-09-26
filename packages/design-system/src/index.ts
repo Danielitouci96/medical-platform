@@ -8,12 +8,17 @@
 //   import { Button, Input, DataTable } from '@medical/design-system';
 //   import '@medical/design-system/styles.css';
 //
-// For tree-shaking, everything is re-exported here. Importing the package also
-// bundles the compiled stylesheet (see styles/index.scss).
+// // For tree-shaking, everything is re-exported here. Applications MUST also
+// // import the stylesheet explicitly, once, in their entry point:
+//
+//   import '@medical/design-system/styles.css';
+//
+// // The stylesheet is deliberately NOT imported here as a side effect. Doing so
+// // leaks a `.scss` reference into the emitted .d.ts, which forces every consumer
+// // to configure `vite/client` types just to typecheck, and makes stylesheet order
+// // depend on JS import order.
 // ============================================================================
 
-// Styles are bundled with the library so consumers get them automatically.
-import './styles/index.scss';
 
 // ============================================================================
 // Icons
