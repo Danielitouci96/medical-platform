@@ -22,20 +22,26 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function Tooltip(
   if (!React.isValidElement(children)) return <>{children}</>;
 
   return (
-    <RadixTooltip.Root delayDuration={delayDuration}>
-      <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
-      <RadixTooltip.Portal>
-        <RadixTooltip.Content
-          ref={ref}
-          className={classNames('med-tooltip', contentClassName)}
-          side={side}
-          sideOffset={sideOffset}
-        >
-          {content}
-          <RadixTooltip.Arrow className="med-tooltip__arrow" />
-        </RadixTooltip.Content>
-      </RadixTooltip.Portal>
-    </RadixTooltip.Root>
+    // Radix exige un Provider ancestro y lanza si falta, así que cada Tooltip
+    // monta el suyo. Quien quiera compartir un delayDuration en todo el árbol
+    // puede envolver la app con TooltipProvider: los providers anidados son
+    // válidos y el más interno manda.
+    <RadixTooltip.Provider delayDuration={delayDuration}>
+      <RadixTooltip.Root delayDuration={delayDuration}>
+        <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
+        <RadixTooltip.Portal>
+          <RadixTooltip.Content
+            ref={ref}
+            className={classNames('med-tooltip', contentClassName)}
+            side={side}
+            sideOffset={sideOffset}
+          >
+            {content}
+            <RadixTooltip.Arrow className="med-tooltip__arrow" />
+          </RadixTooltip.Content>
+        </RadixTooltip.Portal>
+      </RadixTooltip.Root>
+    </RadixTooltip.Provider>
   );
 });
 

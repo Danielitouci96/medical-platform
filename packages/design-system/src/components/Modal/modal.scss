@@ -56,7 +56,7 @@
     justify-content: space-between;
     gap: var(--space-component-md);
     padding-bottom: var(--space-component-md);
-    border-bottom: var(--modal-header-border);
+    border-bottom: 1px solid var(--modal-header-border);
     margin-bottom: var(--space-component-md);
   }
 
@@ -115,7 +115,7 @@
     justify-content: flex-end;
     gap: var(--space-component-sm);
     padding-top: var(--space-component-md);
-    border-top: var(--modal-footer-border);
+    border-top: 1px solid var(--modal-footer-border);
     margin-top: var(--space-component-md);
   }
 }

@@ -55,7 +55,7 @@
     justify-content: space-between;
     gap: var(--space-component-md);
     padding: var(--space-component-lg);
-    border-bottom: var(--drawer-border);
+    border-bottom: 1px solid var(--drawer-border);
   }
 
   &__heading {
@@ -110,7 +110,7 @@
     justify-content: flex-end;
     gap: var(--space-component-sm);
     padding: var(--space-component-md) var(--space-component-lg);
-    border-top: var(--drawer-border);
+    border-top: 1px solid var(--drawer-border);
   }
 }
 

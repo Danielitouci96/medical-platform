@@ -30,11 +30,14 @@
 @use '../components/SearchInput/search-input';
 @use '../components/NumberInput/number-input';
 @use '../components/Select/select';
+@use '../components/MultiSelect/multi-select';
+@use '../components/Combobox/combobox';
 @use '../components/Checkbox/checkbox';
 @use '../components/Radio/radio';
 @use '../components/Switch/switch';
 @use '../components/Slider/slider';
 @use '../components/FormField/form-field';
+@use '../components/Label/label';
 @use '../components/Alert/alert';
 @use '../components/Toast/toast';
 @use '../components/Spinner/spinner';
@@ -60,6 +63,8 @@
 @use '../components/Stepper/stepper';
 @use '../components/Breadcrumb/breadcrumb';
 @use '../components/DatePicker/date-picker';
+@use '../components/DateRangePicker/date-range-picker';
+@use '../components/DateTimePicker/date-time-picker';
 @use '../components/Calendar/calendar';
 @use '../primitives/Box/box';
 @use '../primitives/Stack/stack';
