@@ -10,8 +10,13 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      // Los temas se importan por subpath: "@medical/design-system/themes/onco.css".
-      // El alias largo va primero (Vite ordena por longitud de la clave).
+      // Los subpaths se importan por separado: "@medical/design-system/themes/onco.css"
+      // y "@medical/design-system/styles.css". Apuntan al SCSS fuente para que
+      // siga habiendo HMR sobre la hoja de estilos, sin depender de un
+      // `npm run build` previo.
+      // Las claves largas van primero: Vite coincide en orden de inserción, así
+      // que si no, la clave del paquete pelado se las tragaría.
+      '@medical/design-system/styles.css': new URL('../../packages/design-system/src/styles/index.scss', import.meta.url).pathname,
       '@medical/design-system/themes': new URL('../../packages/design-system/themes/', import.meta.url).pathname,
       '@medical/design-system': new URL('../../packages/design-system/src/index.ts', import.meta.url).pathname,
     },
