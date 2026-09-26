@@ -119,24 +119,47 @@ Como plantilla para un tema propio:
 cp node_modules/@medical/design-system/themes/tema-personalizado.css src/styles/mi-tema.css
 ```
 
-### Configurar el registro (si publicas en GitHub Packages)
+### Configurar el registro (GitLab)
 
-`.npmrc` en la raíz del proyecto consumidor:
+El design system se distribuye por el **registro de paquetes de GitLab**, dentro del grupo
+`SiSalud2.0`. El proyecto es `medical-platform` y su **ID numérico** (lo verás en
+*Settings → General → Project ID*) sustituye a `<ID>` en las URLs de abajo.
 
-```ini
-@medical:registry=https://npm.pkg.github.com
+El registro de un proyecto en GitLab vive en:
+
+```
+https://gitlabnew.softel.cu/api/v4/projects/<ID>/packages/npm/
 ```
 
-Y autenticación **por variable de entorno**, nunca con el token en el repo:
+**En la app que consume** — archivo `.npmrc` en la raíz. Esto **no es un secreto**, se commitea:
 
-```powershell
-$env:NODE_AUTH_TOKEN = "<tu token personal de GitHub>"
+```ini
+@medical:registry=https://gitlabnew.softel.cu/api/v4/projects/<ID>/packages/npm/
+```
+
+**Autenticación, siempre por variable de entorno** y nunca en un archivo del repo:
+
+```bash
+# Linux / servidor / CI
+export NODE_AUTH_TOKEN="<tu personal access token de GitLab con scope 'api'>"
 npm install @medical/design-system
 ```
 
-El token es personal e intransferible. Cada persona del equipo pide el suyo en GitHub
-(*Settings → Developer settings → Personal access tokens*, con permiso `read:packages` para
-consumir y `write:packages` para publicar).
+```powershell
+# Windows
+$env:NODE_AUTH_TOKEN = "<tu personal access token de GitLab con scope 'api'>"
+npm install @medical/design-system
+```
+
+**Permisos.** Cada persona del equipo pide su propio token
+(*User settings → Access tokens*, con scope `api`). El proyecto está en **privado**, así que para
+que un compañero pueda instalar la librería hace falta que tenga rol **Reporter o superior** en el
+proyecto; si le sale un `403`, es cuestión de subirle el rol.
+
+**Certificados.** Si tu GitLab usa un certificado interno, npm puede quejarse al principio
+(`unable to verify the first certificate`). Se arregla instalando la CA corporativa en el almacén
+de certificados del sistema, o configurando `cafile` en el `.npmrc`. En una red donde la CA ya está
+instalada no aparece.
 
 ### Dentro del monorepo
 
@@ -554,14 +577,26 @@ git commit -m "release(ds): 1.0.3"
 npm pack --pack-destination artifacts ./packages/design-system
 ```
 
-Para publicar en el registro (GitHub Packages):
+Para publicar en el registro de GitLab (una sola vez por versión):
 
 ```bash
-npm publish --registry https://npm.pkg.github.com
-# NODE_AUTH_TOKEN debe estar definido en el entorno, nunca en un archivo versionado
+# El token va SIEMPRE en la variable de entorno, nunca en un archivo versionado
+export NODE_AUTH_TOKEN="<tu personal access token de GitLab, scope 'api'>"
+
+cd packages/design-system
+npm publish --registry https://gitlabnew.softel.cu/api/v4/projects/<ID>/packages/npm/
 ```
 
+El registro **no** está hardcodeado en el `package.json` a propósito: cada entorno (tu máquina, el de
+tus compañeros, el servidor) declara el suyo, así el mismo paquete funciona en cualquier instancia
+de GitLab.
+
+> **La versión es inmutable.** GitLab, como npm, no permite republicar una versión ya publicada.
+> Si algo sale mal, se corrige y se publica `1.1.1`. Por eso conviene publicar solo cuando los tests
+> están en verde.
+
 Publicar **no** es obligatorio: el tarball del paso 4 ya es consumible por cualquier app del equipo.
+Es el plan B para redes sin acceso al GitLab.
 
 ### Automatizarlo
 

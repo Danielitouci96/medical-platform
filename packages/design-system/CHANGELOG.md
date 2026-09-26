@@ -32,8 +32,9 @@ el comportamiento es idéntico. g-clinica, por ejemplo, ya importaba el CSS expl
 
 ### Empaquetado
 
-- `private: true` eliminado: el paquete ya se puede publicar. `publishConfig` mantiene GitHub
-  Packages con `access: restricted`.
+- `private: true` eliminado: el paquete ya se puede publicar. El registro **no** va hardcodeado en
+  el `package.json`; cada entorno declara el suyo (el de GitLab, en el grupo `SiSalud2.0`), de modo
+  que el mismo paquete funciona en cualquier instancia.
 - `react` y `react-dom` salen de `dependencies` y quedan **solo** como `peerDependencies` (con
   `devDependencies` para desarrollo). Se elimina el riesgo de dos copias de React y del
   `Invalid hook call`.
