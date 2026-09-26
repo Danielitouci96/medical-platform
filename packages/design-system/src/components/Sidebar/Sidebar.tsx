@@ -83,15 +83,25 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(function Sidebar(
         })}
         {children}
       </nav>
-      {collapsible && !isCollapsed ? (
+      {/* El conmutador va siempre montado mientras `collapsible` esté activo:
+          si solo se pintara expandido, al colapsar se desmontaría y el rail
+          se quedaría sin forma de volver a abrirse. En modo rail se queda
+          solo el icono, y el title hace de etiqueta. */}
+      {collapsible ? (
         <div className="med-sidebar__collapse">
           <button
             type="button"
             className="med-sidebar__collapse-btn"
-            onClick={() => onCollapseChange?.(true)}
-            aria-label="Collapse sidebar"
+            onClick={() => onCollapseChange?.(!isCollapsed)}
+            aria-label={isCollapsed ? 'Expandir navegación' : 'Colapsar navegación'}
+            aria-expanded={!isCollapsed}
+            title={isCollapsed ? 'Expandir navegación' : undefined}
           >
-            <Icon name="PanelLeftClose" size="sm" aria-hidden="true" />
+            <Icon
+              name={isCollapsed ? 'PanelLeftOpen' : 'PanelLeftClose'}
+              size="sm"
+              aria-hidden="true"
+            />
           </button>
         </div>
       ) : null}

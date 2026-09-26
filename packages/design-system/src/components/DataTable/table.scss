@@ -12,11 +12,14 @@
     border-radius: var(--table-radius);
   }
 
+  // Grove reads table headers as small-caps section labels, not as bold data.
   &__head-cell {
     padding: var(--table-row-vertical-padding) var(--table-row-horizontal-padding);
     background: var(--table-header-background);
     color: var(--table-header-text);
     font: var(--table-header-font);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-label);
     text-align: left;
     white-space: nowrap;
     border-bottom: 1px solid var(--color-border-strong);

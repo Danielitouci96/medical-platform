@@ -187,3 +187,163 @@
   --color-focus-ring: var(--grove-400);
   --color-focus-ring-error: var(--red-400);
 }
+
+// ============================================================================
+// INVERSE SURFACE SCOPE
+// ============================================================================
+// A dark or saturated surface (a themed Drawer, a hero panel) breaks every
+// component that reads the light-theme text tokens: helper text goes
+// mid-gray on near-black, ghost buttons vanish, dividers disappear. Before
+// this scope existed each consumer had to patch those components by hand.
+//
+// Apply `data-med-surface="inverse"` on any container whose background is not
+// the light canvas, and every nested component re-themes itself, because
+// custom properties inherit. Components that ship with a surface of their own
+// (Drawer, Modal) expose it as a prop.
+// ============================================================================
+
+[data-med-surface='inverse'] {
+  // Text - white at decreasing opacity, mirroring the light ramp.
+  --color-text-primary: var(--gray-0);
+  --color-text-secondary: color-mix(in srgb, var(--gray-0) 82%, transparent);
+  --color-text-tertiary: color-mix(in srgb, var(--gray-0) 62%, transparent);
+  --color-text-disabled: color-mix(in srgb, var(--gray-0) 38%, transparent);
+  --color-text-placeholder: color-mix(in srgb, var(--gray-0) 55%, transparent);
+  --color-link: var(--gray-0);
+  --color-link-hover: var(--gray-0);
+  --color-link-visited: color-mix(in srgb, var(--gray-0) 80%, transparent);
+
+  // Interactive fills - white washes instead of gray washes.
+  --color-surface-hover: color-mix(in srgb, var(--gray-0) 14%, transparent);
+  --color-surface-active: color-mix(in srgb, var(--gray-0) 22%, transparent);
+  --color-surface-sunken: color-mix(in srgb, var(--gray-0) 8%, transparent);
+  --color-selection-bg: var(--gray-0);
+  --color-selection-text: var(--gray-900);
+
+  // Borders and dividers - translucent so they sit on any saturated fill.
+  --color-border: color-mix(in srgb, var(--gray-0) 24%, transparent);
+  --color-border-strong: color-mix(in srgb, var(--gray-0) 32%, transparent);
+  --color-border-subtle: color-mix(in srgb, var(--gray-0) 24%, transparent);
+  --color-border-hover: color-mix(in srgb, var(--gray-0) 40%, transparent);
+  --color-divider: color-mix(in srgb, var(--gray-0) 24%, transparent);
+  --color-border-focus: var(--gray-0);
+  --color-focus-ring: var(--gray-0);
+
+  // --------------------------------------------------------------------------
+  // COMPONENT RE-ALIASES
+  // --------------------------------------------------------------------------
+  // The component tokens in _control.scss and _data-display.scss are declared
+  // on :root as aliases (--form-label-text: var(--color-text-primary)). A
+  // custom property resolves against the scope where it is *declared*, so
+  // those aliases captured the light values and kept them: remapping the base
+  // colors above is not enough on its own. They have to be re-pointed here so
+  // that they resolve against the remapped colors instead.
+  //
+  // Keep this list in sync with the aliases declared on :root.
+  // --------------------------------------------------------------------------
+
+  // Buttons
+  --button-ghost-text: var(--color-text-primary);
+  --button-ghost-text-hover: var(--color-text-primary);
+  --button-ghost-text-disabled: var(--color-text-disabled);
+  --button-ghost-background-hover: var(--color-surface-hover);
+  --button-ghost-background-active: var(--color-surface-active);
+  --button-link-text: var(--color-link);
+  --button-link-text-hover: var(--color-link-hover);
+  --button-link-text-disabled: var(--color-text-disabled);
+  --button-outline-border: var(--color-border-strong);
+  --button-outline-text-disabled: var(--color-text-disabled);
+  --button-tertiary-text: var(--color-text-secondary);
+  --button-tertiary-text-hover: var(--color-text-primary);
+  --button-tertiary-text-disabled: var(--color-text-disabled);
+  --button-tertiary-background: var(--color-surface-hover);
+  --button-tertiary-background-hover: var(--color-surface-active);
+  --button-tertiary-background-active: var(--color-border-subtle);
+  --button-tertiary-background-disabled: var(--color-surface-sunken);
+  --button-primary-text-disabled: var(--color-text-tertiary);
+  --button-secondary-text-disabled: var(--color-text-tertiary);
+  --button-success-text-disabled: var(--color-text-tertiary);
+  --button-danger-text-disabled: var(--color-text-tertiary);
+
+  // Form fields and inputs
+  --form-label-text: var(--color-text-primary);
+  --form-help-text: var(--color-text-secondary);
+  --input-text: var(--color-text-primary);
+  --input-text-placeholder: var(--color-text-tertiary);
+  --input-text-disabled: var(--color-text-disabled);
+  --input-background-readonly: var(--color-surface-sunken);
+  --input-background-disabled: var(--color-surface-sunken);
+  --input-border: var(--color-border);
+  --input-border-hover: var(--color-border-hover);
+  --input-border-focus: var(--color-border-focus);
+
+  // Choice controls
+  --checkbox-border: var(--color-border);
+  --checkbox-border-hover: var(--color-border-hover);
+  --checkbox-border-focus: var(--color-border-focus);
+  --checkbox-background-disabled: var(--color-surface-sunken);
+  --radio-border: var(--color-border);
+  --radio-border-hover: var(--color-border-hover);
+  --radio-border-focus: var(--color-border-focus);
+  --radio-background-disabled: var(--color-surface-sunken);
+  --switch-background: var(--color-border);
+  --switch-background-disabled: var(--color-surface-sunken);
+  --switch-thumb-disabled: var(--color-text-disabled);
+
+  // Select, menus and popovers
+  --select-text: var(--color-text-primary);
+  --select-text-placeholder: var(--color-text-tertiary);
+  --select-background-disabled: var(--color-surface-sunken);
+  --select-border: var(--color-border);
+  --select-border-hover: var(--color-border-hover);
+  --select-border-focus: var(--color-border-focus);
+  --select-menu-text: var(--color-text-primary);
+  --select-menu-item-hover: var(--color-surface-hover);
+  --select-menu-item-disabled: var(--color-text-disabled);
+  --menu-text: var(--color-text-primary);
+  --menu-item-hover: var(--color-surface-hover);
+  --menu-item-disabled: var(--color-text-disabled);
+  --menu-sublabel-text: var(--color-text-secondary);
+  --popover-text: var(--color-text-primary);
+  --popover-border: var(--color-border-subtle);
+
+  // Surfaces: cards, overlays, data display
+  --card-title-text: var(--color-text-primary);
+  --card-description-text: var(--color-text-secondary);
+  --card-border: var(--color-border);
+  --card-border-hover: var(--color-border-strong);
+  --card-background-hover: var(--color-surface-hover);
+  --modal-text: var(--color-text-primary);
+  --modal-title-text: var(--color-text-primary);
+  --modal-description-text: var(--color-text-secondary);
+  --modal-border: var(--color-border-subtle);
+  --modal-header-border: var(--color-divider);
+  --modal-footer-border: var(--color-divider);
+  --drawer-text: var(--color-text-primary);
+  --drawer-border: var(--color-divider);
+  --toast-text: var(--color-text-primary);
+  --toast-border: var(--color-border-subtle);
+  --table-header-background: var(--color-surface-sunken);
+  --table-header-text: var(--color-text-secondary);
+  --table-row-background-hover: var(--color-surface-hover);
+  --table-row-border: var(--color-border-subtle);
+  --table-row-text: var(--color-text-primary);
+  --table-striped-background: var(--color-surface-sunken);
+  --skeleton-background: var(--color-surface-sunken);
+  --skeleton-highlight: var(--color-surface-hover);
+
+  // Badges, tags and chips
+  --badge-background-neutral: var(--color-surface-sunken);
+  --badge-text-neutral: var(--color-text-secondary);
+  --tag-background: var(--color-surface-sunken);
+  --tag-background-hover: var(--color-surface-active);
+  --tag-border: var(--color-border-subtle);
+  --tag-text: var(--color-text-secondary);
+  --chip-text: var(--color-text-secondary);
+
+  // Shared border shorthands
+  --border-input: var(--border-width-sm) solid var(--color-border);
+  --border-input-focus: var(--border-width-md) solid var(--color-border-focus);
+  --border-divider: var(--border-width-xs) solid var(--color-divider);
+  --border-card: var(--border-width-xs) solid var(--color-border);
+}

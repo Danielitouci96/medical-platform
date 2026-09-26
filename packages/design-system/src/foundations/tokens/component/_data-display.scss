@@ -50,7 +50,9 @@
   // ==========================================================================
   --table-header-background: var(--color-surface-sunken);
   --table-header-text: var(--color-text-secondary);
-  --table-header-font: var(--font-label-md);
+  // Small-caps label tier (500 at 12px), paired with uppercase + wide tracking
+  // in table.scss. Was --font-label-md, which rendered headers as body text.
+  --table-header-font: var(--font-label-sm);
   --table-row-background: var(--color-surface-elevated);
   --table-row-background-hover: var(--color-surface-hover);
   --table-row-background-selected: var(--color-secondary-soft);
@@ -156,4 +158,26 @@
   --avatar-size-md: 40px;
   --avatar-size-lg: 48px;
   --avatar-size-xl: 64px;
+
+  // ==========================================================================
+  // APP SHELL
+  // ==========================================================================
+  // The persistent chrome that frames a product: the side rail and the top
+  // bar. Both sit on the page canvas rather than on the mist card tier, and
+  // the top bar is frosted so content scrolling underneath stays legible.
+  --layout-shell-sidebar-width: 260px;
+  --layout-shell-sidebar-collapsed-width: 64px;
+  --layout-shell-sidebar-padding-block: var(--layout-padding-md);
+  --layout-shell-sidebar-padding-inline: 14px;
+  --layout-shell-navbar-height: 74px;
+  --layout-shell-navbar-padding-inline: 36px;
+  --layout-shell-navbar-background: color-mix(in srgb, var(--color-background) 82%, transparent);
+  --layout-shell-navbar-blur: 6px;
+  // The active rail item carries the brand green, not ink: it is the one
+  // element that must read as "you are here" at a glance.
+  --layout-shell-nav-active-background: var(--color-secondary-soft);
+  --layout-shell-nav-active-background-hover: var(--color-secondary-soft-hover);
+  --layout-shell-nav-active-text: var(--color-secondary);
+  --layout-shell-nav-active-text-hover: var(--color-secondary-hover);
+  --layout-shell-nav-item-radius: 10px;
 }

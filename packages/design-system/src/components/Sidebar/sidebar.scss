@@ -1,15 +1,18 @@
+// The rail frames the product, so it sits on the page canvas instead of the
+// mist card tier, and the active item carries the brand green.
 .med-sidebar {
   display: flex;
   flex-direction: column;
-  width: 260px;
-  background: var(--color-surface);
-  border-right: 1px solid var(--color-border-subtle);
-  padding: var(--space-component-md) 0;
+  width: var(--layout-shell-sidebar-width);
+  background: var(--color-background);
+  border-right: 1px solid var(--color-border);
+  padding: var(--layout-shell-sidebar-padding-block)
+    var(--layout-shell-sidebar-padding-inline);
   overflow-y: auto;
   transition: width var(--duration-normal) var(--easing-standard);
 
   &--collapsed {
-    width: 64px;
+    width: var(--layout-shell-sidebar-collapsed-width);
 
     .med-sidebar__item {
       justify-content: center;
@@ -18,26 +21,28 @@
   }
 
   &__header {
-    padding: 0 var(--space-component-md) var(--space-component-md);
+    padding: 0 0 var(--layout-padding-md);
   }
 
   &__nav {
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
-    padding: 0 var(--space-component-sm);
+    gap: 2px;
+    padding: 0;
     flex: 1;
   }
 
   &__item {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: var(--space-2);
-    padding: var(--space-component-sm) var(--space-component-md);
+    width: 100%;
+    padding: 8px 10px;
     border: none;
     background: transparent;
-    border-radius: var(--radius-control-sm);
-    color: var(--color-text-secondary);
+    border-radius: var(--layout-shell-nav-item-radius);
+    color: var(--color-text-primary);
     font: var(--font-label-md);
     text-align: left;
     cursor: pointer;
@@ -46,7 +51,7 @@
       color var(--duration-fast) var(--easing-standard);
 
     &:hover:not(:disabled) {
-      background: var(--color-surface-hover);
+      background: var(--color-surface);
       color: var(--color-text-primary);
     }
 
@@ -56,18 +61,19 @@
     }
 
     &:disabled {
-      opacity: 0.5;
+      color: var(--color-text-tertiary);
+      background: none;
       cursor: not-allowed;
     }
 
     &--active {
-      background: var(--color-primary-soft);
-      color: var(--color-primary);
+      background: var(--layout-shell-nav-active-background);
+      color: var(--layout-shell-nav-active-text);
       font-weight: var(--font-weight-semibold);
 
       &:hover {
-        background: var(--color-primary-soft-hover);
-        color: var(--color-primary-hover);
+        background: var(--layout-shell-nav-active-background-hover);
+        color: var(--layout-shell-nav-active-text-hover);
       }
     }
   }
@@ -88,16 +94,24 @@
     height: 20px;
     padding: 0 var(--space-1);
     border-radius: var(--radius-full);
-    background: var(--color-primary);
-    color: var(--color-primary-contrast);
+    background: var(--color-secondary);
+    color: var(--color-secondary-contrast);
     font-size: var(--font-size-2xs);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
   }
 
   &__collapse {
     padding: var(--space-component-sm) var(--space-component-md);
     border-top: var(--border-divider);
     margin-top: var(--space-component-md);
+  }
+
+  // En modo rail no hay etiqueta que ajustar, así que el conmutador se
+  // centra y encoge al tamaño de un ítem para no romper la rejilla de 64 px.
+  &--collapsed &__collapse {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-component-sm) 0;
   }
 
   &__collapse-btn {
@@ -112,7 +126,7 @@
     cursor: pointer;
 
     &:hover {
-      background: var(--color-surface-hover);
+      background: var(--color-surface);
       color: var(--color-text-primary);
     }
 

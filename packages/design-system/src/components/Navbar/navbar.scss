@@ -1,25 +1,39 @@
+// The top bar is frosted rather than solid: it stays over scrolling content
+// without hiding it, which is what makes the shell feel like one surface.
 .med-navbar {
   display: flex;
   align-items: center;
   gap: var(--space-component-lg);
-  min-height: var(--control-height-xl);
-  padding: 0 var(--layout-padding-md);
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border-subtle);
-  position: relative;
+  min-height: var(--layout-shell-navbar-height);
+  padding: 0 var(--layout-shell-navbar-padding-inline);
+  background: var(--layout-shell-navbar-background);
+  backdrop-filter: blur(var(--layout-shell-navbar-blur));
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
   z-index: var(--z-sticky);
 
   &--inverted {
     background: var(--color-primary);
+    backdrop-filter: none;
     color: var(--color-primary-contrast);
     border-bottom: none;
 
     .med-navbar__link {
       color: color-mix(in srgb, var(--color-primary-contrast) 85%, transparent);
 
-      &:hover,
-      &--active {
+      &:hover {
+        background: color-mix(in srgb, var(--color-primary-contrast) 12%, transparent);
         color: var(--color-primary-contrast);
+      }
+
+      &--active {
+        background: color-mix(in srgb, var(--color-primary-contrast) 16%, transparent);
+        color: var(--color-primary-contrast);
+
+        &:hover {
+          background: color-mix(in srgb, var(--color-primary-contrast) 22%, transparent);
+        }
       }
     }
   }
@@ -44,8 +58,8 @@
     align-items: center;
     gap: var(--space-1);
     padding: var(--space-component-sm) var(--space-component-md);
-    border-radius: var(--radius-control-sm);
-    color: var(--color-text-secondary);
+    border-radius: var(--layout-shell-nav-item-radius);
+    color: var(--color-text-primary);
     font: var(--font-label-md);
     text-decoration: none;
     transition:
@@ -53,15 +67,20 @@
       color var(--duration-fast) var(--easing-standard);
 
     &:hover {
-      background: var(--color-surface-hover);
+      background: var(--color-surface);
       color: var(--color-text-primary);
       text-decoration: none;
     }
 
     &--active {
-      background: var(--color-primary-soft);
-      color: var(--color-primary);
+      background: var(--layout-shell-nav-active-background);
+      color: var(--layout-shell-nav-active-text);
       font-weight: var(--font-weight-semibold);
+
+      &:hover {
+        background: var(--layout-shell-nav-active-background-hover);
+        color: var(--layout-shell-nav-active-text-hover);
+      }
     }
 
     &:focus-visible {

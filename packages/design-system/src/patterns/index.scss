@@ -20,15 +20,23 @@
     min-width: 0;
   }
 
+  // Page titles are the editorial tier: Libre Caslon serif, regular weight,
+  // fluid between 26 and 34px. This is the single strongest Grove signal in
+  // the interface, so it is the default rather than an app-level override.
   &__title {
     margin: 0;
-    font: var(--font-heading-lg);
+    font-family: var(--font-serif);
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.12;
     color: var(--color-text-primary);
   }
 
   &__description {
     margin: var(--space-component-xs) 0 0;
-    font: var(--font-body-base);
+    font-size: 15px;
+    line-height: 1.5;
     color: var(--color-text-secondary);
   }
 
@@ -52,9 +60,16 @@
     flex: 1;
   }
 
+  // Section titles are the second editorial tier: same serif as the page
+  // header, one step down, so a screen keeps the publication voice all the
+  // way down instead of switching to sans halfway.
   &__title {
     margin: 0;
-    font: var(--font-heading-md);
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 1.8vw, 24px);
+    font-weight: 400;
+    letter-spacing: -0.008em;
+    line-height: 1.2;
     color: var(--color-text-primary);
   }
 

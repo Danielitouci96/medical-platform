@@ -13,13 +13,19 @@ export interface DrawerProps {
   description?: React.ReactNode;
   side?: DrawerSide;
   size?: DrawerSize;
+  /**
+   * Superficie del panel. `inverse` re-tema los componentes anidados (labels,
+   * helper text, ghost buttons, dividers) para que se lean sobre un fondo
+   * oscuro o saturado; útil cuando el drawer se tema con `--drawer-background`.
+   */
+  surface?: 'default' | 'inverse';
   children?: React.ReactNode;
   footer?: React.ReactNode;
   className?: string;
 }
 
 const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function Drawer(
-  { open, onOpenChange, title, description, side = 'right', size = 'md', children, footer, className },
+  { open, onOpenChange, title, description, side = 'right', size = 'md', surface = 'default', children, footer, className },
   ref,
 ) {
   return (
@@ -28,6 +34,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function Drawer(
         <RadixDialog.Overlay className="med-drawer__overlay" />
         <RadixDialog.Content
           ref={ref}
+          data-med-surface={surface === 'inverse' ? 'inverse' : undefined}
           className={classNames(
             'med-drawer',
             `med-drawer--side-${side}`,
