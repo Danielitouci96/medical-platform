@@ -1,0 +1,693 @@
+/* ============================================================
+   MUESTRARIO — catálogo de consumo de @medical/design-system
+   Misma estética que la demo grove: canvas mist, cards blancas,
+   hairline borders, Libre Caslon (display) + Geist (interfaz).
+   ============================================================ */
+
+.ms {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-feature-settings: 'ss01' on, 'tnum' on;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ms-wrap {
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* Visible solo para lectores de pantalla. */
+.ms-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------- Cabecera ---------------- */
+
+.ms-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--color-background-elevated) 90%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.ms-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 64px;
+  flex-wrap: wrap;
+}
+
+.ms-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border: 1px solid var(--color-divider);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--easing-standard),
+    color var(--duration-fast) var(--easing-standard);
+}
+
+.ms-back:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+.ms-header__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.ms-header__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.ms-header__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-secondary);
+}
+
+.ms-header__name {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12.5px;
+  color: var(--color-text-primary);
+}
+
+/* ---------------- Hero ---------------- */
+
+.ms-hero {
+  padding: 56px 0 32px;
+}
+
+.ms-hero__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 4.4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.ms-hero__title em {
+  font-style: italic;
+  color: var(--color-secondary);
+}
+
+.ms-hero__lede {
+  margin: 16px 0 0;
+  max-width: 62ch;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.ms-hero__stats {
+  margin-top: 22px;
+  align-items: baseline;
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+}
+
+.ms-hero__stat strong {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin-right: 4px;
+}
+
+.ms-hero__sep {
+  color: var(--color-divider);
+}
+
+/* ---------------- Toolbar / buscador ---------------- */
+
+.ms-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 18px 0 8px;
+}
+
+.ms-toolbar__search {
+  position: relative;
+  width: 320px;
+  max-width: 100%;
+}
+
+.ms-toolbar__icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ms-toolbar__search input {
+  padding-left: 36px;
+  border-radius: 9999px;
+}
+
+.ms-cat {
+  padding: 4px 11px;
+  border: 1px solid var(--color-divider);
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-elevated);
+  white-space: nowrap;
+}
+
+.ms-toolbar__cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Los chips son botones: mismo aspecto que la píldora, pero pulsables. */
+.ms-cat--btn {
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--easing-standard),
+    color var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard);
+}
+
+.ms-cat--btn:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+.ms-cat--active {
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+}
+
+.ms-cat--active:hover {
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
+}
+
+/* ---------------- Grupos por familia ---------------- */
+
+.ms-group + .ms-group {
+  margin-top: 44px;
+}
+
+.ms-group__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.ms-group__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.ms-group__count {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+/* ---------------- Barra de filtros activos ---------------- */
+
+.ms-clearbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  padding: 12px 16px;
+  border: 1px dashed var(--color-divider);
+  border-radius: 12px;
+}
+
+.ms-clearbar__note {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+/* ---------------- Nota dentro de una preview ---------------- */
+
+.ms-demo-note {
+  padding: 9px 12px;
+  border: 1px solid var(--color-divider);
+  border-radius: 8px;
+  background: var(--color-surface-sunken);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.ms-demo-note strong {
+  color: var(--color-text-primary);
+}
+
+/* ---------------- Lista ---------------- */
+
+.ms-section {
+  padding: 8px 0 56px;
+  flex: 1;
+}
+
+.ms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.ms-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 72px 24px;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+/* ---------------- Tarjeta de componente ---------------- */
+
+.ms-card {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-divider);
+  border-radius: 20px;
+  padding: 26px 28px 24px;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.05);
+}
+
+.ms-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ms-card__name {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------------ */
+/* App shell preview                                                   */
+/* ------------------------------------------------------------------ */
+/* La barra solo demuestra su cristal si hay contenido desplazándose por
+   debajo, así que esta preview monta un shell en miniatura en vez de una
+   Navbar suelta sobre un fondo plano. */
+
+.ms-shell__body {
+  display: flex;
+  align-items: stretch;
+  min-height: 300px;
+  background: var(--color-background);
+}
+
+.ms-shell__main {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ms-shell__content {
+  position: relative;
+  flex: 1;
+  padding: var(--layout-padding-md);
+  /* Un degradado muy leve: da a la barra algo que difractar, de modo que el
+     blur se lee sin tener que añadir un párrafo de texto debajo. */
+  background: linear-gradient(
+    180deg,
+    var(--color-surface) 0%,
+    var(--color-background) 55%
+  );
+}
+
+.ms-shell__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.ms-shell__row {
+  height: 34px;
+  border-radius: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.ms-shell__mark {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  width: 28px;
+  height: 28px;
+  padding: 6px;
+  border-radius: 8px;
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
+}
+
+.ms-shell__mark > span {
+  display: block;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+@media (max-width: 640px) {
+  .ms-shell__mark {
+    display: none;
+  }
+}
+
+.ms-card__cat {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ms-card__import {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-divider);
+  border-radius: 8px;
+  padding: 6px 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.ms-card__desc {
+  margin: 14px 0 0;
+  max-width: 72ch;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* Preview */
+
+.ms-card__preview {
+  margin-top: 20px;
+  border: 1px solid var(--color-divider);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/*
+ * Los paneles flotantes (Combobox, MultiSelect, DateRangePicker) se dibujan
+ * fuera de la caja con position absolute. Con overflow:hidden quedaban
+ * cortados, así que estas tarjetas dejan pasar el panel y reservan sitio
+ * debajo para que no tape el bloque de código.
+ */
+.ms-card__preview--float {
+  overflow: visible;
+}
+
+.ms-card__preview--float .ms-card__preview-body {
+  padding-bottom: 300px;
+}
+
+.ms-card__preview-label {
+  display: block;
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--color-divider);
+  background: var(--color-surface-sunken);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.ms-card__preview-body {
+  padding: 26px 22px;
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(circle at 1px 1px, var(--color-divider) 1px, transparent 0) 0 0 / 22px 22px;
+}
+
+/* ---------------- Código ---------------- */
+
+.ms-code {
+  margin-top: 18px;
+  border: 1px solid var(--color-divider);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.ms-code__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px 8px 14px;
+  background: var(--color-surface-sunken);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.ms-code__lang {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.ms-code__copy--done {
+  color: var(--color-success);
+}
+
+.ms-code__pre {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  background: var(--color-surface-elevated);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--color-text-primary);
+  tab-size: 2;
+}
+
+.ms-code__pre code {
+  font: inherit;
+  white-space: pre;
+}
+
+/* ---------------- API ---------------- */
+
+.ms-card__api {
+  margin-top: 18px;
+  border-top: 1px solid var(--color-divider);
+  padding-top: 14px;
+}
+
+.ms-card__api-summary {
+  cursor: pointer;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  list-style: none;
+}
+
+.ms-card__api-summary::-webkit-details-marker {
+  display: none;
+}
+
+.ms-card__api-summary::before {
+  content: '▸ ';
+}
+
+.ms-card__api[open] .ms-card__api-summary::before {
+  content: '▾ ';
+}
+
+.ms-card__api-table-wrap {
+  margin-top: 12px;
+  overflow-x: auto;
+}
+
+.ms-card__api-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.ms-card__api-table th,
+.ms-card__api-table td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-divider);
+  vertical-align: top;
+}
+
+.ms-card__api-table th {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-sunken);
+  white-space: nowrap;
+}
+
+.ms-card__api-table td:last-child {
+  color: var(--color-text-secondary);
+}
+
+.ms-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+  white-space: nowrap;
+}
+
+.ms-mono--type {
+  color: var(--color-secondary);
+}
+
+/* ---------------- Theming ---------------- */
+
+.ms-card__theming {
+  margin: 16px 0 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.ms-card__theming strong {
+  color: var(--color-text-primary);
+}
+
+/* ---------------- Footer ---------------- */
+
+.ms-footer {
+  border-top: 1px solid var(--color-divider);
+  background: var(--color-surface-elevated);
+}
+
+.ms-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-block: 22px;
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+}
+
+/* ---------------- Demos interactivas ---------------- */
+
+/* Interruptor para alternar la superficie del drawer en su ficha. */
+.ms-inline-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+/*
+ * El drawer con surface="inverse": solo se pintan tres tokens, y el scope
+ * data-med-surface re-tema los componentes anidados (label, helper, ghost).
+ */
+.ms-drawer--inverso {
+  --drawer-background: var(--color-secondary);
+  --drawer-text: var(--color-on-secondary);
+  --drawer-border: color-mix(in srgb, var(--color-on-secondary) 24%, transparent);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 720px) {
+  .ms-wrap {
+    padding-inline: 16px;
+  }
+
+  .ms-header__title {
+    align-items: flex-start;
+  }
+
+  .ms-card {
+    padding: 20px 18px;
+  }
+
+  .ms-toolbar__search {
+    width: 100%;
+  }
+
+  .ms-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

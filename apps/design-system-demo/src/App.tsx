@@ -17,6 +17,8 @@ import {
 } from '@medical/design-system';
 
 import './styles.scss';
+import MuestrarioPage from './muestrario/MuestrarioPage';
+import './muestrario/showcase.css';
 
 /* ------------------------------------------------------------------ */
 /* Datos                                                               */
@@ -211,6 +213,27 @@ export default function App() {
   const [pageSize, setPageSize] = React.useState(5);
   const [dosificacion, setDosificacion] = React.useState('adaptativa');
   const [brand, setBrand] = React.useState<'grove' | 'onco' | 'cardio'>('grove');
+  /* Vista: la demo grove o el muestrario de componentes (por hash, sin router). */
+  const [vista, setVista] = React.useState<'demo' | 'muestrario'>(() =>
+    typeof window !== 'undefined' && window.location.hash.startsWith('#/muestrario')
+      ? 'muestrario'
+      : 'demo',
+  );
+
+  React.useEffect(() => {
+    const onHash = () =>
+      setVista(window.location.hash.startsWith('#/muestrario') ? 'muestrario' : 'demo');
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  const irAMuestrario = () => {
+    window.location.hash = '#/muestrario';
+  };
+
+  const irADemo = () => {
+    window.location.hash = '#/';
+  };
 
   React.useEffect(() => {
     document.documentElement.dataset.theme = dark ? 'dark' : 'light';
@@ -222,6 +245,12 @@ export default function App() {
   }, [brand]);
 
   const toggleTheme = () => setDark((v) => !v);
+
+  /* Muestrario: catálogo de consumo del DS. Mantiene el tema/brand activos
+     porque sus effects de arriba corren igual en ambas vistas. */
+  if (vista === 'muestrario') {
+    return <MuestrarioPage onVolver={irADemo} />;
+  }
 
   return (
     <div className="grove">
@@ -259,6 +288,9 @@ export default function App() {
             <a className="grove-nav-link" href="#feedback">
               Auditoría
             </a>
+            <button type="button" className="grove-nav-link grove-nav-link--muestrario" onClick={irAMuestrario}>
+              Muestrario
+            </button>
           </nav>
 
           <div className="grove-header__actions">

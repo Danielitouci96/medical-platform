@@ -107,6 +107,20 @@
   transition: background 0.15s ease, color 0.15s ease;
 }
 
+/* El muestrario cambia de vista, por eso es un <button> y no un <a>.
+   Se apoya en .grove-nav-link para heredar la misma píldora visual. */
+.grove-nav-link--muestrario {
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.grove-nav-link--muestrario:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
 .grove-nav-link:hover {
   color: var(--color-text-primary);
   background: var(--color-surface-hover);
