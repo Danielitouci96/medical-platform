@@ -155,10 +155,16 @@ privado, el paquete es privado y necesita token para instalarse. Si el repo es p
 puede instalar sin autenticación, pero **solo desde el registry de GitHub**, no desde npmjs.
 
 **Alcance del nombre.** GitHub Packages solo admite nombres con scope (`@medical/design-system`
-cumple). Publicar bajo la organización `sisalud` no obliga a renombrar el paquete a
-`@sisalud/...`; el scope del nombre y el owner del repositorio son cosas independientes. Si algún día
-se quiere renombrar, hay que actualizar el scope en `tsconfig.base.json`, en los imports de
-`g-clinica` y en el lockfile de cada consumidor.
+cumple). El paquete vive en la cuenta personal `Danielitouci96`, en el repositorio
+`medical-platform`, y eso **no obliga** a renombrar el paquete a `@danielitouci96/...`: el scope del
+nombre y el owner del repositorio son cosas independientes. Si algún día se quiere renombrar, hay que
+actualizar el scope en `tsconfig.base.json`, en los imports de `g-clinica` y en el lockfile de cada
+consumidor.
+
+**Cambiar de repositorio o de cuenta.** `repository` en el `package.json` es lo que GitHub usa para
+enlazar el paquete. Si el repo se mueve o se publica desde otra cuenta, hay que actualizar ese campo;
+además, un paquete ya publicado queda ligado a la cuenta original, así que moverlo significa publicar
+bajo un paquete nuevo o volver a pedir permisos.
 
 **Certificados.** GitHub Packages usa un certificado público, así que no hace falta instalar ninguna
 CA corporativa. En redes con proxy, si npm se queja, es un problema del proxy y no del registry.
@@ -617,8 +623,23 @@ Falta el import del CSS en el punto de entrada. Es obligatorio desde `1.1.0`:
 `import '@medical/design-system/styles.css'`, y **antes** de tus propios estilos.
 
 **`Cannot find module '@medical/design-system'` o tipos que no resuelven**
-Si tu `package.json` apunta a una ruta `.tgz`, remember que hay que volver a instalar tras cada
+Si tu `package.json` apunta a una ruta `.tgz`, recuerda que hay que volver a instalar tras cada
 release nuevo (el contenido cambia aunque la versión no). Con SemVer (`^1.2.0`) esto no pasa.
+
+**`EINTEGRITY: integrity checksum failed`**
+Solo con dependencia `file:` a un tarball. El `package-lock.json` guarda el hash `sha512` del `.tgz`,
+así que si **reempaquetas la misma versión** (por ejemplo para corregir un `repository`), el lock
+apunta a un hash que ya no existe y la instalación falla aunque el tarball sea válido. No es que esté
+corrupto: es que la versión no cambió pero el contenido sí, y para npm eso es otra paquete.
+
+Se arregla regenerando la entrada, sin tocar el resto del lockfile:
+
+```bash
+npm install @medical/design-system@file:../medical-platform/artifacts/medical-design-system-1.2.0.tgz
+```
+
+Es otra razón para no depender de tarballs: la primera versión publicada en el registry elimina el
+problema de raíz, porque allí el contenido se sella en la versión y no se puede reempaquetar.
 
 **`Invalid hook call`**
 Hay dos copias de React. Comprueba que tu app **no** tenga `react` en sus `dependencies` de la

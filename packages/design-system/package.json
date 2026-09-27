@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sisalud/medical-platform.git"
+    "url": "git+https://github.com/Danielitouci96/medical-platform.git"
   },
   "files": [
     "dist",
