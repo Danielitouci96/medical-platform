@@ -87,6 +87,10 @@
   --drawer-width-md: 400px;
   --drawer-width-lg: 480px;
   --drawer-width-xl: 640px;
+  // The drawer floats: a small inset from the viewport edge plus a rounded
+  // corner, so it reads as a panel rather than a full-bleed sheet.
+  --drawer-inset: 6px;
+  --radius-drawer: var(--radius-sm);
   --drawer-overlay-background: rgba(3, 7, 18, 0.6);
 
   // ==========================================================================

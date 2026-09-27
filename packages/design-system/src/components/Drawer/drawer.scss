@@ -9,7 +9,13 @@
   color: var(--drawer-text);
   box-shadow: var(--modal-shadow);
   width: var(--drawer-width-md);
-  max-width: 100vw;
+  // The inset is applied on both sides, so the cap has to account for it or a
+  // full-width drawer would overflow the viewport by 2x the inset.
+  max-width: calc(100vw - 2 * var(--drawer-inset));
+  margin: var(--drawer-inset);
+  border-radius: var(--radius-drawer);
+  // Clips the header/footer rules to the rounded corners.
+  overflow: hidden;
 
   &:focus {
     outline: none;

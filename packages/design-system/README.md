@@ -43,12 +43,12 @@ los tipos se distribuyen compilados en `dist/index.d.ts` y no contienen referenc
 
 ### Formas de consumir el paquete
 
-Versión actual: **`1.1.0`**.
+Versión actual: **`1.2.0`**.
 
 | Vía | Cuándo | Cómo |
 |---|---|---|
-| **Registro con SemVer** *(recomendada)* | Apps de tu equipo, incluso fuera del monorepo | `"@medical/design-system": "^1.1.0"` |
-| **Tarball local `.tgz`** | Sin registry, red aislada o para probar un release puntual | `npm install ../medical-platform/artifacts/medical-design-system-1.1.0.tgz` |
+| **Registro con SemVer** *(recomendada)* | Apps de tu equipo, incluso fuera del monorepo | `"@medical/design-system": "^1.2.0"` |
+| **Tarball local `.tgz`** | Sin registry, red aislada o para probar un release puntual | `npm install ../medical-platform/artifacts/medical-design-system-1.2.0.tgz` |
 | **Por fuente (monorepo Nx)** | Desarrollo diario dentro de `medical-platform` | Alias ya resuelto en `tsconfig.base.json` |
 
 La vía con SemVer es la recomendada porque el consumidor escribe una versión y la va actualizando
@@ -66,7 +66,7 @@ con `npm update`, en vez de tener que editar una ruta en cada release. Ver
 npm install @medical/design-system
 
 # O desde un tarball local
-npm install ../medical-platform/artifacts/medical-design-system-1.1.0.tgz
+npm install ../medical-platform/artifacts/medical-design-system-1.2.0.tgz
 ```
 
 ### 2. Importar el CSS (obligatorio, una sola vez)
@@ -119,47 +119,49 @@ Como plantilla para un tema propio:
 cp node_modules/@medical/design-system/themes/tema-personalizado.css src/styles/mi-tema.css
 ```
 
-### Configurar el registro (GitLab)
+### Configurar el registro (GitHub Packages)
 
-El design system se distribuye por el **registro de paquetes de GitLab**, dentro del grupo
-`SiSalud2.0`. El proyecto es `medical-platform` y su **ID numérico** (lo verás en
-*Settings → General → Project ID*) sustituye a `<ID>` en las URLs de abajo.
-
-El registro de un proyecto en GitLab vive en:
-
-```
-https://gitlabnew.softel.cu/api/v4/projects/<ID>/packages/npm/
-```
+El design system se distribuye por el **registro de paquetes de GitHub**
+(`npm.pkg.github.com`), que es fijo: a diferencia del de GitLab, no tiene una URL por proyecto.
 
 **En la app que consume** — archivo `.npmrc` en la raíz. Esto **no es un secreto**, se commitea:
 
 ```ini
-@medical:registry=https://gitlabnew.softel.cu/api/v4/projects/<ID>/packages/npm/
+@medical:registry=https://npm.pkg.github.com
 ```
 
 **Autenticación, siempre por variable de entorno** y nunca en un archivo del repo:
 
 ```bash
 # Linux / servidor / CI
-export NODE_AUTH_TOKEN="<tu personal access token de GitLab con scope 'api'>"
+export NODE_AUTH_TOKEN="<tu personal access token de GitHub con read:packages>"
 npm install @medical/design-system
 ```
 
 ```powershell
 # Windows
-$env:NODE_AUTH_TOKEN = "<tu personal access token de GitLab con scope 'api'>"
+$env:NODE_AUTH_TOKEN = "<tu personal access token de GitHub con read:packages>"
 npm install @medical/design-system
 ```
 
 **Permisos.** Cada persona del equipo pide su propio token
-(*User settings → Access tokens*, con scope `api`). El proyecto está en **privado**, así que para
-que un compañero pueda instalar la librería hace falta que tenga rol **Reporter o superior** en el
-proyecto; si le sale un `403`, es cuestión de subirle el rol.
+(*Settings → Developer settings → Personal access tokens → Tokens (classic)*). Para **instalar**
+basta `read:packages`; para **publicar** hace falta `write:packages` y `repo`. Si un compañero recibe
+un `403` o un `404` sin haber expirado el token, casi siempre es que su cuenta no tiene acceso al
+paquete: hay que darle rol de lectura sobre el repositorio associated al paquete.
 
-**Certificados.** Si tu GitLab usa un certificado interno, npm puede quejarse al principio
-(`unable to verify the first certificate`). Se arregla instalando la CA corporativa en el almacén
-de certificados del sistema, o configurando `cafile` en el `.npmrc`. En una red donde la CA ya está
-instalada no aparece.
+**Visibilidad.** Los paquetes de GitHub heredan la visibilidad del repositorio: si el repo es
+privado, el paquete es privado y necesita token para instalarse. Si el repo es público, el paquete se
+puede instalar sin autenticación, pero **solo desde el registry de GitHub**, no desde npmjs.
+
+**Alcance del nombre.** GitHub Packages solo admite nombres con scope (`@medical/design-system`
+cumple). Publicar bajo la organización `sisalud` no obliga a renombrar el paquete a
+`@sisalud/...`; el scope del nombre y el owner del repositorio son cosas independientes. Si algún día
+se quiere renombrar, hay que actualizar el scope en `tsconfig.base.json`, en los imports de
+`g-clinica` y en el lockfile de cada consumidor.
+
+**Certificados.** GitHub Packages usa un certificado público, así que no hace falta instalar ninguna
+CA corporativa. En redes con proxy, si npm se queja, es un problema del proxy y no del registry.
 
 ### Dentro del monorepo
 
@@ -577,26 +579,27 @@ git commit -m "release(ds): 1.0.3"
 npm pack --pack-destination artifacts ./packages/design-system
 ```
 
-Para publicar en el registro de GitLab (una sola vez por versión):
+Para publicar en GitHub Packages (una sola vez por versión):
 
 ```bash
 # El token va SIEMPRE en la variable de entorno, nunca en un archivo versionado
-export NODE_AUTH_TOKEN="<tu personal access token de GitLab, scope 'api'>"
+export NODE_AUTH_TOKEN="<tu personal access token de GitHub, scopes write:packages y repo>"
 
 cd packages/design-system
-npm publish --registry https://gitlabnew.softel.cu/api/v4/projects/<ID>/packages/npm/
+npm publish
 ```
 
-El registro **no** está hardcodeado en el `package.json` a propósito: cada entorno (tu máquina, el de
-tus compañeros, el servidor) declara el suyo, así el mismo paquete funciona en cualquier instancia
-de GitLab.
+El registry **sí** está fijado en `publishConfig` (`https://npm.pkg.github.com`), porque en GitHub
+Packages la URL es única y no depende del entorno. Aun así, la app que *consume* declara su
+`.npmrc` por su cuenta, de modo que el mismo tarball funciona tanto en GitHub como en un registry
+interno.
 
-> **La versión es inmutable.** GitLab, como npm, no permite republicar una versión ya publicada.
-> Si algo sale mal, se corrige y se publica `1.1.1`. Por eso conviene publicar solo cuando los tests
-> están en verde.
+> **La versión es inmutable.** Ni GitHub Packages ni npm permiten republicar una versión ya
+> publicada. Si algo sale mal, se corrige y se publica `1.2.1`. Por eso conviene publicar solo
+> cuando los tests están en verde.
 
 Publicar **no** es obligatorio: el tarball del paso 4 ya es consumible por cualquier app del equipo.
-Es el plan B para redes sin acceso al GitLab.
+Es el plan B para redes sin salida a internet.
 
 ### Automatizarlo
 
@@ -615,7 +618,7 @@ Falta el import del CSS en el punto de entrada. Es obligatorio desde `1.1.0`:
 
 **`Cannot find module '@medical/design-system'` o tipos que no resuelven**
 Si tu `package.json` apunta a una ruta `.tgz`, remember que hay que volver a instalar tras cada
-release nuevo (el contenido cambia aunque la versión no). Con SemVer (`^1.1.0`) esto no pasa.
+release nuevo (el contenido cambia aunque la versión no). Con SemVer (`^1.2.0`) esto no pasa.
 
 **`Invalid hook call`**
 Hay dos copias de React. Comprueba que tu app **no** tenga `react` en sus `dependencies` de la

@@ -1,6 +1,6 @@
 {
   "name": "@medical/design-system",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Design System profesional, reutilizable, versionable y desacoplado para la plataforma médica. Independiente del dominio médico.",
   "license": "UNLICENSED",
   "type": "module",
@@ -22,7 +22,12 @@
     "./package.json": "./package.json"
   },
   "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
     "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sisalud/medical-platform.git"
   },
   "files": [
     "dist",

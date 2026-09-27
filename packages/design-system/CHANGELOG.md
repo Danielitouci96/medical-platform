@@ -2,6 +2,78 @@
 
 Todas las versiones notables de `@medical/design-system`.
 
+## [1.2.0] — 2026-09-27
+
+### Fix: los componentes ya no desaparecen sobre superficies `inverse`
+
+Un `Drawer` con `surface="inverse"` (el caso de uso más habitual: un panel esmeralda con texto
+blanco) mostraba los **campos de formulario con placeholder blanco sobre fondo blanco**. El texto
+era invisible. En tema oscuro no se notaba, porque ahí el fondo sí era oscuro: el bug solo se
+manifestaba sobre superficies claras o saturadas.
+
+**Causa.** Casi todos los tokens de componente están declarados en `:root` como alias:
+
+```scss
+:root {
+  --input-background: var(--color-surface-elevated);
+}
+```
+
+Una custom property se resuelve en el ámbito **donde fue declarada**, no donde se usa. El scope
+`[data-med-surface='inverse']` re-mapeaba `--color-surface-elevated` a un lavado blanco, pero el
+alias `--input-background` se había quedado clavado con el valor claro de `:root`. El Input no veía
+el re-mapeo, y el placeholder blanco caía sobre el campo blanco.
+
+**Arreglo.** Además de re-mapear los tokens base que faltaban
+(`--color-surface`, `--color-surface-elevated`, `--color-surface-overlay`), se re-declaran dentro
+del scope inverse **todos** los aliases que leen un token base. En total se corrigieron 11 aliases:
+campos, selects, menús, popovers, cards, modales, tablas, toasts, chips, avatar y switch.
+
+### Fix: test estructural que impide la regresión
+
+Este era el **tercer** incidente de la misma clase, así que la invariante ahora se comprueba de
+forma mecánica en vez de a ojo. `src/foundations/inverse-surface.spec.ts` recorre los archivos de
+tokens y falla si encuentra algún alias declarado en `:root` que lea un token base re-mapeado y no
+esté repetido dentro de `[data-med-surface='inverse']`. El mensaje de fallo nombra el token y qué
+token base lee.
+
+El test ya pagó por sí mismo: en la primera ejecución detectó cinco alias que se habían quedado
+fuera, tres de ellos eliminados por error al reescribir el bloque.
+
+### El Drawer ahora flota
+
+`margin: 6px` y `border-radius: 8px`, para que el panel se lea como una tarjeta y no como una hoja
+pegada al borde de la pantalla.
+
+- `overflow: hidden` recorta los bordes del header y el footer a las esquinas redondeadas; sin esto
+  las líneas horizontales se proyectan fuera del radio.
+- `max-width` pasó de `100vw` a `calc(100vw - 2 * var(--drawer-inset))`. Con el inset a ambos lados,
+  el límite anterior dejaba al drawer desbordando el viewport por el doble del inset.
+
+### FormField: más aire entre campos apilados
+
+`padding-bottom: 15px` en `.med-form-field`, para que un formulario largo no se lea como un bloque
+indiscriminado.
+
+### Tokens nuevos
+
+| Token | Valor | Nota |
+|---|---|---|
+| `--drawer-inset` | `6px` | Separación del drawer respecto al borde del viewport |
+| `--radius-drawer` | `var(--radius-sm)` | 8px |
+| `--form-field-padding-bottom` | `15px` | Espacio bajo cada campo |
+
+Los tres van como tokens, y no como píxeles sueltos en el SCSS del componente, por dos razones: se
+pueden sobreescribir desde un tema sin `!important`, y `8px` deja de ser un número suelto cuando la
+escala de radios cambie. `6px` y `15px` están **fuera** de la escala de espaciado (que va en
+múltiplos de 4): son valores literales por decisión de diseño, y `--space-*` no los cubre a propósito.
+
+### Registro
+
+El paquete pasa a distribuirse por **GitHub Packages** (`npm.pkg.github.com`), no por el registro
+de GitLab. El registry queda fijado en `publishConfig` y se añade `repository` para que GitHub
+enlace el paquete al repositorio.
+
 ## [1.1.0] — 2026-09-26
 
 ### BREAKING: el CSS ya no se inyecta solo

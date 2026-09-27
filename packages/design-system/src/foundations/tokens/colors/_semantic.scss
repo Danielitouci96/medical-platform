@@ -217,6 +217,17 @@
   --color-surface-hover: color-mix(in srgb, var(--gray-0) 14%, transparent);
   --color-surface-active: color-mix(in srgb, var(--gray-0) 22%, transparent);
   --color-surface-sunken: color-mix(in srgb, var(--gray-0) 8%, transparent);
+
+  // Base fills - the three that carry the light canvas. These have to be
+  // remapped here too, not just the interactive ones above: an Input draws its
+  // background from --color-surface-elevated, so leaving it alone kept a white
+  // field under white text and made the placeholder unreadable on the light
+  // theme. Remapping the base tokens fixes Input, Select, Textarea, Card, Chip,
+  // table rows, menus, popovers, modals and toasts in one place, because they
+  // all resolve through these.
+  --color-surface: color-mix(in srgb, var(--gray-0) 8%, transparent);
+  --color-surface-elevated: color-mix(in srgb, var(--gray-0) 12%, transparent);
+  --color-surface-overlay: color-mix(in srgb, var(--gray-0) 10%, transparent);
   --color-selection-bg: var(--gray-0);
   --color-selection-text: var(--gray-900);
 
@@ -271,6 +282,7 @@
   --input-text: var(--color-text-primary);
   --input-text-placeholder: var(--color-text-tertiary);
   --input-text-disabled: var(--color-text-disabled);
+  --input-background: var(--color-surface-elevated);
   --input-background-readonly: var(--color-surface-sunken);
   --input-background-disabled: var(--color-surface-sunken);
   --input-border: var(--color-border);
@@ -288,43 +300,53 @@
   --radio-background-disabled: var(--color-surface-sunken);
   --switch-background: var(--color-border);
   --switch-background-disabled: var(--color-surface-sunken);
+  --switch-thumb: var(--color-surface-elevated);
   --switch-thumb-disabled: var(--color-text-disabled);
 
   // Select, menus and popovers
   --select-text: var(--color-text-primary);
   --select-text-placeholder: var(--color-text-tertiary);
+  --select-background: var(--color-surface-elevated);
   --select-background-disabled: var(--color-surface-sunken);
-  --select-border: var(--color-border);
-  --select-border-hover: var(--color-border-hover);
-  --select-border-focus: var(--color-border-focus);
+  --select-menu-background: var(--color-surface-overlay);
   --select-menu-text: var(--color-text-primary);
   --select-menu-item-hover: var(--color-surface-hover);
   --select-menu-item-disabled: var(--color-text-disabled);
+  --select-border: var(--color-border);
+  --select-border-hover: var(--color-border-hover);
+  --select-border-focus: var(--color-border-focus);
+  --menu-background: var(--color-surface-overlay);
   --menu-text: var(--color-text-primary);
   --menu-item-hover: var(--color-surface-hover);
   --menu-item-disabled: var(--color-text-disabled);
   --menu-sublabel-text: var(--color-text-secondary);
+  --popover-background: var(--color-surface-overlay);
   --popover-text: var(--color-text-primary);
   --popover-border: var(--color-border-subtle);
 
   // Surfaces: cards, overlays, data display
+  --card-background: var(--color-surface);
   --card-title-text: var(--color-text-primary);
   --card-description-text: var(--color-text-secondary);
   --card-border: var(--color-border);
   --card-border-hover: var(--color-border-strong);
   --card-background-hover: var(--color-surface-hover);
+  --modal-background: var(--color-surface-overlay);
   --modal-text: var(--color-text-primary);
   --modal-title-text: var(--color-text-primary);
   --modal-description-text: var(--color-text-secondary);
   --modal-border: var(--color-border-subtle);
   --modal-header-border: var(--color-divider);
   --modal-footer-border: var(--color-divider);
+  --drawer-background: var(--color-surface-overlay);
   --drawer-text: var(--color-text-primary);
   --drawer-border: var(--color-divider);
+  --toast-background: var(--color-surface-overlay);
   --toast-text: var(--color-text-primary);
   --toast-border: var(--color-border-subtle);
   --table-header-background: var(--color-surface-sunken);
   --table-header-text: var(--color-text-secondary);
+  --table-row-background: var(--color-surface-elevated);
   --table-row-background-hover: var(--color-surface-hover);
   --table-row-border: var(--color-border-subtle);
   --table-row-text: var(--color-text-primary);
@@ -333,12 +355,14 @@
   --skeleton-highlight: var(--color-surface-hover);
 
   // Badges, tags and chips
+  --avatar-border: var(--color-surface);
   --badge-background-neutral: var(--color-surface-sunken);
   --badge-text-neutral: var(--color-text-secondary);
   --tag-background: var(--color-surface-sunken);
   --tag-background-hover: var(--color-surface-active);
   --tag-border: var(--color-border-subtle);
   --tag-text: var(--color-text-secondary);
+  --chip-background: var(--color-surface);
   --chip-text: var(--color-text-secondary);
 
   // Shared border shorthands

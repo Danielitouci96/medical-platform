@@ -178,6 +178,8 @@
   // FORM FIELD
   // ==========================================================================
   --form-field-gap: var(--space-component-xs);
+  // Breathing room under a field so stacked forms do not read as one block.
+  --form-field-padding-bottom: 15px;
   --form-label-text: var(--color-text-primary);
   --form-label-font: var(--font-label-md);
   --form-help-text: var(--color-text-secondary);
