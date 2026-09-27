@@ -595,7 +595,7 @@ git commit -m "release(ds): 1.0.3"
 npm pack --pack-destination artifacts ./packages/design-system
 ```
 
-Publicar en **npmjs** (una sola vez por versión) requiere una cuenta en npmjs.org con **2FA
+Publicar en **npmjs**, que es el destino por defecto, requiere una cuenta en npmjs.org con **2FA
 activado**. npm ya no admite publicar con contraseña: se usa un *automation token*.
 
 ```bash
@@ -608,28 +608,19 @@ cd packages/design-system
 npm publish
 ```
 
-Sin `--registry`: el `publishConfig` del paquete apunta a GitHub Packages, así que para publicar en
-npmjs hay que **indicarlo explícitamente** en cada comando, o cambiar el `publishConfig` antes de
-publicar:
+El `publishConfig` del paquete es `{ "access": "public" }` y **no** fija registry, a propósito: un
+`npm publish` a secas va a npmjs y nace público, que es el destino principal. Fijar aquí el registry
+de GitHub Packages sería una trampa, porque en un `npm publish` sin flags ganaría el `publishConfig` y
+el paquete se iría al registry equivocado y con visibilidad equivocada.
+
+**Publicar también en GitHub Packages** es opt-in, con `--registry` explícito:
 
 ```bash
-npm publish --registry https://registry.npmjs.org --access public
+npm publish --registry https://npm.pkg.github.com
 ```
 
-Un paquete con scope se publica siempre como `--access public` si se quiere que sea visible para
-todo el mundo. Sin esa bandera, un paquete con scope nace **privado** y de pago.
-
-**Recomendación:** publica en npmjs **sin** `--registry` de forma permanente, subiendo el paquete
-como público, y deja GitHub Packages como copia opcional. La forma más limpia es tener dos scripts,
-uno por registry, en lugar de editar el `publishConfig` cada vez.
-
-```bash
-# npmjs (publico, para cualquiera)
-npm publish --registry https://registry.npmjs.org --access public
-
-# GitHub Packages (copia atada al repo)
-npm publish
-```
+> Comprobado que los flags mandan sobre `publishConfig`: `--registry` y `--access` lo pisan. Aun así
+> es más seguro que el default sea lo correcto en vez de depender de acordarse de los flags.
 
 > **La versión es inmutable.** Ni npmjs ni GitHub Packages permiten republicar una versión ya
 > publicada; hay que subir la siguiente. Por eso conviene publicar solo cuando los tests están en
