@@ -19,7 +19,7 @@ import {
   Text,
   FormField,
   Input,
-} from '@medical/design-system';
+} from '@danielitouci96/design-system';
 import type { ShowcaseEntry } from '../types';
 
 /* ------------------------------------------------------------------ */
@@ -48,7 +48,7 @@ const alertEntry: ShowcaseEntry = {
       </Alert>
     </Stack>
   ),
-  code: `import { Alert } from '@medical/design-system';
+  code: `import { Alert } from '@danielitouci96/design-system';
 
 <Alert tone="success" title="Cambios guardados">
   El protocolo ya está disponible para el equipo.
@@ -86,7 +86,7 @@ const spinnerEntry: ShowcaseEntry = {
       <Spinner size="xl" label="Cargando participantes" />
     </Inline>
   ),
-  code: `import { Spinner } from '@medical/design-system';
+  code: `import { Spinner } from '@danielitouci96/design-system';
 
 <Spinner size="sm" />
 <Spinner size="lg" tone="primary" />
@@ -122,7 +122,7 @@ const skeletonEntry: ShowcaseEntry = {
       </Stack>
     </Stack>
   ),
-  code: `import { Skeleton } from '@medical/design-system';
+  code: `import { Skeleton } from '@danielitouci96/design-system';
 
 /* Con la forma del contenido que va a llegar */
 <Skeleton width={200} height={16} />
@@ -156,7 +156,7 @@ const progressEntry: ShowcaseEntry = {
       <Progress value={100} tone="danger" size="sm" ariaLabel="Adherencia" />
     </Stack>
   ),
-  code: `import { Progress } from '@medical/design-system';
+  code: `import { Progress } from '@danielitouci96/design-system';
 
 <Progress value={72} tone="success" showValue ariaLabel="Adherencia" />`,
   api: [
@@ -231,7 +231,7 @@ const modalEntry: ShowcaseEntry = {
   description:
     'Diálogo modal para tareas que exigen atención. Se renderiza en un portal, atrapa el foco y se cierra con Escape. ConfirmDialog es la variante con confirmar/cancelar ya montados.',
   preview: () => <ModalDemo />,
-  code: `import { Modal, ConfirmDialog, Button } from '@medical/design-system';
+  code: `import { Modal, ConfirmDialog, Button } from '@danielitouci96/design-system';
 
 <Modal
   open={abierto}
@@ -319,7 +319,7 @@ const drawerEntry: ShowcaseEntry = {
   description:
     'Panel lateral que se desliza desde un borde. Para detalle complementario que no debe interrumpir la pantalla completa.',
   preview: () => <DrawerDemo />,
-  code: `import { Drawer, Button } from '@medical/design-system';
+  code: `import { Drawer, Button } from '@danielitouci96/design-system';
 
 <Drawer
   open={abierto}
@@ -370,7 +370,7 @@ const popoverEntry: ShowcaseEntry = {
   description:
     'Contenido flotante anclado a un trigger. Para información breve y complementaria — si necesita una acción principal, usa Modal.',
   preview: () => <PopoverDemo />,
-  code: `import { Popover, Button } from '@medical/design-system';
+  code: `import { Popover, Button } from '@danielitouci96/design-system';
 
 <Popover
   trigger={<Button variant="outline" iconRight="ChevronDown">Ver detalle</Button>}
@@ -410,7 +410,7 @@ const tooltipEntry: ShowcaseEntry = {
       </Tooltip>
     </Inline>
   ),
-  code: `import { Tooltip, Button } from '@medical/design-system';
+  code: `import { Tooltip, Button } from '@danielitouci96/design-system';
 
 <Tooltip content="Sincroniza los datos del centro">
   <Button variant="ghost">Sincronizar</Button>
@@ -486,7 +486,7 @@ const toastEntry: ShowcaseEntry = {
   description:
     'Aviso efímero y no bloqueante. Necesita ToastProvider y ToastViewport en la app; el Toast en sí se controla con open/onOpenChange.',
   preview: () => <ToastDemo />,
-  code: `import { ToastProvider, ToastViewport, Toast } from '@medical/design-system';
+  code: `import { ToastProvider, ToastViewport, Toast } from '@danielitouci96/design-system';
 
 /* Una vez, en la raíz de la app */
 <ToastProvider>

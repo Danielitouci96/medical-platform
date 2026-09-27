@@ -7,8 +7,8 @@ import {
   DateTimePicker,
   Stack,
   Text,
-} from '@medical/design-system';
-import type { DateRangeValue, DateTimeValue } from '@medical/design-system';
+} from '@danielitouci96/design-system';
+import type { DateRangeValue, DateTimeValue } from '@danielitouci96/design-system';
 import type { ShowcaseEntry } from '../types';
 
 /* ------------------------------------------------------------------ */
@@ -40,7 +40,7 @@ const calendarEntry: ShowcaseEntry = {
   description:
     'Rejilla de días para elegir una fecha. Es la base de los pickers; úsala directa cuando quieres el calendario siempre visible.',
   preview: () => <CalendarDemo />,
-  code: `import { Calendar } from '@medical/design-system';
+  code: `import { Calendar } from '@danielitouci96/design-system';
 
 <Calendar
   selectedDate={fecha}
@@ -87,7 +87,7 @@ const datePickerEntry: ShowcaseEntry = {
   description:
     'Campo de fecha con calendario desplegable. El valor es un string ISO, no un Date: es lo que se envía al servidor.',
   preview: () => <DatePickerDemo />,
-  code: `import { DatePicker } from '@medical/design-system';
+  code: `import { DatePicker } from '@danielitouci96/design-system';
 
 <DatePicker
   value={fecha}
@@ -135,7 +135,7 @@ const dateRangeEntry: ShowcaseEntry = {
   description:
     'Campo de rango de fechas. El valor es { start, end } con ambos extremos en ISO.',
   preview: () => <DateRangeDemo />,
-  code: `import { DateRangePicker } from '@medical/design-system';
+  code: `import { DateRangePicker } from '@danielitouci96/design-system';
 
 <DateRangePicker
   value={rango}
@@ -173,7 +173,7 @@ const timeEntry: ShowcaseEntry = {
   description:
     'Campo de hora en formato 24 h. El valor es un string "HH:mm", no un objeto Date.',
   preview: () => <TimeDemo />,
-  code: `import { TimePicker } from '@medical/design-system';
+  code: `import { TimePicker } from '@danielitouci96/design-system';
 
 <TimePicker value={hora} onValueChange={setHora} ariaLabel="Hora de la visita" />`,
   api: [
@@ -214,7 +214,7 @@ const dateTimeEntry: ShowcaseEntry = {
   description:
     'Los dos campos juntos, para agendar una visita. Evita dos controles sueltos cuando siempre van emparejados.',
   preview: () => <DateTimeDemo />,
-  code: `import { DateTimePicker } from '@medical/design-system';
+  code: `import { DateTimePicker } from '@danielitouci96/design-system';
 
 <DateTimePicker
   value={visita}

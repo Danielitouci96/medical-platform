@@ -1,9 +1,9 @@
 /* ============================================================================
-   TEMA ONCO (azul) — tema de marca listo para @medical/design-system
+   TEMA ONCO (azul) — tema de marca listo para @danielitouci96/design-system
    ============================================================================
    · Impórtalo DESPUÉS de importar el DS:
-        import '@medical/design-system';
-        import '@medical/design-system/themes/onco.css';
+        import '@danielitouci96/design-system';
+        import '@danielitouci96/design-system/themes/onco.css';
    · Aplica a toda la app sobre `:root`.
    · Si quieres multi-marca, cambia el selector a:
         :root[data-brand='onco'] { ... }

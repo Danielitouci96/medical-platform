@@ -17,7 +17,7 @@ import {
   Inline,
   Stack,
   Text,
-} from '@medical/design-system';
+} from '@danielitouci96/design-system';
 import type { ShowcaseEntry } from '../types';
 
 /* ------------------------------------------------------------------ */
@@ -45,7 +45,7 @@ const formFieldEntry: ShowcaseEntry = {
       </FormField>
     </Stack>
   ),
-  code: `import { FormField, Input } from '@medical/design-system';
+  code: `import { FormField, Input } from '@danielitouci96/design-system';
 
 <FormField
   label="Nombre del protocolo"
@@ -93,7 +93,7 @@ const inputEntry: ShowcaseEntry = {
       <Input placeholder="Ancho completo" fullWidth />
     </Stack>
   ),
-  code: `import { Input } from '@medical/design-system';
+  code: `import { Input } from '@danielitouci96/design-system';
 
 <Input placeholder="Nombre del participante" />
 <Input validationState="error" defaultValue="abc" />
@@ -123,7 +123,7 @@ const textareaEntry: ShowcaseEntry = {
       <Textarea placeholder="Con error" validationState="error" rows={2} />
     </Stack>
   ),
-  code: `import { Textarea } from '@medical/design-system';
+  code: `import { Textarea } from '@danielitouci96/design-system';
 
 <Textarea placeholder="Notas del protocolo" rows={3} />
 <Textarea resize="none" rows={2} />`,
@@ -151,7 +151,7 @@ const passwordEntry: ShowcaseEntry = {
       <PasswordInput placeholder="Con error" validationState="error" />
     </Stack>
   ),
-  code: `import { PasswordInput } from '@medical/design-system';
+  code: `import { PasswordInput } from '@danielitouci96/design-system';
 
 <PasswordInput placeholder="Contraseña" />
 <PasswordInput validationState="error" />`,
@@ -188,7 +188,7 @@ const searchEntry: ShowcaseEntry = {
   description:
     'Campo de búsqueda con icono y debounce. onSearchChange se dispara en cada tecla; onSearch, al terminar el debounce.',
   preview: () => <SearchDemo />,
-  code: `import { SearchInput } from '@medical/design-system';
+  code: `import { SearchInput } from '@danielitouci96/design-system';
 
 <SearchInput
   value={busqueda}
@@ -227,7 +227,7 @@ const numberEntry: ShowcaseEntry = {
   description:
     'Campo numérico con límites y paso. Admite estado vacío, así que distingue "0" de "sin rellenar".',
   preview: () => <NumberDemo />,
-  code: `import { NumberInput } from '@medical/design-system';
+  code: `import { NumberInput } from '@danielitouci96/design-system';
 
 <NumberInput
   value={valor}
@@ -282,7 +282,7 @@ const selectEntry: ShowcaseEntry = {
   description:
     'Desplegable de una sola opción. Se compone con SelectItem como hijos; el estado se controla con value/onValueChange.',
   preview: () => <SelectDemo />,
-  code: `import { Select, SelectItem } from '@medical/design-system';
+  code: `import { Select, SelectItem } from '@danielitouci96/design-system';
 
 <Select value={marca} onValueChange={setMarca} ariaLabel="Marca">
   <SelectItem value="grove">Tema Grove</SelectItem>
@@ -333,7 +333,7 @@ const multiSelectEntry: ShowcaseEntry = {
   description:
     'Selección múltiple. El valor es un array de strings; onChange entrega el array completo, no el elemento pulsado.',
   preview: () => <MultiSelectDemo />,
-  code: `import { MultiSelect } from '@medical/design-system';
+  code: `import { MultiSelect } from '@danielitouci96/design-system';
 
 const paises = [
   { value: 'es', label: 'España' },
@@ -398,7 +398,7 @@ const comboboxEntry: ShowcaseEntry = {
   description:
     'Búsqueda con sugerencias. A diferencia de Select, el usuario puede escribir: úsalo cuando el conjunto es grande o desconocido.',
   preview: () => <ComboboxDemo />,
-  code: `import { Combobox } from '@medical/design-system';
+  code: `import { Combobox } from '@danielitouci96/design-system';
 
 <Combobox
   options={medicos}
@@ -449,7 +449,7 @@ const checkboxEntry: ShowcaseEntry = {
   description:
     'Selección múltiple o opción booleana. checked admite "indeterminate" para cuando solo parte de un grupo está marcada.',
   preview: () => <CheckboxDemo />,
-  code: `import { Checkbox } from '@medical/design-system';
+  code: `import { Checkbox } from '@danielitouci96/design-system';
 
 <Checkbox
   checked={aceptado}
@@ -500,7 +500,7 @@ const radioEntry: ShowcaseEntry = {
   description:
     'Grupo de opciones mutuamente excluyentes. Se declara con items; name es obligatorio para que el teclado y los lectores de pantalla agrupen bien.',
   preview: () => <RadioDemo />,
-  code: `import { RadioGroup } from '@medical/design-system';
+  code: `import { RadioGroup } from '@danielitouci96/design-system';
 
 <RadioGroup
   value={muestreo}
@@ -545,7 +545,7 @@ const switchEntry: ShowcaseEntry = {
   description:
     'Interruptor para un ajuste que aplica al instante. Si la acción necesita un botón "Guardar", usa Checkbox.',
   preview: () => <SwitchDemo />,
-  code: `import { Switch } from '@medical/design-system';
+  code: `import { Switch } from '@danielitouci96/design-system';
 
 <Switch
   checked={activo}
@@ -583,7 +583,7 @@ const sliderEntry: ShowcaseEntry = {
   description:
     'Control deslizante. El valor siempre es un array, incluso con un solo pulgar, para que la API no cambie.',
   preview: () => <SliderDemo />,
-  code: `import { Slider } from '@medical/design-system';
+  code: `import { Slider } from '@danielitouci96/design-system';
 
 <Slider
   value={rango}

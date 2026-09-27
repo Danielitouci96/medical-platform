@@ -11,9 +11,9 @@
   ],
   "scripts": {
     "build": "nx run-many --target=build --all",
-    "build:design-system": "nx run @medical/design-system:build",
+    "build:design-system": "nx run @danielitouci96/design-system:build",
     "pack:design-system": "npm run build:design-system && npm pack --pack-destination artifacts ./packages/design-system",
-    "verify:design-system": "nx run @medical/design-system:test && npm run pack:design-system",
+    "verify:design-system": "nx run @danielitouci96/design-system:test && npm run pack:design-system",
     "build:demo": "nx run design-system-demo:build",
     "e2e": "nx run-many --target=e2e --all",
     "format": "nx format:write --all",

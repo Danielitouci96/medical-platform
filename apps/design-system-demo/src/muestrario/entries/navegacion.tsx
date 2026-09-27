@@ -16,7 +16,7 @@ import {
   Stack,
   Box,
   Text,
-} from '@medical/design-system';
+} from '@danielitouci96/design-system';
 import type { ShowcaseEntry } from '../types';
 
 /* ------------------------------------------------------------------ */
@@ -53,7 +53,7 @@ const navbarEntry: ShowcaseEntry = {
       </NavbarLink>
     </Navbar>
   ),
-  code: `import { Navbar, NavbarLink, Avatar } from '@medical/design-system';
+  code: `import { Navbar, NavbarLink, Avatar } from '@danielitouci96/design-system';
 
 <Navbar
   brand={<Marca />}
@@ -124,7 +124,7 @@ const sidebarEntry: ShowcaseEntry = {
   description:
     'Menú lateral de la sección. Acepta items declarativos o children, y se puede colapsar a una barra de iconos.',
   preview: () => <SidebarDemo />,
-  code: `import { Sidebar } from '@medical/design-system';
+  code: `import { Sidebar } from '@danielitouci96/design-system';
 
 <Sidebar
   items={[
@@ -179,7 +179,7 @@ const tabsEntry: ShowcaseEntry = {
   description:
     'Cambia entre paneles hermanos dentro de la misma vista. El contenido puede venir en tab.content o renderizarlo la app.',
   preview: () => <TabsDemo />,
-  code: `import { Tabs } from '@medical/design-system';
+  code: `import { Tabs } from '@danielitouci96/design-system';
 
 <Tabs
   tabs={[
@@ -241,7 +241,7 @@ const stepperEntry: ShowcaseEntry = {
   description:
     'Indica en qué paso de un flujo está el usuario. Muestra el avance completo, no solo el paso actual.',
   preview: () => <StepperDemo />,
-  code: `import { Stepper } from '@medical/design-system';
+  code: `import { Stepper } from '@danielitouci96/design-system';
 
 <Stepper
   steps={[
@@ -282,7 +282,7 @@ const breadcrumbEntry: ShowcaseEntry = {
       ]}
     />
   ),
-  code: `import { Breadcrumb } from '@medical/design-system';
+  code: `import { Breadcrumb } from '@danielitouci96/design-system';
 
 <Breadcrumb
   items={[
@@ -355,7 +355,7 @@ const filterBarEntry: ShowcaseEntry = {
   description:
     'Barra de filtros para listados. Compón búsqueda, filtros rápidos, chips activos y el botón que abre el panel avanzado.',
   preview: () => <FilterBarDemo />,
-  code: `import { FilterBar, FilterChip, SelectFilter } from '@medical/design-system';
+  code: `import { FilterBar, FilterChip, SelectFilter } from '@danielitouci96/design-system';
 
 <FilterBar
   searchValue={busqueda}

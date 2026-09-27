@@ -4,11 +4,11 @@
 // This is the single entry point for the Design System CSS.
 // Consuming applications import this once:
 //
-//   import '@medical/design-system/styles.css';
+//   import '@danielitouci96/design-system/styles.css';
 //
 // Or in SCSS:
 //
-//   @use '@medical/design-system/src/styles/index' as *;
+//   @use '@danielitouci96/design-system/src/styles/index' as *;
 // ============================================================================
 
 @use '../foundations/index' as *;

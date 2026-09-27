@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button } from '@medical/design-system';
+import { Button } from '@danielitouci96/design-system';
 
 interface CodeBlockProps {
   /** Código a mostrar y a copiar. */

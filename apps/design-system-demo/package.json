@@ -2,7 +2,7 @@
   "name": "design-system-demo",
   "version": "1.0.0",
   "private": true,
-  "description": "Aplicación demo que consume @medical/design-system.",
+  "description": "Aplicación demo que consume @danielitouci96/design-system.",
   "type": "module",
   "scripts": {
     "build": "vite build",
@@ -14,7 +14,7 @@
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",
     "@fontsource/libre-caslon-text": "^5.3.0",
-    "@medical/design-system": "*",
+    "@danielitouci96/design-system": "*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

@@ -14,7 +14,7 @@ import {
   Switch,
   Tag,
   type DataTableColumn,
-} from '@medical/design-system';
+} from '@danielitouci96/design-system';
 
 import './styles.scss';
 import MuestrarioPage from './muestrario/MuestrarioPage';

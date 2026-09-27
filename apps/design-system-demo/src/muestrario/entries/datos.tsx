@@ -24,7 +24,7 @@ import {
   Inline,
   Stack,
   Text,
-} from '@medical/design-system';
+} from '@danielitouci96/design-system';
 import type { ShowcaseEntry } from '../types';
 
 /* ------------------------------------------------------------------ */
@@ -54,7 +54,7 @@ const tagEntry: ShowcaseEntry = {
       </Tag>
     </Inline>
   ),
-  code: `import { Tag } from '@medical/design-system';
+  code: `import { Tag } from '@danielitouci96/design-system';
 
 <Tag tone="success" icon="Check">Adherencia 96%</Tag>
 
@@ -102,7 +102,7 @@ const chipEntry: ShowcaseEntry = {
       </Inline>
     </Stack>
   ),
-  code: `import { Chip } from '@medical/design-system';
+  code: `import { Chip } from '@danielitouci96/design-system';
 
 <Chip selected>Todos</Chip>
 <Chip>En revisión</Chip>
@@ -138,7 +138,7 @@ const badgeEntry: ShowcaseEntry = {
       </Badge>
     </Inline>
   ),
-  code: `import { Badge } from '@medical/design-system';
+  code: `import { Badge } from '@danielitouci96/design-system';
 
 <Badge tone="danger">!</Badge>
 <Badge variant="solid" size="sm" dot />
@@ -171,7 +171,7 @@ const avatarEntry: ShowcaseEntry = {
       <Avatar fallback="?" tone="secondary" size="sm" />
     </Inline>
   ),
-  code: `import { Avatar } from '@medical/design-system';
+  code: `import { Avatar } from '@danielitouci96/design-system';
 
 <Avatar src="/pacientes/evazquez.jpg" alt="Dra. Elena Vázquez" size="sm" />
 
@@ -205,7 +205,7 @@ const statusEntry: ShowcaseEntry = {
       </Inline>
     </Stack>
   ),
-  code: `import { StatusIndicator } from '@medical/design-system';
+  code: `import { StatusIndicator } from '@danielitouci96/design-system';
 
 <StatusIndicator tone="success" label="Operativo" />
 <StatusIndicator tone="info" label="Sincronizando" pulse />
@@ -255,7 +255,7 @@ const cardEntry: ShowcaseEntry = {
   ),
   code: `import {
   Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter,
-} from '@medical/design-system';
+} from '@danielitouci96/design-system';
 
 <Card variant="default" padding="md">
   <CardHeader divider>
@@ -309,7 +309,7 @@ const tableEntry: ShowcaseEntry = {
   ),
   code: `import {
   Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
-} from '@medical/design-system';
+} from '@danielitouci96/design-system';
 
 <Table striped dense hoverable>
   <TableHeader>
@@ -409,7 +409,7 @@ const dataTableEntry: ShowcaseEntry = {
   description:
     'Tabla con orden, selección, paginación, acciones de fila y estados de carga/error/vacío. Para datasets medianos o grandes; para pocos datos, Table.',
   preview: () => <DataTableDemo />,
-  code: `import { DataTable } from '@medical/design-system';
+  code: `import { DataTable } from '@danielitouci96/design-system';
 
 <DataTable
   columns={[
@@ -467,7 +467,7 @@ const paginationEntry: ShowcaseEntry = {
   description:
     'Navegación entre páginas de un listado. Controla el estado desde fuera: el componente no guarda la página.',
   preview: () => <PaginationDemo />,
-  code: `import { Pagination } from '@medical/design-system';
+  code: `import { Pagination } from '@danielitouci96/design-system';
 
 <Pagination
   page={pagina}
@@ -506,7 +506,7 @@ const kvEntry: ShowcaseEntry = {
       ]}
     />
   ),
-  code: `import { KeyValueList } from '@medical/design-system';
+  code: `import { KeyValueList } from '@danielitouci96/design-system';
 
 <KeyValueList
   items={[

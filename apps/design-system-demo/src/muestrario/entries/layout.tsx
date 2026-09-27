@@ -22,7 +22,7 @@ import {
   Button,
   Tag,
   KeyValueList,
-} from '@medical/design-system';
+} from '@danielitouci96/design-system';
 import type { ShowcaseEntry } from '../types';
 
 /* ------------------------------------------------------------------ */
@@ -54,7 +54,7 @@ const pageHeaderEntry: ShowcaseEntry = {
       />
     </Box>
   ),
-  code: `import { PageHeader, Button } from '@medical/design-system';
+  code: `import { PageHeader, Button } from '@danielitouci96/design-system';
 
 <PageHeader
   title="Protocolo ONCO-01"
@@ -98,7 +98,7 @@ const sectionHeaderEntry: ShowcaseEntry = {
       />
     </Box>
   ),
-  code: `import { SectionHeader, Button } from '@medical/design-system';
+  code: `import { SectionHeader, Button } from '@danielitouci96/design-system';
 
 <SectionHeader
   title="Centros participantes"
@@ -145,7 +145,7 @@ const barEntry: ShowcaseEntry = {
       </ActionBar>
     </Stack>
   ),
-  code: `import { Toolbar, ActionBar, Button } from '@medical/design-system';
+  code: `import { Toolbar, ActionBar, Button } from '@danielitouci96/design-system';
 
 <Toolbar>
   <Tag tone="info">6 seleccionados</Tag>
@@ -189,7 +189,7 @@ const detailPanelEntry: ShowcaseEntry = {
       />
     </DetailPanel>
   ),
-  code: `import { DetailPanel, KeyValueList } from '@medical/design-system';
+  code: `import { DetailPanel, KeyValueList } from '@danielitouci96/design-system';
 
 <DetailPanel title="Hospital Central" actions={<Button size="sm">Editar</Button>}>
   <KeyValueList items={datos} />
@@ -256,7 +256,7 @@ const layoutEntry: ShowcaseEntry = {
       </Box>
     </Stack>
   ),
-  code: `import { Box, Stack, Inline, Grid, Container } from '@medical/design-system';
+  code: `import { Box, Stack, Inline, Grid, Container } from '@danielitouci96/design-system';
 
 <Stack gap={4}>
   <Inline gap={2} wrap>
@@ -364,7 +364,7 @@ const appShellEntry: ShowcaseEntry = {
   description:
     'El chrome que envuelve el producto. El rail va sobre el canvas y marca el ítem activo en verde de marca; la barra superior es esmerilada, así el contenido sigue leyéndose al desplazar.',
   preview: () => <AppShellDemo />,
-  code: `import { Sidebar, Navbar, NavbarLink, PageHeader } from '@medical/design-system';
+  code: `import { Sidebar, Navbar, NavbarLink, PageHeader } from '@danielitouci96/design-system';
 
 <div className="shell">
   <Sidebar
@@ -439,7 +439,7 @@ const pageLayoutEntry: ShowcaseEntry = {
       </Box>
     </Stack>
   ),
-  code: `import { Page, PageContent, TwoColumnLayout, SidebarLayout } from '@medical/design-system';
+  code: `import { Page, PageContent, TwoColumnLayout, SidebarLayout } from '@danielitouci96/design-system';
 
 <Page padded maxWidth="lg">
   <PageHeader title="Protocolo ONCO-01" />
@@ -502,7 +502,7 @@ const typographyEntry: ShowcaseEntry = {
       </Text>
     </Stack>
   ),
-  code: `import { Text, Heading, Divider } from '@medical/design-system';
+  code: `import { Text, Heading, Divider } from '@danielitouci96/design-system';
 
 <Heading as={2} size="xl">Titular de sección</Heading>
 

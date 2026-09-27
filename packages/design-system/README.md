@@ -1,4 +1,4 @@
-# @medical/design-system
+# @danielitouci96/design-system
 
 Design System profesional, reutilizable, versionable y desacoplado para la plataforma médica.
 Independiente del dominio médico: es infraestructura de UI, no lógica clínica.
@@ -47,7 +47,7 @@ Versión actual: **`1.2.0`**.
 
 | Vía | Cuándo | Cómo |
 |---|---|---|
-| **Registro con SemVer** *(recomendada)* | Apps de tu equipo, incluso fuera del monorepo | `"@medical/design-system": "^1.2.0"` |
+| **Registro con SemVer** *(recomendada)* | Apps de tu equipo, incluso fuera del monorepo | `"@danielitouci96/design-system": "^1.2.0"` |
 | **Tarball local `.tgz`** | Sin registry, red aislada o para probar un release puntual | `npm install ../medical-platform/artifacts/medical-design-system-1.2.0.tgz` |
 | **Por fuente (monorepo Nx)** | Desarrollo diario dentro de `medical-platform` | Alias ya resuelto en `tsconfig.base.json` |
 
@@ -63,7 +63,7 @@ con `npm update`, en vez de tener que editar una ruta en cada release. Ver
 
 ```bash
 # Desde el registro (tras configurar el .npmrc, ver más abajo)
-npm install @medical/design-system
+npm install @danielitouci96/design-system
 
 # O desde un tarball local
 npm install ../medical-platform/artifacts/medical-design-system-1.2.0.tgz
@@ -75,7 +75,7 @@ En el punto de entrada de la app, **antes** de tus propios estilos:
 
 ```tsx
 // src/main.tsx
-import '@medical/design-system/styles.css'
+import '@danielitouci96/design-system/styles.css'
 import './styles/app.css'   // tus overrides: gana por orden de cascada
 ```
 
@@ -91,7 +91,7 @@ apliquen sobre los tokens del DS.
 ### 3. Usar los componentes
 
 ```tsx
-import { Button, Card, CardContent, DataTable } from '@medical/design-system'
+import { Button, Card, CardContent, DataTable } from '@danielitouci96/design-system'
 
 export function Ejemplo() {
   return (
@@ -109,25 +109,47 @@ Importa siempre desde el paquete. Nunca desde rutas internas.
 ### 4. Tema de marca (opcional)
 
 ```tsx
-import '@medical/design-system/themes/onco.css'   // azul
-import '@medical/design-system/themes/cardio.css'  // violeta
+import '@danielitouci96/design-system/themes/onco.css'   // azul
+import '@danielitouci96/design-system/themes/cardio.css'  // violeta
 ```
 
 Como plantilla para un tema propio:
 
 ```bash
-cp node_modules/@medical/design-system/themes/tema-personalizado.css src/styles/mi-tema.css
+cp node_modules/@danielitouci96/design-system/themes/tema-personalizado.css src/styles/mi-tema.css
 ```
 
-### Configurar el registro (GitHub Packages)
+### Instalar desde npm (no hace falta configurar nada)
 
-El design system se distribuye por el **registro de paquetes de GitHub**
-(`npm.pkg.github.com`), que es fijo: a diferencia del de GitLab, no tiene una URL por proyecto.
+El paquete se publica en **npmjs**, que es el registro por defecto. No hay `.npmrc`, ni token, ni
+variables de entorno: es un paquete público.
+
+```bash
+npm install @danielitouci96/design-system
+```
+
+Y para probarlo sin instalar nada:
+
+```bash
+npx @danielitouci96/design-system@latest
+```
+
+> **Por qué el scope no es `@medical`.** El scope `@medical` está reservado en npm por una
+> organización ajena a este proyecto, así que no se podía publicar ahí. El nombre en npmjs es
+> **inmutable para siempre**, de modo que se eligió el scope del maintainer desde el principio. Si
+> algún día se quisiera mover a una organización, habría que publicar con otro nombre.
+
+### Configurar el registro (GitHub Packages, opcional)
+
+Además de npmjs se puede publicar en **GitHub Packages** (`npm.pkg.github.com`), útil para tener una
+copia atada al repositorio o para instalaciones internas sin salida a npmjs. Es un registro
+**distinto**: un paquete publicado ahí **no** aparece en npmjs y viceversa. Para instalar desde ahí
+hace falta lo siguiente.
 
 **En la app que consume** — archivo `.npmrc` en la raíz. Esto **no es un secreto**, se commitea:
 
 ```ini
-@medical:registry=https://npm.pkg.github.com
+@danielitouci96:registry=https://npm.pkg.github.com
 ```
 
 **Autenticación, siempre por variable de entorno** y nunca en un archivo del repo:
@@ -135,36 +157,24 @@ El design system se distribuye por el **registro de paquetes de GitHub**
 ```bash
 # Linux / servidor / CI
 export NODE_AUTH_TOKEN="<tu personal access token de GitHub con read:packages>"
-npm install @medical/design-system
+npm install @danielitouci96/design-system
 ```
 
 ```powershell
 # Windows
 $env:NODE_AUTH_TOKEN = "<tu personal access token de GitHub con read:packages>"
-npm install @medical/design-system
+npm install @danielitouci96/design-system
 ```
 
 **Permisos.** Cada persona del equipo pide su propio token
 (*Settings → Developer settings → Personal access tokens → Tokens (classic)*). Para **instalar**
 basta `read:packages`; para **publicar** hace falta `write:packages` y `repo`. Si un compañero recibe
 un `403` o un `404` sin haber expirado el token, casi siempre es que su cuenta no tiene acceso al
-paquete: hay que darle rol de lectura sobre el repositorio associated al paquete.
+paquete: hay que darle rol de lectura sobre el repositorio asociado al paquete.
 
 **Visibilidad.** Los paquetes de GitHub heredan la visibilidad del repositorio: si el repo es
 privado, el paquete es privado y necesita token para instalarse. Si el repo es público, el paquete se
-puede instalar sin autenticación, pero **solo desde el registry de GitHub**, no desde npmjs.
-
-**Alcance del nombre.** GitHub Packages solo admite nombres con scope (`@medical/design-system`
-cumple). El paquete vive en la cuenta personal `Danielitouci96`, en el repositorio
-`medical-platform`, y eso **no obliga** a renombrar el paquete a `@danielitouci96/...`: el scope del
-nombre y el owner del repositorio son cosas independientes. Si algún día se quiere renombrar, hay que
-actualizar el scope en `tsconfig.base.json`, en los imports de `g-clinica` y en el lockfile de cada
-consumidor.
-
-**Cambiar de repositorio o de cuenta.** `repository` en el `package.json` es lo que GitHub usa para
-enlazar el paquete. Si el repo se mueve o se publica desde otra cuenta, hay que actualizar ese campo;
-además, un paquete ya publicado queda ligado a la cuenta original, así que moverlo significa publicar
-bajo un paquete nuevo o volver a pedir permisos.
+puede instalar sin autenticación, pero **solo desde el registry de GitHub**.
 
 **Certificados.** GitHub Packages usa un certificado público, así que no hace falta instalar ninguna
 CA corporativa. En redes con proxy, si npm se queja, es un problema del proxy y no del registry.
@@ -175,15 +185,15 @@ El path ya está resuelto en `tsconfig.base.json`:
 
 ```json
 "paths": {
-  "@medical/design-system": ["packages/design-system/src/index.ts"]
+  "@danielitouci96/design-system": ["packages/design-system/src/index.ts"]
 }
 ```
 
 En este caso se sigue importando el CSS compilado igual:
 
 ```tsx
-import { Button } from '@medical/design-system'
-import '@medical/design-system/styles.css'
+import { Button } from '@danielitouci96/design-system'
+import '@danielitouci96/design-system/styles.css'
 ```
 
 ### Qué contiene el paquete
@@ -231,7 +241,7 @@ import {
   SelectItem,
   Tag,
   type DataTableColumn,
-} from '@medical/design-system';
+} from '@danielitouci96/design-system';
 
 export function PanelEstudio() {
   return (
@@ -428,15 +438,15 @@ El paquete incluye la carpeta **`themes/`** listos para copiar o importar:
 **Tema listo para aplicar a toda la app** (impórtalo después del DS):
 
 ```tsx
-import '@medical/design-system';
-import '@medical/design-system/themes/onco.css'; // o cardio.css / tu tema copiado
+import '@danielitouci96/design-system';
+import '@danielitouci96/design-system/themes/onco.css'; // o cardio.css / tu tema copiado
 ```
 
 > **Cómo importarlo según tu app**
-> - **Fuera del monorepo (paquete publicado):** el subpath `@medical/design-system/themes/...`
+> - **Fuera del monorepo (paquete publicado):** el subpath `@danielitouci96/design-system/themes/...`
 >   funciona gracias al campo `exports` del paquete. Nada que configurar.
 > - **Dentro del monorepo con Vite (como la demo):** configura el alias
->   `@medical/design-system/themes → packages/design-system/themes/` (mira
+>   `@danielitouci96/design-system/themes → packages/design-system/themes/` (mira
 >   `apps/design-system-demo/vite.config.ts`).
 > - **Atajo sin aliases:** copia el archivo a tu app (`src/styles/tema.css`) e impórtalo
 >   con una ruta relativa: `import './styles/tema.css';`
@@ -445,7 +455,7 @@ import '@medical/design-system/themes/onco.css'; // o cardio.css / tu tema copia
 `:root[data-brand='miCliente']` (y su variante oscura con `[data-theme='dark']`).
 
 Si publicas el paquete como dependencia, `themes/` viaja incluido en el artefacto
-(campo `files` de `package.json` y export `@medical/design-system/themes/*`).
+(campo `files` de `package.json` y export `@danielitouci96/design-system/themes/*`).
 
 ### Reglas
 
@@ -467,7 +477,7 @@ Si publicas el paquete como dependencia, `themes/` viaja incluido en el artefact
 `Icon` expone todo el set de **lucide-react**:
 
 ```tsx
-import { Icon } from '@medical/design-system';
+import { Icon } from '@danielitouci96/design-system';
 
 <Icon name="Search" size="sm" />
 <Icon name="Bell" size="md" color="var(--color-text-secondary)" label="Notificaciones" />
@@ -571,7 +581,7 @@ CHANGELOG se escribe siempre mirando la diff visual, no solo el código.
 
 ```bash
 # 1. Verificar que todo está verde
-npx nx run @medical/design-system:test
+npx nx run @danielitouci96/design-system:test
 npm run build:design-system
 
 # 2. Subir la versión (actualiza package.json)
@@ -585,24 +595,45 @@ git commit -m "release(ds): 1.0.3"
 npm pack --pack-destination artifacts ./packages/design-system
 ```
 
-Para publicar en GitHub Packages (una sola vez por versión):
+Publicar en **npmjs** (una sola vez por versión) requiere una cuenta en npmjs.org con **2FA
+activado**. npm ya no admite publicar con contraseña: se usa un *automation token*.
 
 ```bash
-# El token va SIEMPRE en la variable de entorno, nunca en un archivo versionado
-export NODE_AUTH_TOKEN="<tu personal access token de GitHub, scopes write:packages y repo>"
+# 1. En npmjs.com -> tu perfil -> Access Tokens -> Generate New Token
+#    -> tipo "Automation", con el paquete y solo permiso "Read & Write"
+# 2. El token va SIEMPRE en la variable de entorno, nunca en un archivo versionado
+export NODE_AUTH_TOKEN="<token de automatización de npmjs>"
 
 cd packages/design-system
 npm publish
 ```
 
-El registry **sí** está fijado en `publishConfig` (`https://npm.pkg.github.com`), porque en GitHub
-Packages la URL es única y no depende del entorno. Aun así, la app que *consume* declara su
-`.npmrc` por su cuenta, de modo que el mismo tarball funciona tanto en GitHub como en un registry
-interno.
+Sin `--registry`: el `publishConfig` del paquete apunta a GitHub Packages, así que para publicar en
+npmjs hay que **indicarlo explícitamente** en cada comando, o cambiar el `publishConfig` antes de
+publicar:
 
-> **La versión es inmutable.** Ni GitHub Packages ni npm permiten republicar una versión ya
-> publicada. Si algo sale mal, se corrige y se publica `1.2.1`. Por eso conviene publicar solo
-> cuando los tests están en verde.
+```bash
+npm publish --registry https://registry.npmjs.org --access public
+```
+
+Un paquete con scope se publica siempre como `--access public` si se quiere que sea visible para
+todo el mundo. Sin esa bandera, un paquete con scope nace **privado** y de pago.
+
+**Recomendación:** publica en npmjs **sin** `--registry` de forma permanente, subiendo el paquete
+como público, y deja GitHub Packages como copia opcional. La forma más limpia es tener dos scripts,
+uno por registry, en lugar de editar el `publishConfig` cada vez.
+
+```bash
+# npmjs (publico, para cualquiera)
+npm publish --registry https://registry.npmjs.org --access public
+
+# GitHub Packages (copia atada al repo)
+npm publish
+```
+
+> **La versión es inmutable.** Ni npmjs ni GitHub Packages permiten republicar una versión ya
+> publicada; hay que subir la siguiente. Por eso conviene publicar solo cuando los tests están en
+> verde. Y ojo: en npmjs el **nombre** tampoco se puede cambiar una vez publicado.
 
 Publicar **no** es obligatorio: el tarball del paso 4 ya es consumible por cualquier app del equipo.
 Es el plan B para redes sin salida a internet.
@@ -620,9 +651,9 @@ tarea manual a ser un efecto secundario del PR.
 
 **No tengo estilos / los componentes salen sin CSS**
 Falta el import del CSS en el punto de entrada. Es obligatorio desde `1.1.0`:
-`import '@medical/design-system/styles.css'`, y **antes** de tus propios estilos.
+`import '@danielitouci96/design-system/styles.css'`, y **antes** de tus propios estilos.
 
-**`Cannot find module '@medical/design-system'` o tipos que no resuelven**
+**`Cannot find module '@danielitouci96/design-system'` o tipos que no resuelven**
 Si tu `package.json` apunta a una ruta `.tgz`, recuerda que hay que volver a instalar tras cada
 release nuevo (el contenido cambia aunque la versión no). Con SemVer (`^1.2.0`) esto no pasa.
 
@@ -635,7 +666,7 @@ corrupto: es que la versión no cambió pero el contenido sí, y para npm eso es
 Se arregla regenerando la entrada, sin tocar el resto del lockfile:
 
 ```bash
-npm install @medical/design-system@file:../medical-platform/artifacts/medical-design-system-1.2.0.tgz
+npm install @danielitouci96/design-system@file:../medical-platform/artifacts/medical-design-system-1.2.0.tgz
 ```
 
 Es otra razón para no depender de tarballs: la primera versión publicada en el registry elimina el
@@ -658,7 +689,7 @@ anterior; actualiza.
 
 ## Buenas prácticas
 
-1. **Importa solo de `@medical/design-system`.** Nunca rutas internas (`src/components/...`).
+1. **Importa solo de `@danielitouci96/design-system`.** Nunca rutas internas (`src/components/...`).
    Es la garantía de tree-shaking y de que la API no se fragmente.
 2. **No añadas Tailwind** sobre este DS. Usa los tokens CSS y las clases del paquete.
 3. **Espacio plano, rutas absolutas** en la integración (sin `cd`, sin rutas relativas frágiles).

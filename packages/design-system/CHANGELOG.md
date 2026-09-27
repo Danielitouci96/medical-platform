@@ -1,6 +1,14 @@
 # Changelog
 
-Todas las versiones notables de `@medical/design-system`.
+Todas las versiones notables de `@danielitouci96/design-system`.
+
+> **Nota sobre el nombre.** El paquete se llamó `@danielitouci96/design-system` hasta la versión `1.2.0`
+> inclusive, pero **nunca se publicó en ningún registro**: todas esas versiones existieron solo como
+> tarball local. El scope `@medical` está reservado por una organización de npm ajena a este proyecto,
+> así que no era publicable. Como no había consumidores, se renombró a
+> `@danielitouci96/design-system` antes de la primera publicación, y por eso las referencias antiguas
+> que quedan en las entradas de abajo también se actualizaron. El nombre en npmjs es inmutable: una
+> vez publicado, habría sido para siempre.
 
 ## [1.2.0] — 2026-09-27
 
@@ -78,11 +86,11 @@ enlace el paquete al repositorio.
 
 ### BREAKING: el CSS ya no se inyecta solo
 
-Antes, `import { Button } from '@medical/design-system'` arrastraba también la hoja de estilos.
+Antes, `import { Button } from '@danielitouci96/design-system'` arrastraba también la hoja de estilos.
 A partir de ahora hay que importarla explícitamente, una vez, en el punto de entrada:
 
 ```tsx
-import '@medical/design-system/styles.css'
+import '@danielitouci96/design-system/styles.css'
 import './styles/app.css'   // tus overrides, después
 ```
 
@@ -181,7 +189,7 @@ el comportamiento es idéntico. g-clinica, por ejemplo, ya importaba el CSS expl
 - Nueva carpeta **`themes/`** con temas de marca listos:
   - `onco.css` (azul) y `cardio.css` (violeta), ambos con variante de modo oscuro.
   - `tema-personalizado.css`: plantilla con todos los tokens semánticos comentados.
-- Subpath de exportación para temas: `@medical/design-system/themes/*`.
+- Subpath de exportación para temas: `@danielitouci96/design-system/themes/*`.
 
 ### Tokens y temas
 - **Temas por aplicación**: cada app puede sobrescribir tokens semánticos `--color-*`

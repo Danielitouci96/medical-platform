@@ -13,7 +13,7 @@ export default function ShowcaseCard({ entry }: { entry: ShowcaseEntry }) {
           <span className="ms-card__cat">{entry.category}</span>
         </div>
         <code className="ms-card__import">
-          import {'{'} {entry.name} {'}'} from '@medical/design-system';
+          import {'{'} {entry.name} {'}'} from '@danielitouci96/design-system';
         </code>
       </header>
 

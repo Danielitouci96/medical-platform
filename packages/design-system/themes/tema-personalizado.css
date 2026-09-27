@@ -1,5 +1,5 @@
 /* ============================================================================
-   TEMA PERSONALIZADO — plantilla para @medical/design-system
+   TEMA PERSONALIZADO — plantilla para @danielitouci96/design-system
    ============================================================================
    CÓMO USARLA
    ----------
@@ -8,7 +8,7 @@
       comentado el valor por defecto (lenguaje Grove).
    3. Impórtalo DESPUÉS de importar el DS para ganar por cascada:
 
-        import '@medical/design-system';                    // primero el DS
+        import '@danielitouci96/design-system';                    // primero el DS
         import './styles/tema.css';                         // luego tu tema
 
    REGLAS

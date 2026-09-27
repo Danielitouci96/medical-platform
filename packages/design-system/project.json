@@ -1,5 +1,5 @@
 {
-  "name": "@medical/design-system",
+  "name": "@danielitouci96/design-system",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/design-system/src",
   "projectType": "library",

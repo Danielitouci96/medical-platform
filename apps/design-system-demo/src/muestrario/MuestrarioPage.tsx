@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, Inline, Input, Button } from '@medical/design-system';
+import { Icon, Inline, Input, Button } from '@danielitouci96/design-system';
 import { SHOWCASE_ENTRIES } from './entries';
 import ShowcaseCard from './ShowcaseCard';
 import type { ShowcaseEntry, ShowcaseCategory } from './types';
@@ -80,7 +80,7 @@ export default function MuestrarioPage({ onVolver }: MuestrarioPageProps) {
               <span className="ms-header__dot" />
               Muestrario de componentes
             </span>
-            <span className="ms-header__name">@medical/design-system</span>
+            <span className="ms-header__name">@danielitouci96/design-system</span>
           </div>
         </div>
       </header>
@@ -191,7 +191,7 @@ export default function MuestrarioPage({ onVolver }: MuestrarioPageProps) {
 
       <footer className="ms-footer">
         <div className="ms-wrap ms-footer__inner">
-          <span>© 2026 · @medical/design-system v1.0.0 · Muestrario de consumo</span>
+          <span>© 2026 · @danielitouci96/design-system v1.0.0 · Muestrario de consumo</span>
           <span>Storybook queda para el desarrollo del DS</span>
         </div>
       </footer>

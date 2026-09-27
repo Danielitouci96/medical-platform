@@ -1,17 +1,17 @@
 // ============================================================================
-// @medical/design-system — PUBLIC API
+// @danielitouci96/design-system — PUBLIC API
 // ============================================================================
 // This is the SINGLE entry point for consuming applications and micro
-// frontends. Applications MUST import only from '@medical/design-system' and
+// frontends. Applications MUST import only from '@danielitouci96/design-system' and
 // never reach into internal files (e.g. src/components/...).
 //
-//   import { Button, Input, DataTable } from '@medical/design-system';
-//   import '@medical/design-system/styles.css';
+//   import { Button, Input, DataTable } from '@danielitouci96/design-system';
+//   import '@danielitouci96/design-system/styles.css';
 //
 // // For tree-shaking, everything is re-exported here. Applications MUST also
 // // import the stylesheet explicitly, once, in their entry point:
 //
-//   import '@medical/design-system/styles.css';
+//   import '@danielitouci96/design-system/styles.css';
 //
 // // The stylesheet is deliberately NOT imported here as a side effect. Doing so
 // // leaks a `.scss` reference into the emitted .d.ts, which forces every consumer

@@ -12,7 +12,7 @@ import {
   Inline,
   Stack,
   Box,
-} from '@medical/design-system';
+} from '@danielitouci96/design-system';
 import type { ShowcaseEntry } from '../types';
 
 /* ------------------------------------------------------------------ */
@@ -40,7 +40,7 @@ const buttonEntry: ShowcaseEntry = {
       <Button disabled>Endpoint bloqueado</Button>
     </Inline>
   ),
-  code: `import { Button } from '@medical/design-system';
+  code: `import { Button } from '@danielitouci96/design-system';
 
 <Button variant="primary">Guardar cambios</Button>
 
@@ -79,7 +79,7 @@ const iconButtonEntry: ShowcaseEntry = {
       <IconButton icon="Lock" aria-label="Bloqueado" disabled />
     </Inline>
   ),
-  code: `import { IconButton } from '@medical/design-system';
+  code: `import { IconButton } from '@danielitouci96/design-system';
 
 <IconButton icon="Bell" aria-label="Notificaciones" />
 
@@ -126,7 +126,7 @@ const buttonGroupEntry: ShowcaseEntry = {
       </ButtonGroup>
     </Stack>
   ),
-  code: `import { ButtonGroup, Button } from '@medical/design-system';
+  code: `import { ButtonGroup, Button } from '@danielitouci96/design-system';
 
 <ButtonGroup attached variant="outline" size="sm">
   <Button variant="outline" size="sm">Día</Button>
@@ -169,7 +169,7 @@ const linkEntry: ShowcaseEntry = {
       </Box>
     </Stack>
   ),
-  code: `import { Link } from '@medical/design-system';
+  code: `import { Link } from '@danielitouci96/design-system';
 
 <Link href="/pacientes">Ver pacientes</Link>
 
@@ -231,7 +231,7 @@ const dropdownEntry: ShowcaseEntry = {
   DropdownMenuSeparator,
   DropdownMenuLabel,
   Button,
-} from '@medical/design-system';
+} from '@danielitouci96/design-system';
 
 <DropdownMenu trigger={<Button variant="outline" iconRight="ChevronDown">Acciones</Button>}>
   <DropdownMenuLabel>Documento</DropdownMenuLabel>
