@@ -1,28 +1,21 @@
-UNLICENSED — Propietario
-========================
+MIT License
 
-Copyright (c) 2026 Todos los derechos reservados.
+Copyright (c) 2026 Danielitouci96
 
-Este paquete y su código fuente son propiedad privada y confidencial.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-No se concede ninguna licencia pública sobre este software. No se permite su
-copia, modificación, distribución, publicación ni uso por terceros sin
-autorización previa y por escrito del titular de los derechos.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Uso interno autorizado
-----------------------
-
-Su uso, modificación y distribución están autorizados únicamente dentro de los
-equipos y repositorios internos del titular, y únicamente en el marco de los
-proyectos para los que se han aprobado.
-
-El acceso al registro de paquetes de esta librería se controla por credenciales.
-Cada miembro del equipo debe solicitar su propio token y mantenerlo siempre
-fuera del control de versiones.
-
-Aviso
------
-
-Este archivo es un marcador de posición técnico. Antes de distribuir el paquete
-fuera del perímetro interno (por ejemplo, en un npm público), el área legal debe
-sustituirlo por el texto de licencia definitivo de la organización.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

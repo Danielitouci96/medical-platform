@@ -78,9 +78,40 @@ múltiplos de 4): son valores literales por decisión de diseño, y `--space-*` 
 
 ### Registro
 
-El paquete pasa a distribuirse por **GitHub Packages** (`npm.pkg.github.com`), no por el registro
-de GitLab. El registry queda fijado en `publishConfig` y se añade `repository` para que GitHub
-enlace el paquete al repositorio.
+El paquete se publica en **npmjs** (`registry.npmjs.org`), que es el destino principal y queda como
+default: `publishConfig` es `{ "access": "public" }` y **no** fija registry, a propósito.
+
+El registry **no** va hardcodeado en el `package.json` por una razón concreta: se comprobó que,
+cuando no se pasan flags, `publishConfig` gana a la configuración global. Con el registry fijado
+ahí, un `npm publish` a secas mandaba el paquete a GitHub Packages y con `access: restricted`, que
+es justo lo contrario de lo que se quería. Dejar el default en lo correcto es más seguro que
+depender de acordarse de escribir `--registry` y `--access` en cada publicación.
+
+**GitHub Packages** queda como canal opcional, siempre explícito:
+
+```bash
+npm publish --registry https://npm.pkg.github.com
+```
+
+Se añade `repository` para que npmjs enlace el paquete al repositorio público.
+
+### BREAKING: licencia MIT
+
+El paquete pasa de `UNLICENSED` a **MIT**, y este es el cambio que más afecta a quien lo consume.
+
+Con `UNLICENSED` ("todos los derechos reservados") el paquete era público pero **no reutilizable**:
+se podía descargar y leer, y nada más. Eso choca de frente con el objetivo de publicar en un
+registro abierto, y ademásmanyas organizaciones tienen escáneres de dependencias que bloquean
+`UNLICENSED` sin revisión manual, así que el paquete acababa siendo público e inusable a la vez.
+
+Con MIT se puede usar, copiar, modificar, forksar y redistribuir, incluida la\> commercially, sin
+pedir permiso. La contrapartida es la misma que en cualquier MIT: no hay garantía de nada y la
+responsabilidad es de quien lo usa.
+
+> El titular del copyright es `Danielitouci96`, que coincide con el scope de npm y el usuario de
+> GitHub. Si el titular debe ser otra persona o la propia Softel, es un cambio de una línea en
+> `LICENSE` y en el `package.json` (`license`).
+
 
 ## [1.1.0] — 2026-09-26
 
@@ -122,8 +153,8 @@ el comportamiento es idéntico. g-clinica, por ejemplo, ya importaba el CSS expl
 - `sideEffects: ["**/*.css"]` para que los bundlers no eliminen el CSS del árbol.
 - `prepublishOnly` → **`prepack`**, que sí se ejecuta también al empaquetar. Antes era posible
   publicar o empaquetar sin compilar.
-- `LICENSE` añadido (`license: "UNLICENSED"`, uso interno). **Pendiente**: el área legal debe
-  sustituir el texto antes de cualquier distribución fuera del perímetro interno.
+- `LICENSE` añadido (`license: "UNLICENSED"`, uso interno). Sustituido por **MIT** en `1.2.0`, al
+  publicarse el paquete en un registro abierto: `UNLICENSED` lo hacía público pero no reutilizable.
 - `engines.node: ">=20"`.
 
 ### Pruebas

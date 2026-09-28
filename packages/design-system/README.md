@@ -699,4 +699,22 @@ anterior; actualiza.
 
 ---
 
-© 2026 Plataforma médica — Uso interno. Conforme a GCP / 21 CFR Parte 11 en las apps consumidoras.
+## Licencia
+
+**MIT**. Puedes usar, copiar, modificar, forksar y redistribuir este paquete, también en
+proyectos comerciales, sin pedir permiso. La única obligación es conservar el aviso de copyright
+en las copias.
+
+```bash
+npm i @danielitouci96/design-system
+```
+
+El texto completo está en [`LICENSE`](./LICENSE). Titular del copyright: `Danielitouci96`.
+
+> Sobre el cumplimiento normativo: MIT cubre el **código** de este paquete. Si tus apps lo usan en un
+> contexto clínico o regulatorio, los requisitos de validación (GCP, 21 CFR Parte 11, ISO 13485)
+> recaen sobre **tu** aplicación y tu proceso de validación, no sobre la licencia del componente.
+
+---
+
+© 2026 Danielitouci96 · MIT. Conforme a GCP / 21 CFR Parte 11 en las apps consumidoras.

@@ -2,7 +2,7 @@
   "name": "@danielitouci96/design-system",
   "version": "1.2.0",
   "description": "Design System profesional, reutilizable, versionable y desacoplado para la plataforma médica. Independiente del dominio médico.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.es.js",
   "module": "./dist/index.es.js",
