@@ -128,11 +128,16 @@ variables de entorno: es un paquete público.
 npm install @danielitouci96/design-system
 ```
 
-Y para probarlo sin instalar nada:
+Para ver qué hay publicado sin instalar nada:
 
 ```bash
-npx @danielitouci96/design-system@latest
+npm view @danielitouci96/design-system versions
+npm view @danielitouci96/design-system@latest dist-tags
 ```
+
+> Este paquete **no define ningún ejecutable**, así que `npx @danielitouci96/design-system` no
+> funciona: `npx` solo puede lanzar paquetes con un campo `bin`, y esta es una librería, no una CLI.
+> Para probarla de verdad, instálala en un proyecto y mira la demo del monorepo.
 
 > **Por qué el scope no es `@medical`.** El scope `@medical` está reservado en npm por una
 > organización ajena a este proyecto, así que no se podía publicar ahí. El nombre en npmjs es
