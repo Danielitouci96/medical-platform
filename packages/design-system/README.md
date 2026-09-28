@@ -584,39 +584,54 @@ CHANGELOG se escribe siempre mirando la diff visual, no solo el código.
 
 ### Para quien mantiene el paquete
 
-```bash
-# 1. Verificar que todo está verde
-npx nx run @danielitouci96/design-system:test
-npm run build:design-system
-
-# 2. Subir la versión (actualiza package.json)
-npm version patch     # o minor / major
-
-# 3. Escribir el CHANGELOG y hacer commit de ambos
-git add packages/design-system/package.json packages/design-system/CHANGELOG.md
-git commit -m "release(ds): 1.0.3"
-
-# 4. Crear el tarball (prepack compila automáticamente)
-npm pack --pack-destination artifacts ./packages/design-system
-```
-
-Publicar en **npmjs**, que es el destino por defecto, requiere una cuenta en npmjs.org con **2FA
-activado**. npm ya no admite publicar con contraseña: se usa un *automation token*.
+Flujo completo de una versión publicable, tal y como se verificó al publicar `1.2.0`:
 
 ```bash
-# 1. En npmjs.com -> tu perfil -> Access Tokens -> Generate New Token
-#    -> tipo "Automation", con el paquete y solo permiso "Read & Write"
-# 2. El token va SIEMPRE en la variable de entorno, nunca en un archivo versionado
-export NODE_AUTH_TOKEN="<token de automatización de npmjs>"
+# 1. Toca el código en packages/design-system/src
+#    (los cambios de tokens a foundations/tokens/, los de componente a components/<x>/)
 
+# 2. Verifica: tests, typecheck y build
+cd packages/design-system
+npm test
+npm run typecheck
+npm run build
+
+# 3. Si cambió comportamiento o API: actualiza CHANGELOG.md y, si hace falta, README.md
+
+# 4. Sube la versión (crea el tag git y actualiza package.json + package-lock)
+npm version minor      # patch = fix, minor = feature, major = breaking
+
+# 5. Commit y push del repo (incluye el tag)
+cd ../..
+git add -A
+git commit -m "release(ds): <nueva version>"
+git push origin main --tags
+
+# 6. Publica: prepack compila solo, y con el publishConfig actual NO hacen falta flags
 cd packages/design-system
 npm publish
 ```
 
-El `publishConfig` del paquete es `{ "access": "public" }` y **no** fija registry, a propósito: un
-`npm publish` a secas va a npmjs y nace público, que es el destino principal. Fijar aquí el registry
-de GitHub Packages sería una trampa, porque en un `npm publish` sin flags ganaría el `publishConfig` y
-el paquete se iría al registry equivocado y con visibilidad equivocada.
+> npm eliminó los "automation tokens" clásicos en **noviembre de 2025**; solo existen los tokens
+> **granulares**. Este repo usa un Granular Access Token con **Bypass 2FA** activado guardado en el
+> `.npmrc` de la máquina. Por eso el flujo no muestra `--registry`, ni `NODE_AUTH_TOKEN`, ni `--otp`:
+> con `publishConfig: { "access": "public" }` y sin registry, un `npm publish` a secas va a npmjs y
+> nace en público. Si algún día falta ese token, se recrea en
+> `/settings/danielitouci96/tokens/granular-access-tokens/new` con acceso
+> **Read and write (publish and stage)** + **Bypass 2FA** marcado, y se guarda con
+> `npm config set //registry.npmjs.org/:_authToken "npm_..."`.
+
+**Consumir la versión nueva desde una app** (por ejemplo `g-clinica`):
+
+```bash
+cd ../g-clinica
+npm install @danielitouci96/design-system@^<nueva version>
+npm run build
+```
+
+Con el rango `^1.2.0`, cualquier versión `1.x` entra automáticamente, así que un `npm install` ya
+bajaría la última; el `@^<version>` explícito sirve para ser deliberado. El `package-lock` cambia y
+hay que commitearlo.
 
 **Publicar también en GitHub Packages** es opt-in, con `--registry` explícito:
 
@@ -631,8 +646,8 @@ npm publish --registry https://npm.pkg.github.com
 > publicada; hay que subir la siguiente. Por eso conviene publicar solo cuando los tests están en
 > verde. Y ojo: en npmjs el **nombre** tampoco se puede cambiar una vez publicado.
 
-Publicar **no** es obligatorio: el tarball del paso 4 ya es consumible por cualquier app del equipo.
-Es el plan B para redes sin salida a internet.
+> El tarball del paso `npm pack` se sigue generando en `artifacts/` como plan B para redes sin salida
+> a internet, pero el flujo normal de una versión ahora es publicar.
 
 ### Automatizarlo
 
