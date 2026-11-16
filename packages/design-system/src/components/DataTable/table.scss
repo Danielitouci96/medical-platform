@@ -31,6 +31,7 @@
   &__cell {
     padding: var(--table-row-vertical-padding) var(--table-row-horizontal-padding);
     border-bottom: 1px solid var(--table-row-border);
+    font-size: var(--table-cell-font-size);
     vertical-align: middle;
   }
 

@@ -15,6 +15,12 @@
   --card-shadow-hover: var(--shadow-card-hover);
   --card-title-text: var(--color-text-primary);
   --card-description-text: var(--color-text-secondary);
+  --card-panel-background: var(--color-surface-elevated);
+  --card-panel-border: var(--color-divider);
+  --card-panel-radius: var(--radius-2xl);
+  --card-panel-shadow: var(--shadow-panel);
+  --card-panel-padding: var(--space-5);
+  --card-panel-table-radius: 16px;
 
   // ==========================================================================
   // BADGE
@@ -60,6 +66,7 @@
   --table-row-border: var(--color-border-subtle);
   --table-row-vertical-padding: var(--space-component-sm);
   --table-row-horizontal-padding: var(--space-component-md);
+  --table-cell-font-size: var(--font-size-base);
   --table-striped-background: var(--color-surface-sunken);
   --table-radius: var(--radius-table);
 
@@ -162,6 +169,32 @@
   --avatar-size-md: 40px;
   --avatar-size-lg: 48px;
   --avatar-size-xl: 64px;
+
+  // ==========================================================================
+  // TREE
+  // ==========================================================================
+  --tree-gap: var(--space-1\.5);
+  --tree-indent: var(--space-5);
+  --tree-row-gap: var(--space-2\.5);
+  --tree-row-padding-block: var(--space-2\.5);
+  --tree-row-padding-inline: var(--space-3\.5);
+  --tree-group-background: var(--color-background-elevated);
+  --tree-group-border: var(--color-border-subtle);
+  --tree-group-radius: var(--radius-lg);
+  --tree-branch-background: var(--color-secondary-soft);
+  --tree-branch-background-hover: var(--color-secondary-soft-hover);
+  --tree-row-hover-background: var(--color-surface-sunken);
+  --tree-icon-background: var(--color-background);
+  --tree-icon-color: var(--color-secondary);
+  --tree-icon-color-muted: var(--color-text-secondary);
+  --tree-code-background: var(--color-surface-sunken);
+  --tree-code-text: var(--color-text-tertiary);
+  --tree-leaf-background: var(--color-surface);
+  --tree-leaf-border: var(--color-border-subtle);
+  --tree-state-text: var(--color-text-secondary);
+  --tree-toolbar-gap: var(--space-component-md);
+  --tree-toolbar-divider: var(--border-divider);
+  --tree-toolbar-search-width: 320px;
 
   // ==========================================================================
   // APP SHELL

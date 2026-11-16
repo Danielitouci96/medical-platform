@@ -24,6 +24,9 @@ import {
   Inline,
   Stack,
   Text,
+  Tree,
+  TreeToolbar,
+  type TreeNode,
 } from '@danielitouci96/design-system';
 import type { ShowcaseEntry } from '../types';
 
@@ -251,6 +254,16 @@ const cardEntry: ShowcaseEntry = {
           <Text size="sm">Variante elevated</Text>
         </CardContent>
       </Card>
+      <Card variant="panel" padding="panel" style={{ width: 240 }}>
+        <CardContent>
+          <Text size="sm" weight="semibold">
+            Variante panel
+          </Text>
+          <Text size="sm" tone="secondary">
+            Superficie elevada, radio grande y tabla integrada.
+          </Text>
+        </CardContent>
+      </Card>
     </Inline>
   ),
   code: `import {
@@ -266,8 +279,8 @@ const cardEntry: ShowcaseEntry = {
   <CardFooter><Button size="sm" variant="ghost">Detalle</Button></CardFooter>
 </Card>`,
   api: [
-    { name: 'variant', type: "'default' | 'outlined' | 'elevated' | 'flat' | 'interactive'", defaultValue: "'default'", description: 'Estilo de la superficie.' },
-    { name: 'padding', type: "'none' | 'sm' | 'md' | 'lg' | 'xl'", defaultValue: "'md'", description: 'Relleno interior.' },
+    { name: 'variant', type: "'default' | 'outlined' | 'elevated' | 'flat' | 'interactive' | 'panel'", defaultValue: "'default'", description: 'Estilo de la superficie.' },
+    { name: 'padding', type: "'none' | 'sm' | 'md' | 'lg' | 'xl' | 'panel'", defaultValue: "'md'", description: 'Relleno interior.' },
     { name: 'interactive', type: 'boolean', defaultValue: 'false', description: 'Añade hover y foco de elemento pulsable.' },
     { name: 'CardHeader.divider', type: 'boolean', defaultValue: 'false', description: 'Línea separadora bajo la cabecera.' },
     { name: 'CardTitle.as', type: "'h1'…'h6'", description: 'Nivel de encabezado correcto para la jerarquía.' },
@@ -487,6 +500,173 @@ const paginationEntry: ShowcaseEntry = {
 };
 
 /* ------------------------------------------------------------------ */
+/* Tree                                                                */
+/* ------------------------------------------------------------------ */
+
+const TREE_DEMO_NODES: TreeNode[] = [
+  {
+    id: 'oncologia',
+    label: 'Oncología',
+    icon: 'Layers',
+    meta: (
+      <>
+        <Badge tone="neutral" variant="soft" size="xs">2 subgrupos</Badge>
+        <Badge tone="neutral" variant="outline" size="xs">5 tipos</Badge>
+      </>
+    ),
+    children: [
+      {
+        id: 'mama',
+        label: 'Cáncer de mama',
+        icon: 'FolderTree',
+        meta: <Badge tone="neutral" variant="soft" size="xs">3 tipos</Badge>,
+        children: [
+          {
+            id: 'onco-01',
+            label: 'Protocolo ONCO-01',
+            icon: 'LucideFileSearch',
+            code: 'ONCO-01',
+            description: <Text size="xs" tone="tertiary">Estudio multicéntrico de primera línea.</Text>,
+            meta: <Badge tone="warning" variant="outline" size="xs">14 unidades</Badge>,
+            actions: <Button size="xs" variant="ghost" iconLeft="Eye">Ver unidades</Button>,
+          },
+          {
+            id: 'onco-04',
+            label: 'Protocolo ONCO-04',
+            icon: 'LucideFileSearch',
+            code: 'ONCO-04',
+            description: <Text size="xs" tone="tertiary">Adyuvancia en HER2 positivo.</Text>,
+            meta: <Badge tone="warning" variant="outline" size="xs">8 unidades</Badge>,
+          },
+        ],
+      },
+      {
+        id: 'digestivo',
+        label: 'Tumores digestivos',
+        icon: 'FolderTree',
+        meta: <Badge tone="neutral" variant="soft" size="xs">2 tipos</Badge>,
+        children: [
+          {
+            id: 'onco-11',
+            label: 'Protocolo ONCO-11',
+            icon: 'LucideFileSearch',
+            code: 'ONCO-11',
+            description: <Text size="xs" tone="tertiary">Colangiocarcinoma avanzado.</Text>,
+            meta: <Badge tone="warning" variant="outline" size="xs">5 unidades</Badge>,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'sin-tipos',
+    label: 'Cuidados paliativos',
+    icon: 'Layers',
+    meta: <Badge tone="neutral" variant="soft" size="xs">0 tipos</Badge>,
+    children: [],
+    empty: <Text size="xs" tone="secondary">Este grupo todavía no tiene tipos de unidad.</Text>,
+  },
+];
+
+function TreeDemo() {
+  const [expandidos, setExpandidos] = React.useState<ReadonlySet<string>>(
+    () => new Set(['oncologia', 'mama']),
+  );
+
+  const alternar = (id: string) => {
+    setExpandidos((previos) => {
+      const siguiente = new Set(previos);
+      if (siguiente.has(id)) siguiente.delete(id);
+      else siguiente.add(id);
+      return siguiente;
+    });
+  };
+
+  return (
+    <Stack gap={3} style={{ width: '100%', maxWidth: 780 }}>
+      <TreeToolbar
+        summary={<Text size="sm" tone="secondary">5 tipos · 27 unidades</Text>}
+        actions={
+          <>
+            <Button
+              size="sm"
+              variant="ghost"
+              iconLeft="ChevronsDown"
+              onClick={() => setExpandidos(new Set(['oncologia', 'mama', 'digestivo']))}
+            >
+              Expandir todo
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              iconLeft="ChevronsUp"
+              onClick={() => setExpandidos(new Set())}
+            >
+              Contraer todo
+            </Button>
+          </>
+        }
+      />
+      <Tree
+        label="Tipología de ejemplo"
+        nodes={TREE_DEMO_NODES}
+        expandedIds={expandidos}
+        onToggle={alternar}
+      />
+    </Stack>
+  );
+}
+
+const treeEntry: ShowcaseEntry = {
+  id: 'tree',
+  name: 'Tree',
+  category: 'Datos',
+  description:
+    'Jerarquía expandible con estado controlado. Sirve para tipologías, carpetas o cualquier estructura de tres o más niveles.',
+  preview: () => <TreeDemo />,
+  code: `import { Tree, TreeToolbar, type TreeNode } from '@danielitouci96/design-system';
+
+const nodos: TreeNode[] = [
+  {
+    id: 'oncologia',
+    label: 'Oncología',
+    icon: 'Layers',
+    children: [
+      {
+        id: 'onco-01',
+        label: 'Protocolo ONCO-01',
+        code: 'ONCO-01',
+        description: 'Estudio multicéntrico de primera línea.',
+        meta: <Badge>14 unidades</Badge>,
+        actions: <Button size="xs">Ver unidades</Button>,
+      },
+    ],
+  },
+];
+
+<TreeToolbar
+  summary={<Text size="sm">5 tipos · 27 unidades</Text>}
+  actions={<Button size="sm">Expandir todo</Button>}
+/>
+
+<Tree
+  label="Tipología"
+  nodes={nodos}
+  expandedIds={expandidos}
+  onToggle={alternar}
+/>`,
+  api: [
+    { name: 'nodes', type: 'TreeNode[]', description: 'Obligatorio. Raíces de la jerarquía.' },
+    { name: 'expandedIds / onToggle', type: 'ReadonlySet<string> / (id: string) => void', description: 'Expansión controlada desde fuera.' },
+    { name: 'loading / loadingRows', type: 'boolean / number', description: 'Esqueleto de carga.' },
+    { name: 'error / empty', type: 'ReactNode', description: 'Estados de error y vacío.' },
+    { name: 'label', type: 'string', description: 'Nombre accesible del árbol.' },
+    { name: 'TreeNode.label / icon / code', type: 'ReactNode / IconName / string', description: 'Contenido principal de la fila.' },
+    { name: 'TreeNode.description / meta / actions', type: 'ReactNode', description: 'Segunda línea, badges y acciones.' },
+    { name: 'TreeNode.children / empty', type: 'TreeNode[] / ReactNode', description: 'Hijos y mensaje cuando una rama no tiene hijos.' },
+  ],
+};
+/* ------------------------------------------------------------------ */
 /* KeyValueList                                                        */
 /* ------------------------------------------------------------------ */
 
@@ -532,5 +712,6 @@ export const DATOS: ShowcaseEntry[] = [
   tableEntry,
   dataTableEntry,
   paginationEntry,
+  treeEntry,
   kvEntry,
 ];

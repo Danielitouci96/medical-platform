@@ -10,6 +10,68 @@ Todas las versiones notables de `@danielitouci96/design-system`.
 > que quedan en las entradas de abajo también se actualizaron. El nombre en npmjs es inmutable: una
 > vez publicado, habría sido para siempre.
 
+## [1.6.0] — 2026-11-16
+
+### FilterChip: tono `warning`
+
+Los chips de filtros activos de `Unidades de salud` se recoloreaban desde `app.css` con selectores locales sobre `.med-filter-chip`. Ese acento ámbar es una variante visual del patrón, no una decisión de dominio.
+
+- **`FilterChip tone="warning"`** aplica el tratamiento ámbar suave usando los tokens de badge (`--badge-background-warning` y `--badge-text-warning`), por lo que también funciona en tema oscuro.
+- El valor del filtro mantiene el color heredado y el peso semibold del DS.
+- `tone` es opcional y sigue valiendo `info` por defecto, así que los consumidores actuales no cambian.
+
+## [1.5.0] — 2026-11-16
+
+### Card: variante `panel`
+
+La tarjeta grande que envuelve tablas en `g-clinica` se estaba reestilizando desde `app.css` con la clase local `.unidad-salud-card`. Ese patrón (superficie elevada, borde hairline, radio de 24px, sombra suave, contenido recortado y tabla con radio interno) es una variante reutilizable del `Card`, no una decisión de dominio.
+
+- **`Card variant="panel"`** incorpora ese tratamiento sin clases locales.
+- **`padding="panel"`** aplica el relleno de 20px de la variante.
+- La variante fija `--table-radius: 16px` y `--table-cell-font-size: var(--font-size-sm)` para que la tabla quede integrada dentro del panel.
+- Se añaden los tokens `--card-panel-*`, `--table-cell-font-size` y `--shadow-panel`. Los aliases que leen tokens re-mapeados (`--card-panel-background` y `--card-panel-border`) se re-declaran en el scope `inverse`.
+
+## [1.4.0] — 2026-11-14
+
+### Tree y TreeToolbar
+
+El árbol jerárquico de Tipología vivía en `g-clinica` con su propio CSS (animación de carpetas, filas, badges, código y estados de carga/error/vacío). Ese bloque era un componente genérico, no una decisión de dominio, así que pasa al design system.
+
+- **`Tree`** es data-driven: recibe `TreeNode[]` con `id`, `label`, `icon`, `code`, `description`, `meta`, `actions`, `children` y `empty`. El componente resuelve la jerarquía, la indentación y las líneas de rama.
+- **Estado controlado.** La expansión se controla con `expandedIds` (`ReadonlySet<string>`) y `onToggle`. No hay estado interno duplicado.
+- **Estados completos.** `loading` con filas esqueleto, `error` y `empty` con slots; si hay `nodes`, esos estados no se muestran.
+- **Accesibilidad.** La región lleva `aria-label`; las ramas son botones con `aria-expanded` y `aria-controls`; los iconos son decorativos y el foco tiene anillo visible. Se navega con Tab y se activa con Enter/Espacio, como cualquier botón nativo.
+- **Animación sin medir alturas.** La apertura usa `grid-template-rows: 0fr → 1fr` y respeta `prefers-reduced-motion`.
+- **`TreeToolbar`** agrupa búsqueda, resumen y acciones con el layout responsive del DS. En móvil la búsqueda ocupa la fila completa y las acciones se alinean a la izquierda; en escritorio se reparten en una sola fila.
+
+### Tokens
+
+Se añaden los tokens `--tree-*` y `--tree-toolbar-*` en `_data-display.scss`. Los alias que leen tokens base re-mapeados (`--tree-group-border`, `--tree-row-hover-background`, `--tree-icon-color-muted`, `--tree-code-background`, `--tree-code-text`, `--tree-leaf-background`, `--tree-leaf-border`, `--tree-state-text`) se re-declaran también en el scope `inverse`, según el invariante de `inverse-surface.spec.ts`.
+
+## [1.3.0] — 2026-11-14
+
+### PageHeader: más aire entre las acciones
+
+Las acciones de la cabecera de página (`Actualizar`, `Exportar`, etc.) quedaban demasiado juntas
+cuando se renderizaban como botones secundarios seguidos. El `gap` sube de `--space-component-sm`
+(8px) a `--space-component-md` (12px), que es el mismo valor que g-clinica ya aplicaba como
+override local en `src/styles/app.css`.
+
+El contenedor también pasa a `flex-wrap: wrap` y `justify-content: flex-end`, para que un grupo de
+acciones largo baje a la línea siguiente alineado a la derecha en vez de desbordar la cabecera.
+
+**Compatibilidad con `Inline`.** Varias páginas de g-clinica envuelven los botones en `<Inline>`,
+que fija su propio `gap` como estilo inline. Ese estilo gana sobre la clase del DS, así que
+`.med-page-header__actions .med-inline` hereda el `gap` del contenedor. De este modo las páginas
+con y sin wrapper mantienen la misma separación.
+
+### Auditoría del CSS de g-clinica
+
+Se revisaron los cambios de `g-clinica/src/styles/app.css` desde la publicación de `1.2.0`. El
+único ajuste genérico de componente era la separación de las acciones de `PageHeader`; el resto
+(toolbars de catálogos, árbol de tipología, drawers de dominio, fondo del dashboard y estilos de
+informes) son decisiones de producto o de una vista concreta y siguen en la app.
+
 ## [1.2.0] — 2026-09-27
 
 ### Fix: los componentes ya no desaparecen sobre superficies `inverse`

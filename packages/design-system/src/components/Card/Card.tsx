@@ -1,11 +1,11 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-export type CardVariant = 'default' | 'outlined' | 'elevated' | 'flat' | 'interactive';
+export type CardVariant = 'default' | 'outlined' | 'elevated' | 'flat' | 'interactive' | 'panel';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant;
-  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'panel';
   /** Enables hover elevation (for interactive cards). */
   interactive?: boolean;
   /** Set when the whole card is clickable but not interactive-based. */
@@ -18,6 +18,7 @@ const paddingClass: Record<NonNullable<CardProps['padding']>, string> = {
   md: 'med-card--pad-md',
   lg: 'med-card--pad-lg',
   xl: 'med-card--pad-xl',
+  panel: 'med-card--pad-panel',
 };
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(

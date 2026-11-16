@@ -1,0 +1,327 @@
+@use '../../foundations/tokens/component/data-display' as *;
+
+// ============================================================================
+// TREE
+// ============================================================================
+// Nested disclosure list rendered as a data tree. The open/close transition
+// uses grid-template-rows 0fr -> 1fr so it never depends on measuring content
+// height in JavaScript. Every visual rule lives here: consuming applications
+// should only compose Tree/TreeToolbar, never add their own tree CSS.
+// ============================================================================
+
+.med-tree {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tree-gap);
+  padding-top: var(--space-component-md);
+
+  &--loading {
+    gap: var(--space-component-lg);
+  }
+
+  &__skeleton {
+    width: 100%;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &--root {
+      gap: var(--tree-gap);
+    }
+
+    &--leaves {
+      border-top: 1px dashed var(--color-divider);
+      background: var(--tree-leaf-background);
+    }
+  }
+
+  &__item {
+    min-width: 0;
+
+    &--root {
+      border: 1px solid var(--tree-group-border);
+      border-radius: var(--tree-group-radius);
+      background: var(--tree-group-background);
+      overflow: hidden;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: var(--tree-row-gap);
+    width: 100%;
+    padding: var(--tree-row-padding-block) var(--tree-row-padding-inline);
+    padding-left: calc(
+      var(--tree-row-padding-inline) + var(--med-tree-depth, 0) * var(--tree-indent)
+    );
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition:
+      background-color var(--duration-normal) var(--easing-standard),
+      border-color var(--duration-normal) var(--easing-standard),
+      transform var(--duration-fast) var(--easing-standard);
+
+    &:hover {
+      background: var(--tree-row-hover-background);
+    }
+
+    &:active {
+      transform: scale(0.995);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: -2px;
+    }
+
+    &--root {
+      background: var(--tree-branch-background);
+      font-weight: var(--font-weight-semibold);
+
+      &:hover {
+        background: var(--tree-branch-background-hover);
+      }
+    }
+
+    &--nested {
+      border-top: 1px solid var(--tree-leaf-border);
+    }
+  }
+
+  &__chevron {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    transform-origin: center;
+    transition:
+      transform var(--duration-slower) var(--easing-decelerate),
+      color var(--duration-normal) var(--easing-standard);
+  }
+
+  &__row[aria-expanded='true'] &__chevron {
+    transform: rotate(90deg);
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size-6);
+    height: var(--size-6);
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    background: var(--tree-icon-background);
+    color: var(--tree-icon-color);
+  }
+
+  &__row--nested &__icon {
+    width: var(--size-5);
+    height: var(--size-5);
+    color: var(--tree-icon-color-muted);
+  }
+
+  &__label {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__code {
+    padding: 1px var(--space-1);
+    border-radius: var(--radius-sm);
+    background: var(--tree-code-background);
+    color: var(--tree-code-text);
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-medium);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+
+  &__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    flex-wrap: wrap;
+  }
+
+  &__children {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    contain: layout paint;
+    transition: grid-template-rows var(--duration-slower) var(--easing-decelerate);
+
+    &.is-open {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  &__children-inner {
+    min-height: 0;
+    overflow: hidden;
+    // Keeps collapsed content out of view (Safari) while the grid animates.
+    visibility: hidden;
+    transition: visibility 0s linear var(--duration-slower);
+  }
+
+  &__children.is-open > &__children-inner {
+    visibility: visible;
+    transition: visibility 0s;
+  }
+
+  &__empty {
+    padding: var(--tree-row-padding-block) var(--tree-row-padding-inline);
+    color: var(--color-text-secondary);
+    font: var(--font-body-xs);
+  }
+
+  &__leaf {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-component-lg);
+    padding: var(--tree-row-padding-block) var(--tree-row-padding-inline);
+    padding-left: calc(
+      var(--tree-row-padding-inline) + var(--med-tree-depth, 0) * var(--tree-indent)
+    );
+    border-top: 1px solid var(--tree-leaf-border);
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    &:hover {
+      background: var(--tree-group-background);
+    }
+  }
+
+  &__leaf-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-0\.5);
+    min-width: 0;
+  }
+
+  &__leaf-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-component-xs);
+    flex-wrap: wrap;
+  }
+
+  &__leaf-icon {
+    flex-shrink: 0;
+    margin-top: var(--space-1);
+    color: var(--color-text-secondary);
+  }
+
+  &__description {
+    max-width: 62ch;
+  }
+
+  &__leaf-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-1\.5);
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  &__state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-component-sm);
+    padding: var(--space-14) var(--space-component-xl);
+    text-align: center;
+    color: var(--tree-state-text);
+  }
+
+  &__state-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-component-xs);
+  }
+}
+
+.med-tree-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tree-toolbar-gap);
+  padding-bottom: var(--space-component-lg);
+  border-bottom: var(--tree-toolbar-divider);
+
+  &__main {
+    display: flex;
+    align-items: center;
+    gap: var(--space-component-md);
+    flex-wrap: wrap;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-component-md);
+    flex: 0 1 var(--tree-toolbar-search-width);
+    min-width: 0;
+  }
+
+  &__summary {
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-component-sm);
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .med-tree__row,
+  .med-tree__chevron,
+  .med-tree__children,
+  .med-tree__children-inner {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  .med-tree__row:active {
+    transform: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .med-tree-toolbar__search {
+    flex-basis: 100%;
+  }
+
+  .med-tree-toolbar__summary {
+    margin-left: 0;
+  }
+
+  .med-tree__leaf {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .med-tree__leaf-actions {
+    justify-content: flex-start;
+  }
+}

@@ -26,7 +26,7 @@ const PUBLIC_API = [
   'Pagination', 'PasswordInput', 'Popover', 'Progress', 'RadioGroup',
   'SearchInput', 'Select', 'SelectItem', 'Sidebar', 'Skeleton', 'Slider',
   'Spinner', 'StatusIndicator', 'Stepper', 'Switch', 'Tabs', 'Tag', 'Text',
-  'Textarea', 'TimePicker',
+  'Textarea', 'TimePicker', 'Tree', 'TreeToolbar',
   // Overlays
   'ConfirmDialog', 'Toast', 'ToastProvider', 'ToastViewport', 'Tooltip',
   'TooltipProvider',
@@ -166,6 +166,21 @@ const STANDALONE: StandaloneCase[] = [
   { name: 'Text', children: 'Texto' },
   { name: 'Textarea', props: { label: 'Notas' } },
   { name: 'TimePicker', props: { label: 'Hora' } },
+  {
+    name: 'Tree',
+    props: {
+      nodes: [
+        {
+          id: 'grupo-1',
+          label: 'Grupo',
+          children: [{ id: 'tipo-1', label: 'Tipo' }],
+        },
+      ],
+      expandedIds: new Set(['grupo-1']),
+      onToggle: () => {},
+    },
+  },
+  { name: 'TreeToolbar', props: { summary: '3 resultados' } },
   { name: 'Tooltip', props: { content: 'Ayuda' }, children: <button>Info</button> },
   { name: 'TooltipProvider', children: 'Provider' },
   { name: 'ConfirmDialog', props: { open: true, onOpenChange: () => {}, title: 'Confirmar' } },
@@ -188,7 +203,7 @@ const STANDALONE: StandaloneCase[] = [
   { name: 'DetailPanel', props: { title: 'Detalle' }, children: 'Cuerpo' },
   { name: 'FilterBar', props: { onSearchChange: () => {} } },
   { name: 'FilterButton', props: { count: 2 } },
-  { name: 'FilterChip', props: { id: '1', label: 'Estado', value: 'Activo', onRemove: () => {} } },
+  { name: 'FilterChip', props: { id: '1', label: 'Estado', value: 'Activo', tone: 'warning', onRemove: () => {} } },
   { name: 'ActiveFilters', props: { activeCount: 1, onClearAll: () => {} } },
   { name: 'SearchFilter', props: { value: '', onChange: () => {} } },
   { name: 'SelectFilter', props: { onChange: () => {}, options: [{ label: 'Uno', value: '1' }] } },

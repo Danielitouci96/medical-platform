@@ -303,7 +303,7 @@ const breadcrumbEntry: ShowcaseEntry = {
 
 function FilterBarDemo() {
   const [busqueda, setBusqueda] = React.useState('');
-  const [fase, setFase] = React.useState('todas');
+  const [fase, setFase] = React.useState('diseno');
   const [sello, setSello] = React.useState(true);
 
   return (
@@ -314,7 +314,7 @@ function FilterBarDemo() {
         searchPlaceholder="Buscar protocolos…"
         showSearch
         showFilterButton
-        activeFilterCount={sello ? 1 : 0}
+        activeFilterCount={(sello ? 1 : 0) + (fase !== 'todas' ? 1 : 0)}
         onFilterButtonClick={() => undefined}
         quickSelects={
           <SelectFilter
@@ -336,6 +336,15 @@ function FilterBarDemo() {
             label="Sello"
             value="Con sello"
             onRemove={(id) => setSello(id !== 'sello')}
+          />
+        ) : null}
+        {fase !== 'todas' ? (
+          <FilterChip
+            id="fase"
+            label="Fase"
+            value={fase}
+            tone="warning"
+            onRemove={() => setFase('todas')}
           />
         ) : null}
       </FilterBar>
@@ -375,6 +384,13 @@ const filterBarEntry: ShowcaseEntry = {
   }
 >
   <FilterChip id="sello" label="Sello" value="Con sello" onRemove={quitarSello} />
+  <FilterChip
+    id="fase"
+    label="Fase"
+    value={fase}
+    tone="warning"
+    onRemove={quitarFase}
+  />
 </FilterBar>`,
   api: [
     { name: 'searchValue / onSearchChange', type: 'string / (v: string) => void', description: 'Búsqueda de la barra.' },
@@ -383,7 +399,7 @@ const filterBarEntry: ShowcaseEntry = {
     { name: 'quickSelects', type: 'ReactNode', description: 'SelectFilter, DateFilter o controles rápidos en línea.' },
     { name: 'children', type: 'ReactNode', description: 'FilterChip o ActiveFilters con los filtros aplicados.' },
     { name: 'SelectFilter.onChange', type: '(value: string | undefined) => void', description: 'Devuelve undefined al limpiar.' },
-    { name: 'FilterChip', type: '{ id, label, value, onRemove }', description: 'onRemove recibe el id del chip.' },
+    { name: 'FilterChip', type: '{ id, label, value, tone?, onRemove }', description: 'onRemove recibe el id del chip. tone="warning" usa el fondo ámbar suave.' },
   ],
 };
 

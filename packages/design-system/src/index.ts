@@ -143,6 +143,8 @@ export { Avatar } from './components/Avatar/Avatar';
 export type { AvatarProps, AvatarSize } from './components/Avatar/Avatar';
 export { StatusIndicator } from './components/StatusIndicator/StatusIndicator';
 export type { StatusIndicatorProps, StatusTone } from './components/StatusIndicator/StatusIndicator';
+export { Tree, TreeToolbar } from './components/Tree/Tree';
+export type { TreeProps, TreeNode, TreeToolbarProps } from './components/Tree/Tree';
 
 // ============================================================================
 // Tables

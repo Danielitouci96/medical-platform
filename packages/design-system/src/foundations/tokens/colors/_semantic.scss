@@ -331,6 +331,8 @@
   --card-border: var(--color-border);
   --card-border-hover: var(--color-border-strong);
   --card-background-hover: var(--color-surface-hover);
+  --card-panel-background: var(--color-surface-elevated);
+  --card-panel-border: var(--color-divider);
   --modal-background: var(--color-surface-overlay);
   --modal-text: var(--color-text-primary);
   --modal-title-text: var(--color-text-primary);
@@ -353,6 +355,14 @@
   --table-striped-background: var(--color-surface-sunken);
   --skeleton-background: var(--color-surface-sunken);
   --skeleton-highlight: var(--color-surface-hover);
+  --tree-group-border: var(--color-border-subtle);
+  --tree-row-hover-background: var(--color-surface-sunken);
+  --tree-icon-color-muted: var(--color-text-secondary);
+  --tree-code-background: var(--color-surface-sunken);
+  --tree-code-text: var(--color-text-tertiary);
+  --tree-leaf-background: var(--color-surface);
+  --tree-leaf-border: var(--color-border-subtle);
+  --tree-state-text: var(--color-text-secondary);
 
   // Badges, tags and chips
   --avatar-border: var(--color-surface);

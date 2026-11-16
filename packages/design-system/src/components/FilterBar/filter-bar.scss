@@ -100,6 +100,12 @@
 }
 
 .med-filter-chip {
+  &.med-filter-chip--tone-warning {
+    background: var(--badge-background-warning);
+    border-color: color-mix(in srgb, var(--badge-text-warning) 30%, transparent);
+    color: var(--badge-text-warning);
+  }
+
   &__value {
     font-weight: var(--font-weight-semibold);
   }

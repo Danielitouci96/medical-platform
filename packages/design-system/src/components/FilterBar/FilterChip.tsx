@@ -11,11 +11,13 @@ export interface FilterChipProps extends React.HTMLAttributes<HTMLSpanElement> {
   label: string;
   /** Displayed value. */
   value: React.ReactNode;
+  /** Visual tone. `warning` uses the soft amber treatment for active filters. */
+  tone?: 'info' | 'warning';
   onRemove: (id: string) => void;
 }
 
 const FilterChip = React.forwardRef<HTMLSpanElement, FilterChipProps>(function FilterChip(
-  { id, label, value, onRemove, className, ...rest },
+  { id, label, value, tone = 'info', onRemove, className, ...rest },
   ref,
 ) {
   return (
@@ -23,10 +25,10 @@ const FilterChip = React.forwardRef<HTMLSpanElement, FilterChipProps>(function F
       ref={ref}
       removable
       size="md"
-      tone="info"
+      tone={tone}
       onRemove={() => onRemove(id)}
       removeLabel={`Remove filter ${label}`}
-      className={classNames('med-filter-chip', className)}
+      className={classNames('med-filter-chip', `med-filter-chip--tone-${tone}`, className)}
       {...rest}
     >
       {label}: <strong className="med-filter-chip__value">{value}</strong>

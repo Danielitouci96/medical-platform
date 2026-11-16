@@ -5,6 +5,9 @@ import { peerDependencies, dependencies } from './package.json';
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    port: 4401, // no choca con la demo del DS (4401) ni Storybook (4400)
+  },
   build: {
     outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,

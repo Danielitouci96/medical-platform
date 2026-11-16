@@ -24,6 +24,18 @@
     border: none;
   }
 
+  &--variant-panel {
+    overflow: hidden;
+    border: 1px solid var(--card-panel-border);
+    border-radius: var(--card-panel-radius);
+    background: var(--card-panel-background);
+    box-shadow: var(--card-panel-shadow);
+
+    // Table panels keep the table's corners inset from the card radius.
+    --table-radius: var(--card-panel-table-radius);
+    --table-cell-font-size: var(--font-size-sm);
+  }
+
   &--variant-interactive {
     border: var(--border-card);
     box-shadow: var(--card-shadow);
@@ -75,6 +87,10 @@
 
   &--pad-xl {
     padding: var(--space-8);
+  }
+
+  &--pad-panel {
+    padding: var(--card-panel-padding);
   }
 
   &__header {
